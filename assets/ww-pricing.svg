@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#09203f"/>
+      <stop offset="1" stop-color="#714300"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="72%" cy="18%" r="62%">
+      <stop offset="0" stop-color="#ff9900" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ff9900" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#031426" flood-opacity=".32"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#001b35" flood-opacity=".18"/>
+    </filter>
+    <style>
+      .glass{fill:rgba(255,255,255,.82);stroke:rgba(255,255,255,.75);stroke-width:2;filter:url(#shadow)}
+      .line{fill:none;stroke:#ffffff;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;opacity:.92}
+      .thin{fill:none;stroke:#bfe3ff;stroke-width:3;stroke-linecap:round;opacity:.8}
+      .dark{fill:#071a34}.white{fill:#fff}.muted{fill:#d8ecff}.accent{fill:#ff9900}
+      .label{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:900;fill:#ffffff;font-size:34px;letter-spacing:-.6px}
+      .sub{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:700;fill:#dcefff;font-size:18px}
+      .small{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:800;fill:#0a2b4d;font-size:18px}
+    </style>
+  </defs>
+  <rect width="900" height="520" rx="0" fill="url(#bg)"/>
+  <rect width="900" height="520" fill="url(#glow)"/>
+  <path d="M-40 430 C160 330,260 470,450 350 S750 240,960 325" fill="none" stroke="#ffffff" stroke-opacity=".18" stroke-width="38"/>
+  <path d="M-20 410 C190 300,305 426,486 320 S740 230,935 290" fill="none" stroke="#ff9900" stroke-opacity=".55" stroke-width="8"/>
+  <text x="42" y="72" class="label">WW Pricing Tracker</text>
+  <text x="44" y="104" class="sub">price perception • softlines • hardlines • consumables</text>
+  
+  <path d="M140 185 H350 L420 255 L250 425 L70 255 Z" fill="#fff3df" stroke="#ffb44e" stroke-width="6" filter="url(#shadow)"/>
+  <circle cx="330" cy="232" r="22" fill="#ff9900"/>
+  <text x="168" y="300" style="font-family:Inter,Segoe UI,Arial;font-weight:900;font-size:74px;fill:#b45309">$</text>
+  <rect x="492" y="162" width="265" height="220" rx="28" class="glass"/>
+  <path d="M535 318 C570 270,612 310,646 235 S710 240,740 190" fill="none" stroke="#00a6a6" stroke-width="10" stroke-linecap="round"/>
+  <rect x="525" y="350" width="55" height="20" rx="10" fill="#eaf6ff"/><rect x="604" y="350" width="80" height="20" rx="10" fill="#e7fff4"/><rect x="706" y="350" width="38" height="20" rx="10" fill="#fff3df"/>
+  <path d="M560 438 H715" stroke="#fff" stroke-width="10" stroke-linecap="round"/><path d="M548 405 L585 438 L548 471" class="line"/>
+
+</svg>
