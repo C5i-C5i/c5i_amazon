@@ -121,13 +121,49 @@ const capabilityDetails = {
     ]}
   ],
   'Market & Competitive Intelligence': [
-    {title:'AWS Media Lifestyle Study', points:[
-      'Global media behavior tracking study across 9 markets to understand media better to better connect with customers',
-      'Data collected through AWS database'
-    ], scale:[
-      '3 annual waves',
-      'Detailed excel dashboard of results'
-    ]}
+    {title:'Amazon LEO | Competitive Intelligence Overview',
+     subtitle:'Weekly monitoring of Starlink serviceability and plan details across Residential, Roam, Global Priority, and Local Priority services.',
+     stats:[
+       {value:'38', note:'Pilot: Feb 26 – May 26<br>Full Scale: June 26 – May 27', label:'weeks of tracked history'},
+       {value:'4', note:'Consumer – Residential, Roam<br>Business – Global, Local', label:'service categories monitored'},
+       {value:'~43K', label:'residential addresses scraped per week'},
+       {value:'58', label:'countries/regions covered'}
+     ],
+     pointsHeading:'Key deliverables',
+     points:[
+       'Weekly dataset covering serviceability, plans, hardware, installation, and taxes',
+       'Address-level Residential plan captures, along with Roam, Business plans (Global & Local) plan capture',
+       'Drill-down dashboard with week, competitor, and geography filters',
+       'Key observations and KPIs on plans, market coverage, hardware pricing'
+     ],
+     scaleHeading:'How the client uses the data',
+     scale:[
+       'Track coverage, congestion, waitlist, and pricing changes over time',
+       'Identify market-level shifts and opportunities to expand category coverage',
+       'Support export-ready analysis and drilldowns for stakeholder decisions',
+       'Compare Starlink plans to help define the pricing strategy for Amazon LEO satellite internet service'
+     ]},
+    {title:'CXBT | Global & India Competitive Intelligence',
+     subtitle:'A multi-market competitive intelligence engagement, leveraging competitor website data to monitor delivery timelines, pricing and discount changes, and category-level product assortment.',
+     stats:[
+       {value:'Jan 25 - Present', label:'Engagement timeline'},
+       {value:'~1M', label:'SKUs crawled till date'},
+       {value:'17', label:'retailers tracked'},
+       {value:'6', label:'regions covered'},
+       {value:'8', label:'competitive intelligence use cases applied'}
+     ],
+     pointsHeading:'Key deliverables',
+     points:[
+       'Dataset containing delivery timelines, pricing details, and category wise product assortment',
+       'Crawl data spread across 24*7 (168 hours)',
+       'Dataset includes screenshots for 25% of product pages so that the client can validate the data'
+     ],
+     scaleHeading:'How the client uses the data',
+     scale:[
+       'Uses the dataset for price, offer, category, selection, and serviceability decisions',
+       'Utilizes delivery promise, returns, stock-outs, and marketplace attributes',
+       'Leverages the dataset to track holiday and festive events, along with category-wise sales offers and deals.'
+     ]}
   ]
 };
 const earlier = [
@@ -172,7 +208,7 @@ function renderCapModal(capTitle){
   $('#capModalTitle').textContent = capTitle;
   $('#capModalText').textContent = cap ? cap.text : '';
   $('#capModalBody').innerHTML = items.length
-    ? items.map(e=>`<div class="cap-engagement"><h4>${e.title}</h4><ul>${e.points.map(x=>`<li>${x}</li>`).join('')}</ul>${e.scale?`<div class="scale-output"><h5>SCALE / OUTPUT</h5><ul>${e.scale.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:''}</div>`).join('')
+    ? items.map(e=>`<div class="cap-engagement"><h4>${e.title}</h4>${e.subtitle?`<p class="eng-sub">${e.subtitle}</p>`:''}${e.stats?`<ul>${e.stats.map(x=>`<li>${x.value} ${x.label}${x.note?`<br>${x.note}`:''}</li>`).join('')}</ul>`:''}${e.pointsHeading?`<h5 class="eng-h">${e.pointsHeading}</h5>`:''}<ul>${e.points.map(x=>`<li>${x}</li>`).join('')}</ul>${e.scale?`<div class="scale-output"><h5>${e.scaleHeading||'SCALE / OUTPUT'}</h5><ul>${e.scale.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:''}</div>`).join('')
     : `<p class="cap-empty">Detailed engagement breakdowns for this capability are being added soon.</p>`;
 }
 function setupCapModal(){
@@ -198,7 +234,7 @@ function renderEngagements(){
   $('#engagementGrid').innerHTML=list.map((e,i)=>`<article class="engagement-card reveal" style="transition-delay:${Math.min(i*.035,.25)}s"><div class="card-image" style="background:${e.image}"></div><div class="card-body"><div class="tags">${e.tags.map((t,j)=>`<span class="tag ${j%3===1?'green':j%3===2?'pink':''}">${t}</span>`).join('')}</div><h3>${e.title}</h3><p>${e.desc}</p><div class="card-stats">${e.stats.map(s=>`<div><strong>${s[0]}</strong><span>${s[1]}</span></div>`).join('')}</div><a class="view-link" href="#programs">View Engagement →</a></div></article>`).join('') || `<div class="program-card"><h3>No engagements found</h3><p>Adjust filters or search another term.</p></div>`;
   setupReveal();
 }
-function renderTeams(){ $('#teamGrid').innerHTML=teams.map((t,i)=>`<a class="team-tile" href="#teams" data-team="${t}"><span>${teamIcons[i]}</span>${t}</a>`).join(''); }
+function renderTeams(){ $('#teamGrid').innerHTML=teams.map((t,i)=>`<div class="team-tile" data-team="${t}"><span>${teamIcons[i]}</span>${t}</div>`).join(''); }
 function renderImpact(){ $('#impactMetrics').innerHTML=impactMetrics.map(m=>`<article class="impact-card reveal"><div class="metric-icon">${m[0]}</div><div><strong>${m[1]}</strong><span>${m[2]}</span></div></article>`).join(''); }
 function renderPrograms(){ $('#programsGrid').innerHTML=programs.map(p=>`<article class="program-card reveal"><h3>${p.title}</h3><ul>${p.points.map(x=>`<li>${x}</li>`).join('')}</ul></article>`).join(''); }
 function renderEarlier(){ $('#earlierGrid').innerHTML=earlier.map(e=>`<article class="earlier-card reveal"><h3>${e.title}</h3><span class="cost">${e.cost}</span><ul>${e.points.map(x=>`<li>${x}</li>`).join('')}</ul></article>`).join(''); }
@@ -212,41 +248,9 @@ function renderGlobalResults(q){
   const rows=engagements.filter(e=>!q||Object.values(e).join(' ').toLowerCase().includes(q)).slice(0,8);
   $('#globalResults').innerHTML=rows.map(e=>`<div class="result"><h4>${e.title}</h4><p>${e.desc}</p><small>${e.capability} • ${e.team} • ${e.geography}</small></div>`).join('') || '<div class="result"><h4>No match</h4><p>Try another capability, team, geography or methodology.</p></div>';
 }
-function setupNav() {
-    const links = $$('.nav a');
-
-    const pairs = links
-        .map(a => ({
-            a,
-            s: $(a.getAttribute('href'))
-        }))
-        .filter(x => x.s);
-
-    function updateNav() {
-
-        const marker = window.innerHeight * 0.35;
-
-        let current = pairs[0];
-
-        for (const pair of pairs) {
-
-            const rect = pair.s.getBoundingClientRect();
-
-            if (rect.top <= marker && rect.bottom >= marker) {
-                current = pair;
-                break;
-            }
-        }
-
-        links.forEach(a => a.classList.remove('active'));
-
-        current.a.classList.add('active');
-    }
-
-    window.addEventListener('scroll', updateNav, { passive: true });
-
-    updateNav();
-
+function setupNav(){
+  const links=$$('.nav a'); const pairs=links.map(a=>({a,s:$(a.getAttribute('href'))})).filter(x=>x.s);
+  window.addEventListener('scroll',()=>{let idx=0;pairs.forEach((x,i)=>{if(x.s.getBoundingClientRect().top<110)idx=i});links.forEach(a=>a.classList.remove('active')); if(pairs[idx])pairs[idx].a.classList.add('active');},{passive:true});
 }
 function setupCounters(){
   const io=new IntersectionObserver(entries=>entries.forEach(e=>{ if(e.isIntersecting){ const el=e.target,target=+el.dataset.count; let cur=0; const step=Math.max(1,Math.ceil(target/38)); const tick=()=>{cur=Math.min(target,cur+step);el.textContent=cur;if(cur<target)requestAnimationFrame(tick)}; tick(); io.unobserve(el);} }),{threshold:.5}); $$('[data-count]').forEach(el=>io.observe(el));
