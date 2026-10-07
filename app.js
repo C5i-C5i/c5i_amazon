@@ -124,7 +124,7 @@ const capabilityDetails = {
     {title:'Amazon LEO | Competitive Intelligence Overview',
      subtitle:'Weekly monitoring of Starlink serviceability and plan details across Residential, Roam, Global Priority, and Local Priority services.',
      stats:[
-       {value:'38', note:'Pilot: Feb 26 – May 26<br>Full Scale: June 26 – May 27', label:'weeks of tracked history'},
+       {value:'38', label:'weeks of tracked history'},
        {value:'4', note:'Consumer – Residential, Roam<br>Business – Global, Local', label:'service categories monitored'},
        {value:'~43K', label:'residential addresses scraped per week'},
        {value:'58', label:'countries/regions covered'}
