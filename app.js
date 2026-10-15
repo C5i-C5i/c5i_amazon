@@ -352,12 +352,28 @@ function setupNav(){
   });
   window.addEventListener('scroll',scheduleActive,{passive:true});
   window.addEventListener('resize',()=>{syncHeaderHeight();scheduleActive();});
+  // A fresh visit to the published website always starts at Home.
+  // Ignore stale URL fragments and browser scroll restoration on initial load.
+  const home=pairs.find(item=>item.section.id==='home') || pairs[0];
+  const startAtHome=()=>{
+    revealMainSections();
+    if(location.hash)history.replaceState(null,'',location.pathname+location.search);
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+    pending=home;
+    pendingUntil=performance.now()+900;
+    setActive(home);
+    scheduleActive();
+  };
+  if('scrollRestoration' in history)history.scrollRestoration='manual';
+  startAtHome();
   window.addEventListener('load',()=>{
     syncHeaderHeight();
-    const id=decodeURIComponent(location.hash.slice(1));
-    const match=pairs.find(item=>item.section.id===id);
-    if(match)goTo(match,false);
-    else scheduleActive();
+    startAtHome();
+    requestAnimationFrame(()=>requestAnimationFrame(startAtHome));
+  });
+  // Some browsers restore scroll position after image/font layout settles.
+  window.addEventListener('pageshow',event=>{
+    if(event.persisted)startAtHome();
   });
   window.addEventListener('hashchange',()=>{
     const id=decodeURIComponent(location.hash.slice(1));

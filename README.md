@@ -37,3 +37,6 @@ Update: Engagement cards now use dedicated context-matched SVG artwork for every
 
 
 Update: Restored the original metric-strip UI and changed only the numbers/text exactly as requested.
+
+
+Startup: The website always opens at Home on a fresh load; internal navigation still updates the URL hash.
