@@ -1,0 +1,1115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C5i × Amazon | Research & Decision Intelligence</title>
+<script>if(window.self!==window.top)document.documentElement.classList.add('embedded')</script>
+<style>
+:root{
+  --c5i-deep:#26004d; --c5i-purple:#5b0bd7; --c5i-violet:#7915ee;
+  --c5i-light:#eee5ff; --c5i-pale:#faf7ff; --ink:#21132f; --muted:#6e6478;
+  --line:#ded4e8; --white:#fff; --black:#100817;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--c5i-pale);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background:radial-gradient(circle at 85% 5%,rgba(121,21,238,.11),transparent 30%)}
+header{position:sticky;top:0;z-index:50;background:rgba(250,247,255,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(38,0,77,.10)}
+.topbar{height:78px;max-width:1380px;margin:auto;padding:0 30px;display:flex;align-items:center;gap:25px}
+.logo{font-weight:800;font-size:25px;letter-spacing:-.08em;color:var(--c5i-deep);margin-right:auto}.logo i{color:var(--c5i-violet);font-style:normal}
+nav{display:flex;align-items:center;gap:20px;overflow:auto;white-space:nowrap}
+nav button{border:0;background:none;color:var(--ink);font:700 10px "Segoe UI",system-ui,Arial,sans-serif;letter-spacing:.13em;cursor:pointer;padding:9px 0;opacity:.72}
+nav button:hover,nav button.active{opacity:1;color:var(--c5i-violet)}
+.contact{border:0;background:var(--c5i-deep);color:#fff;border-radius:999px;padding:12px 17px;font-weight:800;cursor:pointer;white-space:nowrap}
+.progress{height:3px;width:0;background:linear-gradient(90deg,var(--c5i-purple),#b67aff)}
+main{max-width:1380px;margin:auto;padding:0 30px 90px}
+.view{display:none;animation:in .38s ease}.view.active{display:block}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hero{min-height:calc(100vh - 81px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:65px}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:.2em;color:var(--c5i-violet);text-transform:uppercase}
+.eyebrow:before{content:"●";margin-right:9px}
+h1,h2,h3{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+h1{font-size:clamp(31px,3.8vw,52px);line-height:1.08;letter-spacing:-.025em;margin:22px 0}
+h1 span{color:var(--c5i-violet)}
+h2{font-size:clamp(24px,2.8vw,38px);line-height:1.12;letter-spacing:-.02em;margin:12px 0}
+h3{font-size:23px;line-height:1.05;margin:10px 0}
+.lead{font-size:14px;line-height:1.7;color:var(--muted);max-width:760px}
+.hero-art{background:linear-gradient(145deg,#27004d,#7614e6);border-radius:34px;min-height:490px;padding:38px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 35px 90px rgba(58,5,104,.24)}
+.hero-art h2{font-size:28px}.hero-art p{color:#eee6fa;line-height:1.7}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:12px 16px;font-weight:800;cursor:pointer}.btn.light{background:#fff;color:var(--c5i-deep);border-color:#fff}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{padding:18px;border-radius:18px;background:rgba(255,255,255,.11)}.stat b{font-size:26px;display:block}.stat small{opacity:.72}
+.section{padding:85px 0 20px}.section-intro{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:30px}.section-intro p{max-width:560px;color:var(--muted);line-height:1.65}
+.discipline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.discipline{background:#fff;border:1px solid var(--line);border-radius:27px;overflow:hidden;cursor:pointer;transition:.25s;box-shadow:0 9px 30px rgba(43,9,74,.05)}
+.discipline:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(43,9,74,.12)}
+.discipline-top{background:linear-gradient(135deg,var(--c5i-purple),#4b07a3);color:#fff;padding:25px}.discipline-top .num{font-weight:800;font-size:11px;letter-spacing:.12em;opacity:.75}.discipline-top h3{font-size:27px;margin:15px 0 0}
+.discipline-body{padding:25px}.discipline-body p{color:var(--muted);line-height:1.65;font-size:12px;margin:0}.explore{display:inline-block;margin-top:22px;background:var(--c5i-light);color:var(--c5i-violet);border-radius:999px;padding:9px 12px;font-size:9px;font-weight:900;letter-spacing:.08em}
+.kicker{font-size:10px;font-weight:900;letter-spacing:.18em;color:var(--c5i-violet);margin-bottom:15px}
+.solution-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.solution{background:#fff;border:1px solid var(--line);border-radius:26px;padding:31px;min-height:310px;cursor:pointer;position:relative;transition:.25s}.solution:hover{transform:translateY(-4px);border-color:#bd94ed}
+.solution .num{font-size:11px;font-weight:900;color:var(--c5i-violet)}.solution p{color:var(--muted);line-height:1.65}.solution .link{position:absolute;bottom:26px;color:var(--c5i-violet);font-weight:800;font-size:12px}
+.subnav{position:sticky;top:81px;z-index:20;background:rgba(250,247,255,.94);padding:15px 0;border-bottom:1px solid var(--line);display:flex;gap:9px;overflow:auto}.subnav button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 13px;font-size:10px;font-weight:800;color:var(--ink);cursor:pointer;white-space:nowrap}.subnav button.active{background:var(--c5i-deep);color:#fff;border-color:var(--c5i-deep)}
+.page-hero{padding:75px 0 45px;max-width:980px}.page-hero h1{font-size:clamp(29px,3.4vw,46px)}.page-hero p{font-size:14px;line-height:1.7;color:var(--muted);max-width:820px}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.tile{border:1px solid var(--line);background:#fff;border-radius:21px;padding:24px;text-align:left;display:flex;align-items:center;justify-content:space-between;font-weight:800;cursor:pointer;color:var(--ink)}.tile:hover{border-color:var(--c5i-violet);color:var(--c5i-violet)}
+.content-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.block{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px}.block.wide{grid-column:1/-1}.block h3{margin-top:0}.block-label{font-size:10px;font-weight:900;letter-spacing:.16em;color:var(--c5i-violet);margin-bottom:17px}.block ul{margin:0;padding-left:20px}.block li{margin:0 0 13px;color:#574d61;line-height:1.55}.metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{padding:22px;border-radius:18px;background:linear-gradient(145deg,#fff,#f2eaff);border:1px solid var(--line)}.metric b{display:block;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;font-size:23px}.metric span{font-size:11px;color:var(--muted)}
+.sources{display:flex;flex-wrap:wrap;gap:10px}.source{background:var(--c5i-light);color:var(--c5i-deep);border-radius:999px;padding:10px 13px;font-size:11px;font-weight:700}
+.cta{margin-top:55px;background:var(--c5i-deep);color:#fff;border-radius:30px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:30px}.cta h3{font-size:26px;margin:0}.cta p{color:#ddd0ee;line-height:1.6}
+footer{background:var(--c5i-deep);color:#fff;padding:40px 30px}.foot{max-width:1380px;margin:auto;display:flex;justify-content:space-between;gap:20px}.foot small{opacity:.65}
+
+.quantitative-visuals{padding-top:45px}
+.quantitative-visuals .section-intro{margin-bottom:22px}
+.source-visual{background:#fff;border:1px solid var(--line);border-radius:26px;padding:12px;margin:18px 0;box-shadow:0 14px 45px rgba(43,9,74,.07);overflow:hidden}
+.source-visual img{display:block;width:100%;height:auto;border-radius:16px}
+
+.ux-three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:30px 0}
+.ux-card{border:1.5px solid #d9c5ff;border-radius:18px;padding:24px;background:#fff;box-shadow:0 12px 32px rgba(74,0,150,.06)}
+.ux-card.featured{border-color:#6b00e8}
+.ux-card-title{display:flex;gap:12px;align-items:flex-start}.ux-card-title h3{margin:0;color:#5b00d6;font-size:17px}.ux-icon{color:#6b00e8;font-size:21px;line-height:1}
+.ux-card h4{color:#6500dc;margin:20px 0 8px;font-size:14px}.ux-card p{color:#27202d;line-height:1.45}.ux-rule{height:1px;background:#d8bfff;margin:20px 0}
+.hero-accent{color:#6500dc;font-size:15px}.ux-section{margin-top:38px}
+.ux-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative;margin:35px 0}.ux-step{text-align:center;position:relative}.ux-step:before{content:"";position:absolute;top:25px;left:50%;width:100%;height:2px;background:#d7c0ff;z-index:0}.ux-step:last-child:before{display:none}.ux-step span{display:inline-flex;position:relative;z-index:1;width:52px;height:52px;border-radius:50%;align-items:center;justify-content:center;background:#6900e8;color:#fff;font-weight:800;font-size:15px}.ux-step b{display:block;color:#6500dc;margin:12px 0 8px}.ux-step p{margin:0;color:#5f5967;font-size:12px;line-height:1.35}
+.ux-bottom-grid,.ux-engagement-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.ux-mini,.ux-engagement{border:1px solid #b982ff;border-radius:14px;padding:18px;background:#fff}.ux-mini h4{color:#6500dc;margin:0 0 8px}.ux-engage-head{background:#6500dc;color:#fff;border-radius:12px;padding:15px;font-weight:800;font-size:15px;text-align:center}.ux-engage-head small{display:block;font-weight:400;font-style:italic;margin-top:3px}.ux-option{border-left:4px solid #6500dc;background:#faf7ff;padding:12px;margin-top:12px;border-radius:5px}.ux-option b{color:#4e00aa}.ux-option p{margin:6px 0}.ux-option strong{color:#3f087f;font-size:12px}.ux-flow{display:flex;gap:8px;align-items:center;margin:25px 0}.ux-flow span{background:#f0e7ff;color:#4f00a9;padding:12px 15px;border-radius:10px;font-weight:700}.ux-flow i{color:#6500dc}.ux-pill{background:#f0e7ff;color:#4f00a9;padding:12px;text-align:center;border-radius:10px;font-weight:700}
+.ux-table-grid{display:grid;grid-template-columns:1fr 2fr 1fr;gap:14px}.ux-list,.ux-method{border:1px solid #c99cff;border-radius:12px;padding:16px;background:#fff}.ux-list h3,.ux-method h3{background:#6500dc;color:#fff;border-radius:8px;padding:10px;margin:-16px -16px 12px}.ux-list ul{padding-left:20px;margin:0}.ux-list li{margin:8px 0;color:#443c4d}.ux-method>div{border:1px solid #d8c0ff;border-radius:8px;padding:10px;margin:8px 0}.ux-method b{color:#4f00a9}.ux-method p{margin:4px 0 0;color:#4a4450}.heuristic-grid{grid-template-columns:1fr 2fr 1fr}
+@media(max-width:950px){.ux-three-grid,.ux-steps,.ux-table-grid,.ux-engagement-grid,.ux-bottom-grid{grid-template-columns:1fr}.ux-step:before{display:none}.ux-flow{flex-wrap:wrap}}
+@media(max-width:950px){nav{display:none}.hero{grid-template-columns:1fr;padding:55px 0}.discipline-grid,.solution-grid,.content-grid{grid-template-columns:1fr}.tiles{grid-template-columns:1fr}.metric-row{grid-template-columns:repeat(2,1fr)}.section-intro,.cta,.foot{display:block}.cta p{margin-bottom:25px}}
+@media(max-width:560px){main{padding:0 18px 60px}.topbar{padding:0 18px}.hero-art{min-height:420px;padding:27px}.hero-art h2{font-size:24px}.metric-row{grid-template-columns:1fr}h1{font-size:29px}}
+
+.pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.pillar-card{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,#fff,#faf7ff);padding:22px;box-shadow:0 12px 35px rgba(75,0,140,.06)}.pillar-icon{font-weight:900;color:var(--purple);font-size:22px;margin-bottom:12px}.pillar-card h3{color:var(--purple);font-size:15px;line-height:1.15;margin:0 0 14px}.pillar-card ul,.foundation ul{padding-left:18px;margin:0}.pillar-card li,.foundation li{margin:8px 0}.pillar-result{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:7px}.pillar-result b{color:var(--purple);font-size:11px;text-transform:uppercase;letter-spacing:.06em}.pillar-result span{font-size:11px;line-height:1.4}.foundation{margin-top:16px;background:var(--purple);color:#fff;border-radius:20px;padding:20px;display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:24px}.foundation-title{font-size:17px;font-weight:800;align-self:start}.foundation b{font-size:14px}.foundation ul{color:#fff}.ecosystem{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:22px;align-items:center}.ecosystem-left{display:flex;align-items:center;gap:12px}.brand-node{background:var(--purple);color:#fff;border-radius:18px;padding:20px 15px;text-align:center;font-weight:800;line-height:1.2;min-width:155px}.flow-arrow{color:var(--purple);font-size:24px;font-weight:900}.primary-node{border:2px solid #9d55ff;border-radius:18px;padding:18px;background:#fff}.primary-node h3,.eco-card h3{color:var(--purple);margin:0 0 7px}.primary-node p,.eco-card p{margin:5px 0;font-size:11px;line-height:1.35}.ecosystem-sources{display:grid;gap:10px}.eco-card{display:flex;gap:14px;align-items:flex-start;border:1px solid #b68aff;border-radius:16px;padding:14px;background:#fff}.eco-num{background:#efe4ff;color:var(--purple);font-weight:900;border-radius:9px;padding:6px 8px}.ecosystem-outcomes{border-left:2px solid #e1d1f8;padding-left:22px}.ecosystem-outcomes h3{color:var(--purple);margin-top:0}.ecosystem-outcomes li{margin:12px 0}.ecosystem-outcomes ul{padding-left:20px}
+@media(max-width:950px){.pillar-grid{grid-template-columns:repeat(2,1fr)}.foundation,.ecosystem{grid-template-columns:1fr}.ecosystem-left{flex-wrap:wrap}.ecosystem-outcomes{border-left:0;border-top:2px solid #e1d1f8;padding:20px 0 0}}
+
+/* Dashboarding & BI - editable web recreation of supplied Quick / QuickSight visuals */
+.dashboard-hero h1 .purple{color:#7200ff}
+.dashboard-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 12px}
+.dash-stat{padding:24px 26px;border:1px solid #e8ddf5;border-radius:20px;background:#fff;box-shadow:0 10px 35px rgba(53,12,91,.06)}
+.dash-stat strong{display:block;font-size:29px;line-height:1;color:#14072d;margin-bottom:8px}
+.dash-stat span{font-size:11px;color:#5c5270;font-weight:650}
+.dashboard-capabilities{padding-top:36px}
+.dash-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.dash-tab{border:1px solid #e6d9f3;background:#fff;color:#4c3867;border-radius:999px;padding:10px 17px;font-weight:800;cursor:pointer}
+.dash-tab.active{background:#6900ed;color:#fff;border-color:#6900ed;box-shadow:0 10px 25px rgba(105,0,237,.22)}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.quick-card{min-height:205px;padding:25px;border:1px solid #e8def3;border-radius:22px;background:#fff;position:relative;overflow:hidden;box-shadow:0 14px 40px rgba(45,9,78,.06);transition:.25s ease}
+.quick-card:hover{transform:translateY(-4px);box-shadow:0 18px 48px rgba(73,0,145,.13)}
+.quick-card:after{content:"";position:absolute;width:100px;height:100px;border-radius:50%;background:#f1e8ff;right:-30px;bottom:-38px}
+.quick-card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.quick-code{background:#f2eaff;color:#6800df;font-weight:900;border-radius:10px;padding:9px 10px}
+.quick-badge{font-size:10px;letter-spacing:.05em;font-weight:900;color:#1f756e;background:#e2faf4;padding:7px 10px;border-radius:999px}
+.quick-badge.adjacent{color:#7039a2;background:#f1e4ff}
+.quick-card h3{margin:25px 0 9px;font-size:18px}
+.quick-card p{color:#615672;max-width:90%;line-height:1.5}
+.quick-outcome{margin-top:18px;font-size:12px;color:#6500dd;font-weight:800}
+.intelligent-analytics{padding-top:38px}
+.analytics-banner{background:linear-gradient(100deg,#4c00a8,#7600f4);color:#fff;border-radius:22px;padding:20px 25px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.analytics-banner span{display:block;font-size:11px;letter-spacing:.09em;font-weight:900;opacity:.9}
+.analytics-banner strong{display:block;font-size:19px;margin-top:5px}
+.analytics-banner small{font-weight:700;opacity:.95}
+.analytics-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:18px}
+.analytics-card{background:#faf9fc;border:1px solid #e6e0ed;border-radius:18px;padding:20px;min-height:245px}
+.analytics-card>span{display:inline-block;background:#7000eb;color:#fff;border-radius:9px;padding:8px 11px;font-size:12px;font-weight:900}
+.analytics-card label{display:block;color:#6b00e8;font-size:11px;font-weight:900;margin-top:35px}
+.analytics-card h3{font-size:16px;margin:10px 0}
+.analytics-card p{color:#625a6f;font-size:11px;line-height:1.5}
+.quicksight-strip{margin-top:22px;background:#19191e;color:#fff;border-radius:16px;padding:17px 22px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:11px}
+.quicksight-strip strong{color:#fff;margin-right:8px}.quicksight-strip span{opacity:.9}.quicksight-strip i{opacity:.35;font-style:normal}
+.decision-layer{padding-top:40px}
+.decision-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.decision-flow>div{border:1px solid #e6dbf1;border-radius:18px;background:#fff;padding:22px}
+.decision-flow span{display:inline-flex;width:34px;height:34px;border-radius:50%;background:#f0e5ff;color:#6800e7;align-items:center;justify-content:center;font-weight:900}
+.decision-flow b{display:block;color:#6500df;margin:15px 0 7px;font-size:12px;letter-spacing:.04em}
+.decision-flow p{margin:0;color:#5f576b;line-height:1.45;font-size:11px}
+@media(max-width:950px){.dashboard-stats,.quick-grid{grid-template-columns:1fr}.analytics-grid{grid-template-columns:repeat(2,1fr)}.decision-flow{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.analytics-grid,.decision-flow{grid-template-columns:1fr}.analytics-banner{align-items:flex-start;flex-direction:column}}
+
+</style>
+
+<style>
+.q-lifecycle,.q-panel{margin-top:28px}
+.q-flow{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:34px 4px 8px}
+.q-flow-line{position:absolute;left:5%;right:5%;top:49px;height:3px;background:linear-gradient(90deg,#e7d9ff,#6d00e8,#e7d9ff);z-index:0}
+.q-step{position:relative;z-index:1;text-align:center;min-width:0}
+.q-step span{display:flex;width:38px;height:38px;margin:0 auto 14px;border-radius:50%;align-items:center;justify-content:center;background:#6d00e8;color:#fff;font-weight:800;box-shadow:0 0 0 7px #f4edff}
+.q-step strong{display:block;color:#25005b;font-size:14px;line-height:1.15;min-height:36px}
+.q-step em{display:block;color:#6d00e8;font-size:10px;font-style:normal;font-weight:800;margin:8px 0}
+.q-step p{font-size:11px;line-height:1.3;color:#625a70;margin:0}
+.q-ip-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:24px}
+.q-ip-row>div{background:#f5efff;border:1px solid #dfcfff;border-radius:10px;padding:12px 10px;min-height:92px}
+.q-ip-row b{display:block;color:#6d00e8;font-size:12px;margin-bottom:6px}.q-ip-row span{display:block;font-size:11px;line-height:1.25;color:#423a4d}
+.q-efficiency{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:14px;align-items:center}.q-efficiency span{padding:8px;text-align:center;background:#fff;border:1px solid #d7c6ee;border-radius:7px;color:#3f087e;font-weight:800}.q-efficiency b{grid-column:1/-1;text-align:center;color:#3f087e;font-size:14px;margin-top:5px}
+.q-panel-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:22px}.q-panel-copy,.q-vendors{background:#fff;border:1px solid #e6dcf5;border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(60,0,120,.06)}
+.q-panel h3{color:#26005e;font-size:20px;margin:0 0 10px}.q-panel p{color:#5f5769;line-height:1.5}.q-stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:20px 0}.q-stat-grid>div{background:#f6f0ff;border-radius:12px;padding:14px}.q-stat-grid strong{display:block;color:#6d00e8;font-size:25px}.q-stat-grid span{font-size:11px;color:#5e526d}.q-quality{border-left:4px solid #6d00e8;background:#faf7ff;padding:12px 14px}.q-quality b{display:block;color:#6d00e8}.q-quality span{font-size:12px;color:#5f5769}.vendor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.vendor-wordmark{min-height:52px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;border:1px solid #eadfff;border-radius:10px;background:#fcfaff;color:#28115a;font-weight:800;font-size:15px;letter-spacing:-.3px}.vendor-wordmark small{font-size:8px;margin-left:4px;color:#725b99}.vendor-wordmark span{color:#6d00e8}.q-bottom-message{margin-top:20px;background:#6d00e8;color:#fff;border-radius:12px;padding:14px;text-align:center;font-weight:800}
+@media(max-width:1050px){.q-flow{grid-template-columns:repeat(4,1fr)}.q-flow-line{display:none}.q-ip-row{grid-template-columns:repeat(4,1fr)}.q-efficiency{grid-template-columns:repeat(4,1fr)}.q-panel-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.q-flow{grid-template-columns:repeat(2,1fr)}.q-ip-row,.q-efficiency{grid-template-columns:repeat(2,1fr)}.vendor-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+<style id="c5i-violet-brand-theme">
+:root{--c5i-pale:#e9d6ff;--c5i-light:#dec0ff;--line:#c9a2ee}
+body{background:linear-gradient(145deg,#e2c5ff 0%,#f0e0ff 46%,#ddbbff 100%);background-attachment:fixed}
+body:after{background:radial-gradient(circle at 85% 5%,rgba(91,11,215,.20),transparent 36%)}
+header,.subnav{background:rgba(233,211,255,.96)}
+.hero-art{background:linear-gradient(145deg,#26004d,#6d00e8)}
+.discipline,.solution,.block,.tile,.metric,.pillar-card,.primary-node,.eco-card,.quick-card,.analytics-card,.dash-stat,.decision-flow>div,.q-panel-copy,.q-vendors,.ux-card,.ux-mini,.ux-engagement,.ux-list,.ux-method{background:linear-gradient(145deg,#fff,#f3e7ff);border-color:#d4b1f5}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.075;background:url('assets/c5i-violet-logo.png') center / min(64vw,680px) auto no-repeat}
+header,main,footer{position:relative}
+
+/* Embedded inside the C5i x Amazon home page (iframe): same content, no duplicate chrome, auto height */
+html.embedded body{background:transparent}
+html.embedded body:before,html.embedded body:after{display:none}
+html.embedded footer,html.embedded .progress{display:none}
+html.embedded header{position:static;background:transparent;backdrop-filter:none;border-bottom:0}
+html.embedded .topbar{max-width:none;padding:0 34px}
+html.embedded main{max-width:none;padding:0 34px 24px}
+html.embedded .hero{min-height:560px;padding:10px 0 0}
+html.embedded .subnav{position:static}
+
+/* Embedded: clean professional tab bar (no logo / connect / home) */
+html.embedded .logo,html.embedded .topbar .contact,html.embedded nav button[data-route="home"],html.embedded #home .hero .eyebrow{display:none}
+html.embedded button:focus:not(:focus-visible){outline:none}
+html.embedded .topbar{height:auto;padding:26px 34px 8px;justify-content:flex-start;gap:0}
+html.embedded .topbar nav{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;width:100%;max-width:none;gap:0;padding:5px;background:rgba(255,255,255,.72);border:1px solid #d9bdf5;border-radius:16px;box-shadow:0 6px 22px rgba(72,20,120,.08)}
+html.embedded .topbar nav button{border:0;border-radius:11px;background:transparent;padding:15px 14px;font-size:12px;font-weight:800;letter-spacing:.09em;color:#4a2a6e;text-align:center;white-space:nowrap;transition:background .2s,color .2s}
+html.embedded .topbar nav button:hover{background:rgba(124,58,237,.08);color:#2b0050}
+html.embedded .topbar nav button.active{background:var(--c5i-deep,#2b0050);color:#fff;box-shadow:0 4px 12px rgba(43,0,80,.28)}
+html.embedded .subnav{padding:18px 0 0;gap:0;border-bottom:1px solid #d2b2f4;background:transparent;overflow-x:auto}
+html.embedded .subnav button{border:0;background:transparent;border-radius:0;padding:12px 20px 14px;font-size:11px;letter-spacing:.08em;color:#5b3a80;border-bottom:3px solid transparent;margin-bottom:-1px}
+html.embedded .subnav button:hover{color:#2b0050;background:rgba(124,58,237,.06)}
+html.embedded .subnav button.active{background:transparent;color:#2b0050;border-bottom-color:#7c3aed}
+@media(max-width:820px){html.embedded .topbar nav{grid-auto-flow:row;grid-auto-columns:auto}}
+
+/* ===== Embedded: match main-site type scale, card design, light background, no scrollbars, compact single view ===== */
+html.embedded,html.embedded body{overflow:hidden;background:transparent}
+html.embedded *{scrollbar-width:none}
+html.embedded *::-webkit-scrollbar{display:none}
+html.embedded nav,html.embedded .subnav{overflow:visible}
+html.embedded .subnav{flex-wrap:wrap}
+html.embedded .topbar{padding:14px 34px 4px}
+html.embedded .topbar nav button{padding:11px 12px;font-size:12px;font-weight:900;letter-spacing:.7px}
+html.embedded .subnav{padding:12px 0 0}
+html.embedded .subnav button{padding:9px 16px 11px;font-size:12px;font-weight:900;letter-spacing:.5px}
+html.embedded main{padding:0 34px 10px}
+html.embedded .hero{min-height:0;padding:22px 0 16px;gap:36px}
+html.embedded .page-hero{padding:22px 0 14px;max-width:none}
+html.embedded .section{padding:26px 0 6px}
+html.embedded .section-intro{margin-bottom:14px;gap:24px}
+html.embedded .cta{margin-top:26px;padding:24px;border-radius:14px}
+/* type scale = main site */
+html.embedded h1,html.embedded .page-hero h1{font-size:36px;line-height:1.1;font-weight:700;letter-spacing:-.8px;margin:10px 0}
+html.embedded #home .hero h1{font-size:40px}
+html.embedded h2{font-size:28px;line-height:1.15;font-weight:700;letter-spacing:-.6px;margin:8px 0}
+html.embedded .hero-art h2{font-size:24px}
+html.embedded h3{font-size:16px;line-height:1.25;font-weight:700;letter-spacing:0}
+html.embedded .cta h3{font-size:22px}
+html.embedded h4{font-size:14px;font-weight:700}
+html.embedded main p,html.embedded main li{font-size:13.5px;line-height:1.5}
+html.embedded .lead,html.embedded .page-hero p,html.embedded .section-intro>p{font-size:14.5px;line-height:1.55}
+html.embedded .eyebrow,html.embedded .block-label{font-size:12px;font-weight:900;letter-spacing:.7px}
+html.embedded .hero-actions .contact,html.embedded main .contact{font-size:13px;padding:11px 20px}
+/* card design = main-site capability card */
+html.embedded .discipline,html.embedded .solution,html.embedded .tile,html.embedded .block,html.embedded .metric,html.embedded .source-visual,html.embedded .ux-card,html.embedded .ux-mini,html.embedded .ux-engagement,html.embedded .ux-list,html.embedded .ux-method,html.embedded .pillar-card,html.embedded .primary-node,html.embedded .eco-card,html.embedded .dash-stat,html.embedded .quick-card,html.embedded .analytics-card,html.embedded .decision-flow>div,html.embedded .q-quality,html.embedded .ecosystem-outcomes{
+  background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(245,232,255,.94));border:1px solid #d5b4f2;border-radius:14px;box-shadow:0 12px 32px rgba(9,50,88,.07)}
+html.embedded .solution,html.embedded .tile,html.embedded .block,html.embedded .ux-card,html.embedded .pillar-card,html.embedded .dash-stat,html.embedded .analytics-card,html.embedded .decision-flow>div,html.embedded .metric{padding:18px}
+html.embedded .quick-card{padding:18px;min-height:0}
+html.embedded .foundation,html.embedded .brand-node,html.embedded .analytics-banner,html.embedded .quicksight-strip,html.embedded .hero-art,html.embedded .stat,html.embedded .cta{border-radius:14px}
+html.embedded .hero-art{padding:26px;box-shadow:0 14px 34px rgba(58,5,104,.16)}
+html.embedded .content-grid{gap:14px}
+html.embedded .hero-art{min-height:0;gap:22px}
+html.embedded .solution{min-height:0;padding:18px}
+html.embedded .analytics-card{min-height:0}
+html.embedded .solution .more,html.embedded .solution a{margin-top:12px}
+
+/* capability-card look: soft glow, centred title, purple link */
+html.embedded .discipline,html.embedded .solution,html.embedded .tile,html.embedded .block,html.embedded .metric,html.embedded .ux-card,html.embedded .pillar-card,html.embedded .dash-stat,html.embedded .quick-card,html.embedded .analytics-card,html.embedded .decision-flow>div,html.embedded .ecosystem-outcomes,html.embedded .q-quality{position:relative;overflow:hidden;transition:.25s}
+html.embedded .solution:before,html.embedded .tile:before,html.embedded .block:before,html.embedded .ux-card:before,html.embedded .pillar-card:before,html.embedded .dash-stat:before,html.embedded .analytics-card:before,html.embedded .decision-flow>div:before,html.embedded .ecosystem-outcomes:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 80% 10%,rgba(190,140,255,.26),transparent 46%)}
+html.embedded .solution>*,html.embedded .tile>*,html.embedded .block>*,html.embedded .ux-card>*,html.embedded .pillar-card>*,html.embedded .dash-stat>*,html.embedded .analytics-card>*,html.embedded .decision-flow>div>*,html.embedded .ecosystem-outcomes>*{position:relative}
+html.embedded .solution:hover,html.embedded .tile:hover,html.embedded .block:hover,html.embedded .pillar-card:hover,html.embedded .quick-card:hover,html.embedded .discipline:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(80,20,140,.14)}
+html.embedded .block-label{font-size:16px;font-weight:700;letter-spacing:0;color:#291243;text-align:center;text-transform:capitalize;margin-bottom:12px}
+html.embedded .block li::marker{color:#6d00e8}
+html.embedded .block li,html.embedded .block p{color:#405a75}
+html.embedded .solution .link{position:static;display:block;margin-top:14px;font-size:13px;font-weight:900;color:#6d00e8}
+html.embedded .solution{display:flex;flex-direction:column}
+html.embedded .solution p{flex:1}
+
+/* discipline cards -> capability-card style */
+html.embedded .discipline{text-align:center;padding:24px 18px 20px;display:flex;flex-direction:column;align-items:center}
+html.embedded .discipline-top{background:none;color:#291243;padding:0;display:flex;flex-direction:column;align-items:center}
+html.embedded .discipline-top:before{content:"";display:block;width:62px;height:62px;border-radius:14px;background:#fff center/34px no-repeat;box-shadow:0 8px 20px rgba(80,20,140,.12);margin-bottom:14px}
+html.embedded .discipline:nth-child(1) .discipline-top:before{content:"🔎";font-size:30px;line-height:62px;text-align:center}
+html.embedded .discipline:nth-child(2) .discipline-top:before{content:"⚙️";font-size:30px;line-height:62px;text-align:center}
+html.embedded .discipline:nth-child(3) .discipline-top:before{content:"📊";font-size:30px;line-height:62px;text-align:center}
+html.embedded .discipline-top .num{display:none}
+html.embedded .discipline-top h3{font-size:16px;margin:0 0 10px;color:#291243}
+html.embedded .discipline-body{padding:0;display:flex;flex-direction:column;flex:1;align-items:center}
+html.embedded .discipline-body p{text-align:center;color:#405a75;font-size:13.5px;line-height:1.45;flex:1}
+html.embedded .discipline-body .explore{background:none;padding:0;margin-top:14px;font-size:14px;font-weight:900;letter-spacing:0;color:#6d00e8;text-transform:none}
+html.embedded .discipline-body .explore{display:block;text-transform:lowercase}
+html.embedded .discipline-body .explore::first-letter{text-transform:uppercase}
+html.embedded #primary-quant .block.wide{grid-column:auto}
+@media(max-width:820px){html.embedded main{padding:0 18px 10px}html.embedded .topbar{padding:14px 18px 4px}}
+</style>
+
+<style id="c5i-integrated-landing-refinement">
+/* A more intentional, compact first view without altering other capability pages. */
+html.embedded #home .hero{
+  display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);
+  align-items:center;gap:clamp(24px,3.5vw,62px);
+  padding:36px 0 25px;min-height:440px;
+}
+html.embedded #home .hero > div:first-child{max-width:770px;min-width:0}
+html.embedded #home .hero h1{
+  font-size:clamp(40px,3.7vw,65px);line-height:1.08;
+  letter-spacing:-1.5px;margin:14px 0 18px;
+  color:#250c41;
+}
+html.embedded #home .hero h1 span{color:#6d00e8}
+html.embedded #home .hero .lead{
+  font-size:clamp(15px,1.1vw,18px);line-height:1.65;
+  color:#5c4b6c;max-width:690px;margin:0 0 26px;
+}
+html.embedded #home .hero .hero-actions{margin-top:0!important}
+html.embedded #home .hero .contact{
+  background:linear-gradient(110deg,#3b006c,#7200e7);
+  border-radius:12px;padding:15px 25px;font-size:14px;
+  box-shadow:0 12px 26px rgba(67,0,124,.18);
+}
+html.embedded #home .hero-art{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:linear-gradient(130deg,#280047 0%,#4e009b 58%,#7300e9 100%);
+  border:1px solid rgba(235,210,255,.24);
+  border-radius:26px;min-height:365px;
+  padding:clamp(25px,2.8vw,45px);
+  box-shadow:0 24px 55px rgba(48,0,97,.21);
+}
+html.embedded #home .hero-art:before{
+  content:"";position:absolute;inset:-25% -20% auto auto;
+  width:75%;height:110%;border-radius:50%;z-index:-1;
+  background:radial-gradient(circle,rgba(188,111,255,.23),transparent 65%);
+}
+html.embedded #home .hero-art h2{
+  color:#fff;font-family:'DM Sans',Arial,sans-serif;
+  font-size:clamp(24px,2.15vw,35px);line-height:1.18;
+  letter-spacing:-.6px;margin:10px 0 16px;
+}
+html.embedded #home .hero-art p{font-size:14px;line-height:1.7;color:#e9dafa;max-width:550px}
+html.embedded #home .statrow{gap:12px}
+html.embedded #home .stat{
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.10);
+  padding:18px 15px;border-radius:15px;
+}
+html.embedded #home .stat b{font-size:29px;color:#fff}
+html.embedded #home .stat small{font-size:12px;line-height:1.35;color:#f0e5ff;opacity:1}
+html.embedded #home>.section{padding-top:20px}
+html.embedded #home .section-intro{align-items:end;gap:22px;margin-bottom:20px}
+html.embedded #home .section-intro h2{font-size:clamp(27px,2.2vw,37px);line-height:1.2}
+html.embedded #home .discipline-grid{gap:20px}
+html.embedded #home .discipline{min-height:245px;padding:28px 23px 22px;border-radius:22px}
+@media(max-width:1000px){
+ html.embedded #home .hero{grid-template-columns:1fr;min-height:0;gap:22px;padding-top:25px}
+ html.embedded #home .hero-art{min-height:300px}
+}
+@media(max-width:600px){
+ html.embedded #home .hero h1{font-size:36px;letter-spacing:-.8px}
+ html.embedded #home .statrow{grid-template-columns:repeat(3,minmax(0,1fr))}
+ html.embedded #home .stat{padding:12px 9px}
+ html.embedded #home .stat small{font-size:10px}
+}
+</style>
+
+<style id="integrated-intelligence-white-background">
+/* Integrated Intelligence only: white background, no C5i watermark. */
+:root{--c5i-pale:#ffffff!important}
+html,html.embedded,body,html.embedded body{background:#ffffff!important;background-image:none!important;background-attachment:initial!important}
+body::before,body::after,html.embedded body::before,html.embedded body::after{content:none!important;display:none!important;background:none!important;background-image:none!important}
+</style>
+
+<style id="ii-back-navigation-style">
+nav .ii-back-button{border:1px solid #caa7ef;border-radius:999px;padding:8px 13px;background:#f4eaff;color:#4b008a;opacity:1;font-weight:800;letter-spacing:.04em}
+nav .ii-back-button:hover{background:#e7d1ff;color:#32005c}
+nav .ii-back-button[hidden]{display:none!important}
+</style>
+<style id="remove-c5i-watermark">html body::before,html body::after,html.embedded body::before,html.embedded body::after{content:none!important;display:none!important;background-image:none!important}</style>
+
+<style id="integrated-intelligence-white-cards">
+/* Integrated Intelligence only: white cards, discreet violet corner detailing. */
+.discipline,.solution,.block,.tile,.metric,.pillar-card,.primary-node,
+.eco-card,.quick-card,.analytics-card,.dash-stat,.decision-flow>div,
+.q-panel-copy,.q-vendors,.ux-card,.ux-mini,.ux-engagement,.ux-list,
+.ux-method,.source-visual,.q-ip-row>div,.q-stat-grid>div,
+.ux-option,.q-quality,.stat,.source,.quick-code {
+  background:#fff!important;
+  background-image:none!important;
+}
+.discipline,.solution,.block,.tile,.metric,.pillar-card,.primary-node,
+.eco-card,.quick-card,.analytics-card,.dash-stat,.decision-flow>div,
+.q-panel-copy,.q-vendors,.ux-card,.ux-mini,.ux-engagement,.ux-list,
+.ux-method,.source-visual,.q-ip-row>div {
+  border:1px solid #e8d8f8!important;
+  box-shadow:0 10px 28px rgba(43,9,74,.045)!important;
+  position:relative;
+}
+/* Small corner flourishes, not a full purple fill. */
+.solution::before,.block::before,.tile::before,.metric::before,
+.pillar-card::before,.quick-card::before,.analytics-card::before,
+.dash-stat::before,.decision-flow>div::before,.ux-card::before,
+.ux-mini::before,.ux-engagement::before,.ux-list::before,.ux-method::before,
+.q-panel-copy::before,.q-vendors::before,.source-visual::before {
+  content:"";
+  position:absolute;
+  right:0;top:0;
+  width:44px;height:44px;
+  background:linear-gradient(225deg,rgba(123,40,231,.15),rgba(123,40,231,0) 72%);
+  border-radius:0 20px 0 0;
+  pointer-events:none;
+}
+.solution::after,.block::after,.tile::after,.metric::after,
+.pillar-card::after,.analytics-card::after,.dash-stat::after,
+.decision-flow>div::after,.ux-card::after,.ux-mini::after,
+.ux-engagement::after,.ux-list::after,.ux-method::after {
+  content:"";
+  position:absolute;
+  left:15px;bottom:0;
+  width:34px;height:3px;
+  background:#8a3cef;
+  border-radius:4px 4px 0 0;
+  opacity:.65;
+  pointer-events:none;
+}
+.quick-card::after{background:none!important;width:0!important;height:0!important}
+.discipline-top{background:#fff!important;color:#26004d!important;border-bottom:2px solid #e9d7fa}
+.discipline-top h3,.discipline-top .num{color:#26004d!important}
+.discipline:hover,.solution:hover,.tile:hover,.quick-card:hover{
+  border-color:#b98be9!important;
+  box-shadow:0 15px 35px rgba(69,12,115,.10)!important;
+}
+</style>
+<style id="integrated-intelligence-soft-shadow-lighting">
+/* White surfaces with soft, diffuse violet illumination behind cards. */
+.discipline,.solution,.block,.tile,.metric,.pillar-card,.primary-node,
+.eco-card,.quick-card,.analytics-card,.dash-stat,.decision-flow>div,
+.q-panel-copy,.q-vendors,.ux-card,.ux-mini,.ux-engagement,.ux-list,
+.ux-method,.source-visual,.q-ip-row>div {
+  background:#fff!important;
+  background-image:none!important;
+  border:1px solid #eee7f6!important;
+  box-shadow:0 7px 24px rgba(89,31,151,.055),0 0 34px rgba(151,94,224,.095)!important;
+}
+/* Remove the old top corner patches and small bottom accent bars. */
+.solution::before,.block::before,.tile::before,.metric::before,
+.pillar-card::before,.quick-card::before,.analytics-card::before,
+.dash-stat::before,.decision-flow>div::before,.ux-card::before,
+.ux-mini::before,.ux-engagement::before,.ux-list::before,
+.ux-method::before,.q-panel-copy::before,.q-vendors::before,
+.source-visual::before,
+.solution::after,.block::after,.tile::after,.metric::after,
+.pillar-card::after,.quick-card::after,.analytics-card::after,
+.dash-stat::after,.decision-flow>div::after,.ux-card::after,
+.ux-mini::after,.ux-engagement::after,.ux-list::after,.ux-method::after {
+  content:none!important;display:none!important;
+}
+.discipline:hover,.solution:hover,.tile:hover,.quick-card:hover,
+.block:hover,.ux-card:hover {
+  box-shadow:0 12px 32px rgba(89,31,151,.09),0 0 48px rgba(151,94,224,.16)!important;
+}
+</style>
+<style id="restore-integrated-hero-stat-contrast">
+/* Restore the original three stat tiles within the violet hero only. */
+#home .hero-art .stat,
+html.embedded #home .hero-art .stat {
+  background:rgba(255,255,255,.11)!important;
+  background-image:none!important;
+  color:#fff!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+#home .hero-art .stat b,
+#home .hero-art .stat small,
+html.embedded #home .hero-art .stat b,
+html.embedded #home .hero-art .stat small {color:#fff!important;opacity:1!important;}
+</style>
+
+<style id="ii-subnav-distributed">
+/* Evenly spaced Integrated Intelligence subnavigation, without empty right side. */
+html.embedded .subnav {display:flex!important;justify-content:space-between!important;align-items:stretch;flex-wrap:nowrap!important;gap:10px!important;width:100%;overflow-x:auto!important;}
+html.embedded .subnav button {flex:1 1 auto!important;text-align:center!important;white-space:normal!important;min-width:0;padding:12px 14px 14px!important;line-height:1.35;}
+html.embedded .subnav button:nth-child(4) {flex:2 1 auto!important;}
+@media(max-width:850px){html.embedded .subnav button{flex:0 0 auto!important;white-space:nowrap!important;}html.embedded .subnav{justify-content:flex-start!important;}}
+</style>
+
+<style id="vendor-text-uniform">
+/* All data-partner wordmarks use the same dark text color. */
+.vendor-wordmark, .vendor-wordmark span, .vendor-wordmark small {
+  color:#28115a !important;
+}
+</style>
+<style id="compete-link-style">
+.topbar nav .compete-nav-link{
+ display:flex;align-items:center;justify-content:center;
+ text-decoration:none;cursor:pointer;white-space:nowrap;
+ font:inherit;font-weight:800;letter-spacing:inherit;color:inherit;
+}
+html.embedded .topbar nav .compete-nav-link{
+ padding:11px 12px;font-size:12px;letter-spacing:.7px;color:#4a2a6e;
+ border-radius:11px;
+}
+html.embedded .topbar nav .compete-nav-link:hover{
+ color:#2b0050;background:rgba(124,58,237,.08);
+}
+</style>
+<style id="three-discipline-pastel-card-theme">
+/* Match the gentle colored backgrounds and shadows of Our Capabilities below. */
+html.embedded #home .discipline-grid .discipline{
+  border:1px solid #e6d6f4!important;
+  box-shadow:0 12px 32px rgba(74,34,122,.095)!important;
+  transition:transform .24s ease,box-shadow .24s ease!important;
+}
+html.embedded #home .discipline-grid .discipline:nth-child(1){
+  background:linear-gradient(145deg,#fff 4%,#eaf1ff 100%)!important;
+}
+html.embedded #home .discipline-grid .discipline:nth-child(2){
+  background:linear-gradient(145deg,#fff 4%,#e9f5ef 100%)!important;
+}
+html.embedded #home .discipline-grid .discipline:nth-child(3){
+  background:linear-gradient(145deg,#fff 4%,#f0e7ff 100%)!important;
+}
+html.embedded #home .discipline-grid .discipline:hover{
+  transform:translateY(-4px)!important;
+  box-shadow:0 18px 42px rgba(74,34,122,.16)!important;
+}
+</style>
+<style id="transparent-discipline-icon-backgrounds">
+/* Remove only the white square behind the three capability icons. */
+html.embedded #home .discipline-grid .discipline .discipline-top::before {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+</style>
+
+<style id="discipline-white-blocks-definitive-fix">
+/* Transparent icon AND title wrappers, with original icons/text intact. */
+html.embedded #home .discipline-grid .discipline .discipline-top,
+html.embedded #home .discipline-grid .discipline .discipline-top h3,
+html.embedded #home .discipline-grid .discipline .discipline-top::before,
+html.embedded #home .discipline-grid .discipline .discipline-top::after {
+  background: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+html.embedded #home .discipline-grid .discipline .discipline-top {
+  border: 0 !important;
+}
+html.embedded #home .discipline-grid .discipline .discipline-top::before {
+  /* Keep the original emoji icons, remove only the white tile behind them. */
+  border: 0 !important;
+}
+</style>
+
+<style id="fourth-intelligence-card">
+/* Extend only the landing-page capability architecture from three to four cards. */
+#home .discipline-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+#home .discipline{min-width:0;display:flex;flex-direction:column}
+#home .discipline-body{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+#home .compete-discipline{background:linear-gradient(135deg,#fffaf4,#f5edff)!important;border:1px solid #e4d3f6!important;box-shadow:0 15px 34px rgba(53,12,91,.09)!important}
+#home .compete-discipline .discipline-top{background:transparent!important}
+#home .compete-discipline .compete-bullets{margin:0;padding-left:19px;text-align:left;color:#4d5b72;font-size:13px;line-height:1.55}
+#home .compete-discipline .compete-bullets li{margin-bottom:10px}
+#home .compete-discipline .compete-bullets li::marker{color:#7600ee}
+#home .compete-discipline .explore{align-self:center;margin-top:18px}
+@media(max-width:1050px){#home .discipline-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){#home .discipline-grid{grid-template-columns:1fr}}
+</style>
+
+<style id="four-card-compact-and-competitive-icon">
+/* Compact all four capability cards, keeping their original pastel palettes. */
+html.embedded #home .discipline-grid .discipline {
+  min-height:0!important;
+  padding:17px 15px 16px!important;
+}
+html.embedded #home .discipline-grid .discipline .discipline-top:before {
+  width:44px!important;height:44px!important;line-height:44px!important;
+  font-size:29px!important;margin-bottom:7px!important;
+  border:0!important;background:transparent!important;box-shadow:none!important;
+}
+html.embedded #home .discipline-grid .discipline:nth-child(4) .discipline-top:before {
+  content:"🌐"!important;display:block!important;
+  text-align:center!important;
+}
+html.embedded #home .discipline-grid .discipline .discipline-top h3 {
+  margin:4px 0 8px!important;font-size:19px!important;line-height:1.2!important;
+}
+html.embedded #home .discipline-grid .discipline .discipline-body p {
+  line-height:1.42!important;font-size:12px!important;
+}
+html.embedded #home .discipline-grid .discipline .discipline-body .explore {
+  margin-top:12px!important;padding:5px 2px!important;
+}
+html.embedded #home .compete-discipline .compete-bullets {
+  font-size:12px!important;line-height:1.35!important;padding-left:18px!important;
+}
+html.embedded #home .compete-discipline .compete-bullets li {margin-bottom:5px!important}
+</style>
+
+<style id="c5i-capability-card-readable-copy">
+/* Use available card space for readable, naturally wrapping descriptions. */
+html.embedded #home .discipline-grid .discipline {padding:18px 12px 17px!important;}
+html.embedded #home .discipline-grid .discipline .discipline-body {width:100%!important;align-items:stretch!important;}
+html.embedded #home .discipline-grid .discipline .discipline-body p {
+  width:100%!important;max-width:none!important;
+  font-size:14px!important;line-height:1.62!important;
+  letter-spacing:0!important;word-spacing:normal!important;
+  padding:0!important;margin:0!important;
+  text-align:center!important;flex:1 1 auto!important;
+}
+html.embedded #home .discipline-grid .discipline .discipline-body .explore {
+  margin-top:17px!important;align-self:center!important;
+}
+@media(max-width:1100px){html.embedded #home .discipline-grid .discipline .discipline-body p{font-size:13.5px!important}}
+</style>
+<style id="four-hero-indicators">
+.hero-art .statrow{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.hero-art .stat{min-width:0;padding:15px 12px;background:rgba(255,255,255,.11);color:#fff}
+.hero-art .stat b{color:#fff;font-size:28px}
+.hero-art .stat small{color:#fff;opacity:.90;font-size:11px;line-height:1.35;display:block;overflow-wrap:break-word}
+@media(max-width:600px){.hero-art .statrow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="logo">C5<span>i</span></div>
+    <nav>
+      <button data-route="home" onclick="go('home')">HOME</button>
+      <button type="button" id="iiBackButton" class="ii-back-button" onclick="goBack()" hidden aria-label="Go back to previous view">← BACK</button>
+      <button data-route="solutions" onclick="go('solutions')">SOLUTIONS</button>
+      <button data-route="primary" onclick="go('primary')">PRIMARY RESEARCH</button>
+      <button data-route="conjoint" onclick="go('conjoint')">CONJOINT & CHOICE ANALYTICS</button>
+      <button data-route="dashboard" onclick="go('dashboard')">DASHBOARDING & BI</button>
+      <a class="compete-nav-link" href="https://resources.c5i.ai/c5i-compete-ai-powered-insights-for-a-winning-digital-shelf" target="_blank" rel="noopener noreferrer">COMPETITIVE INTELLIGENCE</a>
+    </nav>
+    <button class="contact" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">LET'S CONNECT →</button>
+  </div>
+  <div id="progress" class="progress"></div>
+</header>
+
+<main>
+
+<section id="home" class="view active">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">C5i × AMAZON</div>
+      <h1>Three disciplines.<br><span>One decision system.</span></h1>
+      <p class="lead">C5i services spanning the end-to-end insights and decision journey - from primary research and choice analytics to always-on dashboarding and BI.</p>
+      <div class="hero-actions" style="margin-top:28px">
+        <button class="contact" onclick="go('solutions')">Explore the capabilities →</button>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div><div class="eyebrow" style="color:#d8b9ff">RESEARCH → DECISION</div><h2>Evidence that moves the business.</h2><p>From research design to decision-ready storytelling, C5i turns evidence into action. Always-on access through dashboards, AI-accelerated analysis and bespoke reporting.</p></div>
+      <div class="statrow">
+        <div class="stat"><b>01</b><small>Primary Research</small></div>
+        <div class="stat"><b>02</b><small>Conjoint & Choice</small></div>
+        <div class="stat"><b>03</b><small>Dashboarding & BI</small></div>
+        <div class="stat"><b>04</b><small>Market &amp; Competitive Intelligence</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-intro"><div><div class="eyebrow">CAPABILITY ARCHITECTURE</div><h2>Built around the decision.</h2></div></div>
+    <div class="discipline-grid">
+      <article class="discipline" onclick="go('primary')"><div class="discipline-top"><div class="num">01</div><h3>Primary Research</h3></div><div class="discipline-body"><p>Quantitative & qualitative research; Brand Health trackers & customer experience trackers; Brand, campaign, concept measurement; UX research; Segmentation, market intelligence & clear narratives.</p><span class="explore">EXPLORE PRIMARY RESEARCH →</span></div></article>
+      <article class="discipline" onclick="go('conjoint')"><div class="discipline-top"><div class="num">02</div><h3>Conjoint & Choice Analytics</h3></div><div class="discipline-body"><p>Large-scale conjoint & choice analytics; Demand modeling & market sizing; Feature, proposition & price optimization; Bundles, tiers & service configuration.</p><span class="explore">EXPLORE CONJOINT →</span></div></article>
+      <article class="discipline" onclick="go('dashboard')"><div class="discipline-top"><div class="num">03</div><h3>Dashboarding & BI</h3></div><div class="discipline-body"><p>Interactive dashboards & automated reporting; KPI tracking and performance monitoring; QuickSight / QuickSuite / QuickInsights; AI-assisted, decision-ready analysis.</p><span class="explore">EXPLORE DASHBOARDING →</span></div></article>
+      <article class="discipline compete-discipline" role="link" tabindex="0" onclick="window.open('https://resources.c5i.ai/c5i-compete-ai-powered-insights-for-a-winning-digital-shelf', '_blank', 'noopener,noreferrer')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.open('https://resources.c5i.ai/c5i-compete-ai-powered-insights-for-a-winning-digital-shelf','_blank','noopener,noreferrer')}">
+        <div class="discipline-top"><div class="num">04</div><h3>Market &amp; Competitive Intelligence</h3></div>
+        <div class="discipline-body">
+          <ul class="compete-bullets">
+            <li>Market landscape, trends, sizing &amp; forecasting</li>
+            <li>Competitor benchmarking, pricing &amp; GTM intelligence</li>
+            <li>Continuous monitoring, alerts &amp; strategic insights</li>
+          </ul>
+          <span class="explore">EXPLORE COMPETITIVE INTELLIGENCE →</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="solutions" class="view">
+  <div class="page-hero"><h1>Solutions inspired by business needs - aided by advanced AI.</h1><p>Design the right research, model the choices that matter, and make the result continuously usable through decision-ready BI.</p></div>
+  <div class="solution-grid">
+    <article class="solution" onclick="go('primary')"><div class="num">01</div><h3>Primary Research</h3><p>Design and execute high-impact primary research with a governed, continuously optimized managed-service model, powered by technology and AI to accelerate insights, elevate quality, and maximize ROI.</p><div class="link">LEARN MORE →</div></article>
+    <article class="solution" onclick="go('conjoint')"><div class="num">02</div><h3>Conjoint & Choice Analytics</h3><p>Design robust choice experiments and model demand with advanced conjoint analytics, quantifying feature value, price sensitivity and market response to optimize propositions, bundles and portfolio decisions.</p><div class="link">LEARN MORE →</div></article>
+    <article class="solution" onclick="go('dashboard')"><div class="num">03</div><h3>Dashboarding & BI</h3><p>Turn fragmented data into always-on decisions with automated dashboards and BI, unifying KPIs, surfacing drivers and anomalies, and delivering AI-assisted insights through QuickSight, QuickSuite and QuickInsights.</p><div class="link">LEARN MORE →</div></article>
+  </div>
+  <div class="section"><div class="section-intro"><div><div class="eyebrow">END-TO-END JOURNEY</div><h2>Explore the decision system.</h2></div></div>
+  <div class="tiles">
+    <button class="tile" onclick="go('primary')">Primary Research <b>→</b></button>
+    <button class="tile" onclick="go('conjoint')">Conjoint & Choice Analytics <b>→</b></button>
+    <button class="tile" onclick="go('dashboard')">Dashboarding & BI <b>→</b></button>
+  </div></div>
+</section>
+
+<section id="primary" class="view">
+  <div class="subnav">
+    <button data-sub="primary" onclick="go('primary')">OVERVIEW</button>
+    <button data-sub="primary-quant" onclick="go('primary-quant')">QUANTITATIVE</button>
+    <button data-sub="primary-qual" onclick="go('primary-qual')">QUALITATIVE</button>
+    <button data-sub="brand" onclick="go('brand')">BRAND HEALTH TRACKERS & CUSTOMER EXPERIENCE TRACKERS</button>
+    
+    <button data-sub="ux" onclick="go('ux')">UX RESEARCH</button>
+  </div>
+  <div class="page-hero"><h1>Design and execute high-impact primary research.</h1><p></p></div>
+  <div class="tiles">
+    <button class="tile" onclick="go('primary-quant')"><span>Quantitative Research</span><b>→</b></button>
+    <button class="tile" onclick="go('primary-qual')"><span>Qualitative Research</span><b>→</b></button>
+    <button class="tile" onclick="go('brand')"><span>Brand Health Trackers & Customer Experience Trackers</span><b>→</b></button>
+    
+    <button class="tile" onclick="go('ux')"><span>UX Research</span><b>→</b></button>
+  </div>
+</section>
+
+<section id="primary-quant" class="view">
+  <div class="subnav"><button data-sub="primary" onclick="go('primary')">OVERVIEW</button><button class="active">QUANTITATIVE</button><button onclick="go('primary-qual')">QUALITATIVE</button><button onclick="go('brand')">BRAND HEALTH TRACKERS & CUSTOMER EXPERIENCE TRACKERS</button><button onclick="go('ux')">UX RESEARCH</button></div>
+  <div class="page-hero">
+    <h1>Primary quantitative research - built for faster decisions.</h1>
+    <p>C5i brings research expertise, technology and AI accelerators together to design robust studies, reach the right respondents and turn data into decisions.</p>
+  </div>
+
+  <div class="content-grid">
+    <div class="block"><div class="block-label">REACH THE AUDIENCES THAT MATTER</div><ul><li>Consumers and customers</li><li>Business decision-makers</li><li>Priority and niche segments</li><li>Hard-to-reach groups</li></ul></div>
+    <div class="block wide"><div class="block-label">HOW C5i HELPS ACROSS THE RESEARCH LIFECYCLE</div>
+      <ul>
+        <li><b>01 Study design & sampling</b> - Shape questionnaires, samples and quotas around the decisions that matter.</li>
+        <li><b>02 AI survey programming</b> - Automate survey builds, logic and multilingual quality checks.</li>
+        <li><b>03 Fieldwork control</b> - Manage panels, incidence, quotas and respondent quality in real time.</li>
+        <li><b>04 Data quality</b> - Detect fraud and deliver clean, coded, analysis-ready datasets.</li>
+        <li><b>05 Advanced analytics</b> - Apply weighting, drivers, segmentation, conjoint and MaxDiff.</li>
+        <li><b>06 Insight activation</b> - Turn results into clear reports, dashboards and actions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section q-lifecycle">
+    <div class="section-intro">
+      <div><div class="eyebrow">C5i RESEARCH DELIVERY</div><h2>Technology-enabled research at scale.</h2></div>
+      <p>From study design to client-ready activation, C5i combines human expertise with proprietary AI and automation to make every stage faster, more consistent and easier to scale.</p>
+    </div>
+    <div class="q-flow">
+      <div class="q-flow-line"></div>
+      <div class="q-step"><span>01</span><strong>Study Design &<br>Questionnaire Design</strong><em>Automation: Medium</em><p>Questionnaire design, sampling and quota strategy.</p></div>
+      <div class="q-step"><span>02</span><strong>Survey<br>Programming</strong><em>Automation: High</em><p>Automated scripting, logic and platform QA.</p></div>
+      <div class="q-step"><span>03</span><strong>Data<br>Collection</strong><em>Automation: Medium</em><p>Multi-region fieldwork and respondent management.</p></div>
+      <div class="q-step"><span>04</span><strong>Data Cleaning<br>& Processing</strong><em>Automation: Very High</em><p>Automated quality checks, processing and tabulation.</p></div>
+      <div class="q-step"><span>05</span><strong>Data<br>Analysis</strong><em>Automation: Medium–High</em><p>Advanced analytics, modelling and structured outputs.</p></div>
+      <div class="q-step"><span>06</span><strong>Reporting<br>and BI</strong><em>Automation: High</em><p>Dashboards, presentations and decision-ready reporting.</p></div>
+      <div class="q-step"><span>07</span><strong>Client-ready<br>Report & Presentation</strong><em>Automation: High</em><p>Impactful visual storytelling and activation.</p></div>
+    </div>
+    <div class="q-ip-row">
+      <div><b>Q-Build</b><span>Automated questionnaire preparation</span></div>
+      <div><b>C5i SPOS</b><span>Automated survey scripting & link testing</span></div>
+      <div><b>C5i DCOS</b><span>Automated field operations & quality checks</span></div>
+      <div><b>C5i DPOS</b><span>Automated data processing & tabulation</span></div>
+      <div><b>C5i TXTSense / VideoSense</b><span>Automated text, audio & video analysis</span></div>
+      <div><b>Reporting Automation</b><span>Slideware and BI automation</span></div>
+      <div><b>C5i Discovery</b><span>Gen AI-powered analytics & insights</span></div>
+    </div>
+    <div class="q-efficiency"><span>70%</span><span>65%</span><span>40%</span><span>45%</span><span>50%</span><span>60%</span><span>30%</span><b>Average efficiency gain: 51%</b></div>
+  </div>
+
+  <div class="section q-panel">
+    <div class="section-intro">
+      <div><div class="eyebrow">DATA COLLECTION</div><h2>Panel-agnostic reach. Rigorous quality. Global scale.</h2></div>
+      <p>C5i is not tied to a single panel provider. We orchestrate the right audience, source mix and fieldwork approach for each study - while maintaining disciplined sample design, quota management and quality controls.</p>
+    </div>
+    <div class="q-panel-grid">
+      <div class="q-panel-copy">
+        <h3>Designed around the audience - not the panel.</h3>
+        <p>Our teams build detailed sample plans, identify difficult-to-reach audiences, manage incidence and quotas, and adapt fieldwork to local market realities.</p>
+        <div class="q-stat-grid"><div><strong>60+</strong><span>countries reached</span></div><div><strong>25+</strong><span>languages</span></div><div><strong>20M+</strong><span>households</span></div><div><strong>50M+</strong><span>individual respondents</span></div></div>
+        <div class="q-quality"><b>C5i DCOS</b><span>Automated field operations and quality checks - built to protect response quality from recruitment through completion.</span></div>
+      </div>
+      <div class="q-vendors">
+        <h3>Leading data partners, orchestrated by C5i</h3>
+        <p>Access to a broad ecosystem of established sample and specialist audience providers enables the right source mix for every market and target.</p>
+        <div class="vendor-grid">
+          <div class="vendor-wordmark">KANTAR <small>WORLDPANEL</small></div>
+          <div class="vendor-wordmark">toluna</div>
+          <div class="vendor-wordmark">dynata</div>
+          <div class="vendor-wordmark">Rakuten Insight</div>
+          <div class="vendor-wordmark">YouGov</div>
+          <div class="vendor-wordmark">innovate<span>MR</span></div>
+          <div class="vendor-wordmark">GLG</div>
+          <div class="vendor-wordmark">NewtonX</div>
+          <div class="vendor-wordmark">Asia<span>Monitor</span></div>
+          <div class="vendor-wordmark">REP DATA</div>
+          <div class="vendor-wordmark">CatalystMR</div>
+          <div class="vendor-wordmark">Borderless Access</div>
+          <div class="vendor-wordmark">empanel</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-bottom-message">Right audience. Right market. Right quality - with one accountable research partner.</div>
+  </div>
+</section>
+<section id="primary-qual" class="view">
+  <div class="subnav"><button data-sub="primary" onclick="go('primary')">OVERVIEW</button><button onclick="go('primary-quant')">QUANTITATIVE</button><button class="active">QUALITATIVE</button><button onclick="go('brand')">BRAND HEALTH TRACKERS & CUSTOMER EXPERIENCE TRACKERS</button><button onclick="go('ux')">UX RESEARCH</button></div>
+  <div class="page-hero"><h1>Qualitative research that moves from conversation to action.</h1><p>C5i combines proven methods, global fieldwork and AI-enabled analysis to reveal why customers behave as they do - and what clients should do next.</p></div>
+  <div class="content-grid">
+    <div class="block"><div class="block-label">QUALITATIVE METHODS</div><ul><li><b>Depth interviews & focus groups</b> - Uncover needs and decision language to sharpen propositions and growth priorities.</li><li><b>Ethnography & contextual inquiry</b> - Observe customers in context to expose experience gaps and innovation opportunities.</li><li><b>Diary & longitudinal studies</b> - Track journey moments over time to pinpoint adoption, loyalty and drop-off drivers.</li><li><b>Mystery shopping</b> - Benchmark pricing, offers, service and store execution to prioritize retail improvements.</li></ul></div>
+    <div class="block"><div class="block-label">SCALE + AI</div><ul><li><b>Global recruitment & fieldwork</b> - Recruit verified niche audiences across 30+ countries and 25+ languages for consistent fieldwork.</li><li><b>AI-enabled video & audio insight</b> - Automate video and audio analysis into story-ready outputs, reducing turnaround by 40–50%.</li></ul></div>
+    <div class="block wide"><div class="block-label">EXPERTS AT EVERY LEVEL</div><ul><li>Our global qualitative team brings sector expertise, professionally trained moderators, and fast-paced writers to every engagement.</li><li>Our leadership combines multi-market experience with practical methods and strong sector depth.</li><li>Qualitative research at scale</li><li>Innovative JTBD and ODI approaches</li><li>AI, privacy and go-to-market research</li><li>Shop-alongs, concept testing and UX research</li><li>Experience with sensitive and niche audiences</li></ul></div>
+  </div>
+</section>
+
+<section id="brand" class="view">
+  <div class="subnav"><button data-sub="primary" onclick="go('primary')">OVERVIEW</button><button onclick="go('primary-quant')">QUANTITATIVE</button><button onclick="go('primary-qual')">QUALITATIVE</button><button class="active">BRAND HEALTH TRACKERS & CUSTOMER EXPERIENCE TRACKERS</button><button onclick="go('ux')">UX RESEARCH</button></div>
+  <div class="page-hero"><h1>Brand and customer experience tracking for data-driven insights.</h1><p>We combine primary research with multiple data sources to deliver always-on visibility into brand health and customer experience-helping teams monitor, understand and act with confidence.</p></div>
+  <div class="metric-row"><div class="metric"><b>Awareness ↑</b><span>Brand metric</span></div><div class="metric"><b>Buzz ↓</b><span>Brand metric</span></div><div class="metric"><b>Consideration ↑</b><span>Brand metric</span></div><div class="metric"><b>Purchase Intent ↓</b><span>Brand metric</span></div></div>
+
+  <div class="section"><div class="section-intro"><div><div class="eyebrow">WHAT BRANDS NEED TODAY</div><h2>Real-time, integrated intelligence that predicts and drives action.</h2></div></div>
+    <div class="content-grid">
+      <div class="block"><div class="block-label">MULTI-SOURCE INTELLIGENCE</div><p>Survey, social, search, reviews and syndicated data in one view.</p></div>
+      <div class="block"><div class="block-label">ONE RECONCILED VIEW</div><p>A single version of brand health across channels and markets.</p></div>
+      <div class="block"><div class="block-label">ALWAYS ON, ALWAYS FRESH</div><p>Signals and alerts surface change while teams can still act.</p></div>
+      <div class="block"><div class="block-label">EXPLAINS THE WHY</div><p>Qualitative context reveals drivers behind movement.</p></div>
+      <div class="block"><div class="block-label">PREDICTS WHAT IS NEXT</div><p>Early warnings and opportunities reduce response time.</p></div>
+      <div class="block"><div class="block-label">ENDS IN ACTION</div><p>Clear recommendations connect insight to decisions.</p></div>
+    </div>
+  </div>
+
+  <div class="section"><div class="section-intro"><div><div class="eyebrow">C5i'S CORE PILLARS</div><h2>Four pillars for a stronger brand tracking program.</h2></div></div>
+    <div class="pillar-grid">
+      <article class="pillar-card"><div class="pillar-icon">360°</div><h3>360 approach for integrated insights</h3><ul><li>Define new metrics</li><li>Augment primary MR with social and other metrics</li><li>Deep domain expertise</li></ul><div class="pillar-result"><b>What you get</b><span>Validated insights · Explainability · Better business decisions</span></div></article>
+      <article class="pillar-card"><div class="pillar-icon">AI</div><h3>AI powered operations</h3><ul><li>AI solutions for each stage of the MR process</li><li>Agentic AI for MR</li><li>Synthetic data for MR</li></ul><div class="pillar-result"><b>What you get</b><span>40% faster results · 30% lower costs · Higher quality with lower human intervention</span></div></article>
+      <article class="pillar-card"><div class="pillar-icon">↗</div><h3>Advanced analytics for deeper insights</h3><ul><li>Bayesian / SEM models</li><li>AI-driven unstructured data analysis</li><li>C5i's own IP for MMM</li></ul><div class="pillar-result"><b>What you get</b><span>Link MR data to business metrics · Marketing ROI analysis · Decision simulations</span></div></article>
+      <article class="pillar-card"><div class="pillar-icon">BI</div><h3>Reporting & Insights</h3><ul><li>PPTs for markets and executive presentations</li><li>Infographics and newsletters</li><li>C5i Discovery: AI-powered insights portal</li></ul><div class="pillar-result"><b>What you get</b><span>Persona-based insights · Better insight adoption · Democratized brand health insights</span></div></article>
+    </div>
+    <div class="foundation"><div class="foundation-title">OUR SOLUTIONS ARE BUILT ON</div><div><b>Vendor agnostic approach</b><ul><li>Best-of-breed panels and tools</li><li>No alignment to any global media or PR conglomerate</li></ul></div><div><b>Strong quality focus</b><ul><li>Focus on sample quality</li><li>ISO-certified systems</li><li>Transparent processes</li></ul></div></div>
+  </div>
+
+  <div class="section ecosystem-section"><div class="section-intro"><div><div class="eyebrow">INTEGRATED DATA ECOSYSTEM</div><h2>Brand insights built from every relevant source.</h2></div><p>Primary research is connected to behavioural, internal, social and published signals to reveal convergence, divergence and the broader market context.</p></div>
+    <div class="ecosystem">
+      <div class="ecosystem-left"><div class="brand-node">Brand Health trackers &amp;<br>customer experience<br>trackers</div><div class="flow-arrow">↔</div><div class="primary-node"><h3>Primary Research</h3><p>Primary Quantitative Survey</p><p>Qualitative Research covering customers, channel partners</p></div></div>
+      <div class="ecosystem-sources">
+        <div class="eco-card"><span class="eco-num">01</span><div><h3>Immersions &amp; Observation</h3><p>Behavioral Data · Shopper / User Experience</p></div></div>
+        <div class="eco-card"><span class="eco-num">02</span><div><h3>Internal Data</h3><p>Media, Marketing Spend · Pricing, Sales, etc.</p></div></div>
+        <div class="eco-card"><span class="eco-num">03</span><div><h3>Social Media</h3><p>Blogs, Forums · Facebook, Twitter, Yelp, Google+</p></div></div>
+        <div class="eco-card"><span class="eco-num">04</span><div><h3>Syndicated Research &amp; Published Sources</h3><p>Syndicated Analyst Reports · Media, Journals · Industry Association Reports · Government Data</p></div></div>
+      </div>
+      <div class="ecosystem-outcomes"><h3>What this integrated view delivers</h3><ul><li>Taps the power of all available sources of information</li><li>Supports and enhances primary research findings towards business goals</li><li>Exposes points of convergence and divergence</li><li>Connects dots with the broader market landscape</li><li>Reveals the interplay between brand health metrics</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="campaign" class="view">
+  <div class="subnav"><button data-sub="primary" onclick="go('primary')">OVERVIEW</button><button onclick="go('primary-quant')">QUANTITATIVE</button><button onclick="go('primary-qual')">QUALITATIVE</button><button onclick="go('brand')">BRAND HEALTH TRACKERS & CUSTOMER EXPERIENCE TRACKERS</button><button class="active">CAMPAIGN</button><button onclick="go('ux')">UX RESEARCH</button></div>
+  <div class="page-hero"><h1>Campaign measurement and attribution.</h1><p>Monitor campaign performance by understanding what leaves a mark on awareness, engagement, and conversion. React quickly to changes in brand perception and health.</p></div>
+  <div class="metric-row"><div class="metric"><b>Ad awareness ↑</b><span>Campaign metric</span></div><div class="metric"><b>Buzz ↓</b><span>Campaign metric</span></div><div class="metric"><b>Word of mouth ↑</b><span>Campaign metric</span></div><div class="metric"><b>Performance</b><span>Campaign monitoring</span></div></div>
+  <div class="section"><div class="content-grid"><div class="block"><div class="block-label">CAMPAIGN PERFORMANCE MONITORING</div><ul><li>See which touchpoints lead to action.</li><li>Track performance before, during, and after activity.</li><li>Connect results to brand health and ROI.</li><li>Understand how investment changes perception and behaviour.</li></ul></div><div class="block"><div class="block-label">MEASURE & MAXIMISE MARKETING IMPACT</div><ul><li>Brand Composite Score - Daily brand and competitor tracking across key metrics.</li><li>Test campaigns that hit home - Test ads, reach target audiences, and refine performance.</li><li>Competitor monitoring - Understand competitors through the eyes of consumers.</li><li>Size your ideal customer - Profile receptive segments for products and services.</li><li>Run research to your audience - Move from quick surveys to custom research.</li></ul></div></div></div>
+</section>
+
+<section id="ux" class="view">
+  <div class="subnav">
+    <button data-sub="primary" onclick="go('primary')">OVERVIEW</button>
+    <button onclick="go('primary-quant')">QUANTITATIVE</button>
+    <button onclick="go('primary-qual')">QUALITATIVE</button>
+    <button onclick="go('brand')">BRAND HEALTH TRACKERS & CUSTOMER EXPERIENCE TRACKERS</button>
+    
+    <button class="active">UX RESEARCH</button>
+  </div>
+
+  <div class="page-hero">
+    <h1>UX research.</h1>
+    <p>We offer three ways to create evidence for UX decisions.</p>
+    <p class="hero-accent">Each model can stand alone or be combined to support a full product-development cycle.</p>
+  </div>
+
+  <div class="ux-three-grid">
+    <article class="ux-card featured">
+      <div class="ux-card-title"><span class="ux-icon">■</span><h3>UserTesting.com / UX platform studies</h3></div>
+      <h4>Primary user evidence</h4>
+      <p>Moderated and unmoderated studies<br>Usability, A/B and concept testing<br>Desirability studies, in-depth interviews, surveys</p>
+      <div class="ux-rule"></div>
+      <h4>How it helps</h4>
+      <p>Helps teams validate prototypes, live sites, software’s, interfaces compare alternatives and hear users explain pain points in their own words.</p>
+    </article>
+    <article class="ux-card">
+      <div class="ux-card-title"><span class="ux-icon">■</span><h3>Evidence-based research</h3></div>
+      <h4>Existing data synthesis</h4>
+      <p>Analytics and funnel review<br>Support tickets, reviews and social listening<br>Competitor benchmarking and trend scans</p>
+      <div class="ux-rule"></div>
+      <h4>How it helps</h4>
+      <p>Helps organizations learn quickly from available signals, identify UX gaps and decide where primary research is still needed.</p>
+    </article>
+    <article class="ux-card">
+      <div class="ux-card-title"><span class="ux-icon">■</span><h3>Heuristic evaluation</h3></div>
+      <h4>Expert-led assessment</h4>
+      <p>Nielsen, WCAG 2.2 AA and custom heuristics<br>Cognitive walkthroughs and platform guidelines<br>Severity scoring and remediation backlog</p>
+      <div class="ux-rule"></div>
+      <h4>How it helps</h4>
+      <p>Helps organizations scale expert UX quality assessment, prioritize fixes and establish reusable evaluation frameworks.</p>
+    </article>
+  </div>
+
+  <div class="section ux-section">
+    <div class="section-intro"><div><div class="eyebrow">PRIMARY USER EVIDENCE</div><h2>Our approach: UserTesting.com / UX platform studies.</h2></div></div>
+    <p class="hero-accent">End-to-end delivery using the client’s UserTesting.com credentials or C5i-managed platform access.</p>
+    <div class="ux-steps">
+      <div class="ux-step"><span>1</span><b>Design</b><p>Align objective, audience, tasks, discussion guide and success metrics</p></div>
+      <div class="ux-step"><span>2</span><b>Program</b><p>Build survey or interview flow; embed prototypes and tasks in platform</p></div>
+      <div class="ux-step"><span>3</span><b>Recruit & field</b><p>Launch moderated or unmoderated sessions with right participant profile</p></div>
+      <div class="ux-step"><span>4</span><b>Analyze</b><p>Review recordings/transcripts, task completion, quotes and pain-point themes</p></div>
+      <div class="ux-step"><span>5</span><b>Report</b><p>Deliver storyline, recommendations and design implications</p></div>
+    </div>
+    <div class="ux-bottom-grid">
+      <div class="ux-mini"><h4>Engagement models</h4><p><b>Subscription model</b> for frequent studies or an <b>on-demand model</b> for one-off needs; C5i can also operate inside the client’s existing subscription.</p></div>
+      <div class="ux-mini"><h4>Typical outputs</h4><p>Study plan, programmed platform flow, recordings/transcripts, topline insights, full report and prioritized UX recommendations.</p></div>
+    </div>
+  </div>
+
+  <div class="section ux-section">
+    <div class="section-intro"><div><div class="eyebrow">ENGAGEMENT OPTIONS</div><h2>Primary user evidence.</h2></div></div>
+    <p class="hero-accent">Whether we use C5i’s platform subscription or your own credentials, we run your UX surveys and interviews end-to-end.</p>
+    <div class="ux-engagement-grid">
+      <article class="ux-engagement"><div class="ux-engage-head">C5i’s Subscription<small>We provide the platform</small></div><p>Based on your annual UX study volume, C5i offers two engagement models:</p><div class="ux-option"><b>Subscription Model</b><p>An ongoing UserTesting.com or Userlytics license to run multiple studies across a 6- to 12-month period.</p><strong>Best For:</strong> Frequent, ongoing studies</div><div class="ux-option"><b>On-Demand Model</b><p>A per-study engagement scoped to audience, market and scope, run through Userlytics.com.</p><strong>Best For:</strong> One-off project needs</div></article>
+      <article class="ux-engagement"><div class="ux-engage-head">Client’s Credentials<small>You provide the platform</small></div><p>We run studies inside your active UserTesting.com subscription: fully managed, end-to-end.</p><div class="ux-flow"><span>Design</span><i>→</i><span>Program</span><i>→</i><span>Analyze</span><i>→</i><span>Report</span></div><div class="ux-pill">Surveys • Moderated & unmoderated</div></article>
+    </div>
+  </div>
+
+  <div class="section ux-section">
+    <div class="section-intro"><div><div class="eyebrow">EXISTING DATA SYNTHESIS</div><h2>Our approach: Evidence-based research and insight mining.</h2></div></div>
+    <p class="hero-accent">We use existing data sources to answer UX questions quickly and guide next-best research.</p>
+    <div class="ux-table-grid">
+      <div class="ux-list"><h3>Our Data Sources</h3><ul><li>Literature review</li><li>Competitor analysis</li><li>Market research</li><li>Analytics review</li><li>Support ticket analysis</li><li>Review mining (App Store, Play Store)</li><li>Social listening</li><li>Industry trend analysis</li><li>Existing survey analysis</li><li>Benchmarking</li></ul></div>
+      <div class="ux-method"><h3>Our Approach</h3>
+        <div><b>1 Define the research objective</b><p>Target users, the problem they are solving, and the product or feature in scope.</p></div>
+        <div><b>2 Identify reliable sources</b><p>Analytics, support tickets, CRM and past studies; industry reports, app reviews and communities.</p></div>
+        <div><b>3 Analyze competitors</b><p>Benchmark user flows, navigation, information architecture, features and accessibility.</p></div>
+        <div><b>4 Review existing user data</b><p>Patterns in app usage, drop-offs, heatmaps, session recordings, search queries and FAQs.</p></div>
+        <div><b>5 Synthesize needs and gaps</b><p>Themes across pain points, goals and motivations; flag questions needing primary research.</p></div>
+      </div>
+      <div class="ux-list"><h3>Typical Outputs</h3><ul><li>User personas (if sufficient data exists)</li><li>Journey maps</li><li>Opportunity areas</li><li>UX issues</li><li>Feature gaps</li><li>Market trends</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section ux-section">
+    <div class="section-intro"><div><div class="eyebrow">HEURISTIC EVALUATION</div><h2>Our approach: Evidence-based research and insight mining.</h2></div></div>
+    <p class="hero-accent">A repeatable expert-review framework to find, score and operationalize UX improvements.</p>
+    <div class="ux-table-grid heuristic-grid">
+      <div class="ux-list"><h3>Frameworks We Apply</h3><ul><li>Nielsen's 10 usability heuristics</li><li>WCAG 2.2 AA accessibility checks</li><li>Shneiderman's 8 golden rules</li><li>Gestalt design principles</li><li>ISO 9241-110 dialogue principles</li><li>Platform guidelines (iOS HIG, Material)</li><li>Cognitive walkthrough</li><li>Conversational and AI UX heuristics</li><li>Custom heuristics for your domain</li></ul></div>
+      <div class="ux-method"><h3>Methodology</h3>
+        <div><b>1 Scope and set selection</b><p>Screens and flows in scope, heuristic set (Nielsen / WCAG / custom), severity scale (0-4) agreed with stakeholders.</p></div>
+        <div><b>2 Expert evaluation</b><p>Evaluators independently review the interface against the set and log each violation with location and severity.</p></div>
+        <div><b>3 Aggregation and scoring</b><p>Findings merged and de-duplicated; severity scored on frequency, impact and persistence.</p></div>
+        <div><b>4 Reporting</b><p>Issue log with screenshots, heuristic violated, severity, and fix recommendation; summary for stakeholders.</p></div>
+        <div><b>5 Debrief and handoff</b><p>Walkthrough with design and PM, severity disagreements resolved, issues moved into the backlog.</p></div>
+      </div>
+      <div class="ux-list"><h3>Outputs Provided</h3><ul><li>Severity-scored issue log (0-4)</li><li>Annotated screenshots of each issue</li><li>Heuristic scorecard and heatmap</li><li>Prioritized fix recommendations</li><li>Quick wins vs. long-term fixes</li><li>Competitor benchmark comparison</li><li>Executive readout and next steps</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="conjoint" class="view">
+  <div class="page-hero"><h1>Dedicated trade-off expertise.<br><span>Platform-agnostic excellence.</span></h1><p>Dedicated Trade-off team with vast experience across discrete choice modeling techniques, an expertise that transcends methods & tools; delivering consistent results & consultancy regardless of the platform.</p></div>
+  <div class="content-grid">
+    <div class="block"><div class="block-label">PLATFORM-AGNOSTIC CAPABILITIES</div><ul><li>Lighthouse Studio</li><li>SSI Web</li><li>CBC / HB</li><li>ACBC</li><li>MaxDiff</li><li>Native conjoint builder, advanced analytics engine, market simulation</li><li>Modern web-based platform with advanced trade-off modeling capabilities</li><li>Custom implementations for specialized requirements and academic rigor</li></ul></div>
+    <div class="block"><div class="block-label">STATISTICAL SOPHISTICATION</div><ul><li>Hierarchical Bayes (HB)</li><li>Latent Class Model</li><li>Mixed Logit</li></ul><div class="block-label" style="margin-top:25px">MARKET SIMULATION & OPTIMIZATION</div><ul><li>Share-of-Preference Models: Competitive scenario analysis</li><li>Price Elasticity Curves: Price optimization across price points</li><li>What-If Simulators: Interactive tools for strategic planning</li></ul></div>
+    <div class="block wide"><div class="block-label">CHOICE MODEL PORTFOLIO</div><ul><li><b>Choice-Based Conjoint (CBC)</b> - Full-profile choice experiments; advanced experimental designs; HB modeling for individual-level utilities.</li><li><b>Adaptive Choice-Based Conjoint</b> - Build-your-own + choice tasks; reduced respondent burden with maintained statistical power; advanced screening and choice algorithms.</li><li><b>MaxDiff Analysis</b> - Traditional, anchored, and Express & Sparse MaxDiff; TURF & Segmentation with preference heterogeneity.</li><li><b>Specialized Methods</b> - Alternate-specific & partial-profile conjoint; Menu-Based Conjoint; Self-Explicated conjoint.</li></ul></div>
+  </div>
+  <div class="section"><div class="section-intro"><div><div class="eyebrow">DELIVERY STRENGTHS</div><h2>From design to insight.</h2></div></div>
+  <div class="content-grid">
+    <div class="block"><div class="block-label">DESIGN EXCELLENCE</div><ul><li>Experimental design optimization</li><li>Realistic choice scenarios</li><li>Collaborative attribute selection</li><li>Pre-testing & validation</li></ul></div>
+    <div class="block"><div class="block-label">IMPLEMENTATION</div><ul><li>Multi-platform flexibility</li><li>Rigorous quality assurance</li><li>Mobile-optimized experiences</li><li>Real-time monitoring</li></ul></div>
+    <div class="block"><div class="block-label">ANALYTICS & MODELLING</div><ul><li>Hierarchical Bayes modeling</li><li>Preference-based segmentation</li><li>Advanced model diagnostics</li><li>Cross-validation techniques</li></ul></div>
+    <div class="block"><div class="block-label">INSIGHT GENERATION</div><ul><li>Interactive market simulators</li><li>Actionable business insights</li><li>Competitive scenario planning</li><li>Strategic recommendations</li></ul></div>
+  </div></div>
+  <div class="cta"><div><div class="eyebrow" style="color:#d8b9ff">UNIQUE VALUE PROPOSITION</div><h3>Deep industry experience. Dedicated DCM team.</h3><p>100+ years of accumulated experience in DCM Team · Platform Agnostic Excellence · Dedicated Team exclusively for DCM · Proven Accelerators for faster TAT</p></div><button class="btn light" onclick="go('solutions')">Explore the full system →</button></div>
+</section>
+
+
+<section id="dashboard" class="view">
+  <div class="page-hero dashboard-hero">
+    <h1>From fragmented data to <span class="purple">always-on decisions.</span></h1>
+    <p>C5i combines dashboarding, BI, automation and AI-assisted analytics to turn complex data into clear, decision-ready intelligence - powered by Amazon Quick & QuickSight.</p>
+  </div>
+
+  <div class="dashboard-stats">
+    <div class="dash-stat"><strong>6</strong><span>capability areas</span></div>
+    <div class="dash-stat"><strong>2</strong><span>capabilities used within Amazon Quick</span></div>
+    <div class="dash-stat"><strong>4</strong><span>adjacent solutions delivered</span></div>
+  </div>
+
+  <div class="section dashboard-capabilities">
+    <div class="section-intro">
+      <div>
+        <div class="eyebrow">C5i QUICK CAPABILITIES</div>
+        <h2>One connected intelligence layer - from data to action.</h2>
+      </div>
+      <p>We bring together analytics, automation, knowledge and visualization so teams can move from <b>what happened</b> to <b>what should we do next</b>.</p>
+    </div>
+
+    <div class="dash-tabs" role="tablist">
+      <button class="dash-tab active" data-filter="all">All capabilities</button>
+      <button class="dash-tab" data-filter="quick">Amazon Quick</button>
+      <button class="dash-tab" data-filter="adjacent">Adjacent experience</button>
+    </div>
+
+    <div class="quick-grid">
+      <article class="quick-card" data-type="quick">
+        <div class="quick-card-top"><span class="quick-code">QS</span><span class="quick-badge">QUICK EXPERIENCE</span></div>
+        <h3>Quick Sight</h3>
+        <p>Retail tracker dashboards that turn complex data into clear, enterprise-ready insights.</p>
+        <div class="quick-outcome">See performance clearly. Act faster.</div>
+      </article>
+
+      <article class="quick-card" data-type="quick">
+        <div class="quick-card-top"><span class="quick-code">QR</span><span class="quick-badge">QUICK EXPERIENCE</span></div>
+        <h3>Quick Research</h3>
+        <p>Fast synthesis of verbatim themes, market signals and competitive intelligence.</p>
+        <div class="quick-outcome">Connect signals into a sharper point of view.</div>
+      </article>
+
+      <article class="quick-card" data-type="adjacent">
+        <div class="quick-card-top"><span class="quick-code">QF</span><span class="quick-badge adjacent">ADJACENT STRENGTH</span></div>
+        <h3>Quick Flows</h3>
+        <p>Unified digital workspaces connecting BI, productivity tools and business apps.</p>
+        <div class="quick-outcome">Reduce friction across the decision journey.</div>
+      </article>
+
+      <article class="quick-card" data-type="adjacent">
+        <div class="quick-card-top"><span class="quick-code">QA</span><span class="quick-badge adjacent">ADJACENT STRENGTH</span></div>
+        <h3>Quick Automate</h3>
+        <p>Workflow automation for complex processes, events and trigger-based actions.</p>
+        <div class="quick-outcome">Automate repeatable work at scale.</div>
+      </article>
+
+      <article class="quick-card" data-type="adjacent">
+        <div class="quick-card-top"><span class="quick-code">QI</span><span class="quick-badge adjacent">ADJACENT STRENGTH</span></div>
+        <h3>Quick Index / Spaces</h3>
+        <p>Centralized, self-service access to datasets, reports, notebooks and pipelines.</p>
+        <div class="quick-outcome">Put trusted intelligence where teams need it.</div>
+      </article>
+
+      <article class="quick-card" data-type="adjacent">
+        <div class="quick-card-top"><span class="quick-code">AI</span><span class="quick-badge adjacent">ADJACENT STRENGTH</span></div>
+        <h3>Chat Agents</h3>
+        <p>Agentic AI platforms designed to deliver conversational outcomes at scale.</p>
+        <div class="quick-outcome">Ask, investigate and act in natural language.</div>
+      </article>
+    </div>
+  </div>
+
+  <div class="section intelligent-analytics">
+    <div class="analytics-banner">
+      <div><span>INTELLIGENT ANALYTICS</span><strong>Automate · Investigate · Predict · Activate</strong></div>
+      <small>AWS Advanced Consulting Partner</small>
+    </div>
+
+    <div class="analytics-grid">
+      <article class="analytics-card"><span>01</span><label>AUTOMATE</label><h3>Analysis & Reporting</h3><p>AI-powered reporting and custom agents that accelerate recurring insight delivery.</p></article>
+      <article class="analytics-card"><span>02</span><label>INVESTIGATE</label><h3>Deep-Dive Analytics</h3><p>Market, competitive and cross-source analysis to explain what is changing and why.</p></article>
+      <article class="analytics-card"><span>03</span><label>PREDICT</label><h3>Forecast & Alert</h3><p>Business forecasting with intelligent alerts that help teams anticipate change.</p></article>
+      <article class="analytics-card"><span>04</span><label>CONNECT</label><h3>Unified Knowledge</h3><p>Cross-study insights with natural-language querying across trusted information.</p></article>
+      <article class="analytics-card"><span>05</span><label>VISUALIZE</label><h3>QuickSight BI</h3><p>Enterprise dashboards, integration and modernization built for scalable decision-making.</p></article>
+    </div>
+
+    <div class="quicksight-strip">
+      <strong>QUICKSIGHT</strong>
+      <span>Data Integration</span><i>│</i>
+      <span>SPICE Optimization</span><i>│</i>
+      <span>BI Migration</span><i>│</i>
+      <span>Data Modelling</span><i>│</i>
+      <span>Front-end Visualization</span>
+    </div>
+  </div>
+
+  <div class="section decision-layer">
+    <div class="section-intro">
+      <div>
+        <div class="eyebrow">FROM DASHBOARD TO DECISION</div>
+        <h2>Make every view answer the next business question.</h2>
+      </div>
+      <p>Our BI layer does more than report the numbers. It connects KPIs, drivers, anomalies and context so teams can understand <b>what changed, why it matters and where to act next.</b></p>
+    </div>
+    <div class="decision-flow">
+      <div><span>01</span><b>UNIFY</b><p>Bring research, operational and market signals together.</p></div>
+      <div><span>02</span><b>INTERPRET</b><p>Surface drivers, patterns, anomalies and emerging signals.</p></div>
+      <div><span>03</span><b>PREDICT</b><p>Forecast performance and flag opportunities or risks.</p></div>
+      <div><span>04</span><b>ACTIVATE</b><p>Give teams the next-best view, action or recommendation.</p></div>
+    </div>
+  </div>
+
+  <div class="cta" id="connect">
+    <div>
+      <div class="eyebrow" style="color:#d8b9ff">RESEARCH → DECISION</div>
+      <h3>Always-on intelligence, built around the decisions that matter.</h3>
+      <p>From automated reporting to AI-assisted analysis, C5i turns fragmented information into a continuously usable decision system.</p>
+    </div>
+    <button class="btn light" onclick="go('home')">Back to the decision system →</button>
+  </div>
+</section>
+
+</main>
+<footer><div class="foot"><div><strong>C5i</strong><br><small>Human perspective. AI-powered intelligence.</small></div><small>© 2025 C5i, All Rights Reserved. · Internal</small></div></footer>
+
+<script>
+const EMBED=document.documentElement.classList.contains('embedded');
+let firstGo=true;
+const all=[...document.querySelectorAll('.view')];
+window.addEventListener('message',event=>{if(event.source===parent && event.data && event.data.type==='ii-reset-home'){iiRouteHistory.length=0;go('home',true,true);}});
+// Track navigation inside Integrated Intelligence; do not change the parent site's menu.
+const iiRouteHistory=[];
+function goBack(){
+  // Back always returns directly to the Integrated Intelligence landing view.
+  iiRouteHistory.length=0;
+  go('home',true);
+}
+function updateBackButton(){
+  const back=document.getElementById('iiBackButton');
+  if(back) back.hidden=iiRouteHistory.length===0;
+}
+
+function go(id,fromBack=false,silentReset=false){
+  const target=document.getElementById(id)?id:'home';
+  const current=document.querySelector('.view.active')?.id;
+  if(!fromBack && current && current!==target) iiRouteHistory.push(current);
+  updateBackButton();
+  all.forEach(x=>x.classList.toggle('active',x.id===target));
+  if(EMBED) parent.postMessage({type:'ii-view',view:target},'*');
+  document.querySelectorAll('nav button[data-route]').forEach(x=>x.classList.toggle('active',x.dataset.route===target || (['primary-quant','primary-qual','brand','campaign','ux'].includes(target)&&x.dataset.route==='primary')));
+  document.querySelectorAll('.subnav button[data-sub]').forEach(x=>x.classList.toggle('active',x.dataset.sub===target));
+  history.replaceState(null,'','#'+target);
+  if(EMBED){ if(!firstGo && !silentReset) parent.postMessage({type:'ii-top'},'*'); }
+  else window.scrollTo({top:0,behavior:'smooth'});
+  firstGo=false;
+}
+function route(){go(location.hash.replace('#','')||'home')}
+window.addEventListener('hashchange',route);
+window.addEventListener('scroll',()=>{
+  if(EMBED) return;
+  const d=document.documentElement;
+  document.getElementById('progress').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';
+});
+route();
+
+document.querySelectorAll('.dash-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.dash-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter=tab.dataset.filter;
+    document.querySelectorAll('.quick-card').forEach(card=>{
+      card.style.display=(filter==='all'||card.dataset.type===filter)?'block':'none';
+    });
+  });
+});
+
+if(EMBED){
+  const postH=()=>parent.postMessage({type:'ii-height',h:Math.ceil(document.documentElement.getBoundingClientRect().height)},'*');
+  const ro=new ResizeObserver(postH); ro.observe(document.documentElement); ro.observe(document.body);
+  window.addEventListener('load',postH);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(postH);
+  postH();
+}
+</script>
+</body>
+</html>

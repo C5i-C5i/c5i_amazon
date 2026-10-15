@@ -33,7 +33,7 @@ const programs = [
   {title:'WW Search Satisfaction study', points:['3 waves in US and EU5 marketplaces.','Assess customer perceptions and satisfaction with website search systems and competitors.','Expanded to deep-dive and understand how AI chatbots play a key role in the shopping journey.']},
   {title:'Amazon pricing research team', points:['US (5 waves) and 4 waves in EU5: UK, DE, FR, IT and ES.','Understand perception of pricing across Softlines, Hardlines and Consumables categories.','Van Westerndorp questions were also done to arrive at optimal prices for product.']}
 ];
-// Detail content for the "Our Capabilities" Explore pop-up only — does NOT affect the Ongoing engagements section above.
+// Detail content for the "Our Capabilities" Explore pop-up only - does NOT affect the Ongoing engagements section above.
 const capabilityDetails = {
   'Research, Analytics & Reporting': [
     {title:'XCM RBT Continuous & Pulse tracker', points:[
@@ -113,7 +113,7 @@ const capabilityDetails = {
     ]}
   ],
   'UX Research': [
-    {title:'Amazon Fuse — UX Research track', points:[
+    {title:'Amazon Fuse - UX Research track', points:[
       'End to end UX research studies on signup experience on Amazon’s UX testing platforms'
     ], scale:[
       '4-5 UX research studies',
@@ -208,7 +208,7 @@ function renderCapModal(capTitle){
   $('#capModalTitle').textContent = capTitle;
   $('#capModalText').textContent = cap ? cap.text : '';
   $('#capModalBody').innerHTML = items.length
-    ? items.map(e=>`<div class="cap-engagement"><h4>${e.title}</h4>${e.subtitle?`<p class="eng-sub">${e.subtitle}</p>`:''}${e.stats?`<ul>${e.stats.map(x=>`<li>${x.value} ${x.label}${x.note?`<br>${x.note}`:''}</li>`).join('')}</ul>`:''}${e.pointsHeading?`<h5 class="eng-h">${e.pointsHeading}</h5>`:''}<ul>${e.points.map(x=>`<li>${x}</li>`).join('')}</ul>${e.scale?`<div class="scale-output"><h5>${e.scaleHeading||'SCALE / OUTPUT'}</h5><ul>${e.scale.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:''}</div>`).join('')
+    ? items.map(e=>`<div class="cap-engagement"><h4>${e.title}</h4>${e.subtitle?`<p class="eng-sub">${e.subtitle}</p>`:''}${e.stats?`<ul>${e.stats.map(x=>`<li>${x.value} ${x.label}${x.note?`<br>${x.note}`:''}</li>`).join('')}</ul>`:''}${e.pointsHeading?`<h5 class="eng-h">${e.pointsHeading}</h5>`:''}<ul>${e.points.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')
     : `<p class="cap-empty">Detailed engagement breakdowns for this capability are being added soon.</p>`;
 }
 function setupCapModal(){
@@ -248,9 +248,123 @@ function renderGlobalResults(q){
   const rows=engagements.filter(e=>!q||Object.values(e).join(' ').toLowerCase().includes(q)).slice(0,8);
   $('#globalResults').innerHTML=rows.map(e=>`<div class="result"><h4>${e.title}</h4><p>${e.desc}</p><small>${e.capability} • ${e.team} • ${e.geography}</small></div>`).join('') || '<div class="result"><h4>No match</h4><p>Try another capability, team, geography or methodology.</p></div>';
 }
+function syncHeaderHeight(){
+  const t=document.getElementById('topbar');
+  if(t) document.documentElement.style.setProperty('--header-h', t.getBoundingClientRect().height+'px');
+}
+function setupIntegratedFrame(){
+  const f=document.getElementById('iiFrame'); if(!f) return;
+  window.addEventListener('message',e=>{
+    if(e.source!==f.contentWindow||!e.data) return;
+    if(e.data.type==='ii-height'&&e.data.h>0) f.style.height=Math.ceil(e.data.h)+'px';
+    if(e.data.type==='ii-view'){
+      const exploring=e.data.view!=='home';
+      const section=f.closest('#integrated-intelligence');
+      if(section){
+        let following=section.nextElementSibling;
+        while(following){
+          following.classList.toggle('ii-hidden-during-explore',exploring);
+          following=following.nextElementSibling;
+        }
+      }
+      document.body.classList.toggle('ii-exploring',exploring);
+    }
+
+    if(e.data.type==='ii-top' && document.body.classList.contains('ii-exploring')){
+      const hh=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h'))||68;
+      window.scrollTo({top:f.getBoundingClientRect().top+window.scrollY-hh,behavior:'smooth'});
+    }
+  });
+}
 function setupNav(){
-  const links=$$('.nav a'); const pairs=links.map(a=>({a,s:$(a.getAttribute('href'))})).filter(x=>x.s);
-  window.addEventListener('scroll',()=>{let idx=0;pairs.forEach((x,i)=>{if(x.s.getBoundingClientRect().top<110)idx=i});links.forEach(a=>a.classList.remove('active')); if(pairs[idx])pairs[idx].a.classList.add('active');},{passive:true});
+  setupIntegratedFrame();
+  syncHeaderHeight();
+  const links = $$('.nav a[href^="#"]');
+  const pairs = links.map(a => ({a, section:document.getElementById(a.getAttribute('href').slice(1))}))
+    .filter(item => item.section);
+  const header = document.getElementById('topbar');
+  const headerHeight = () => header ? Math.ceil(header.getBoundingClientRect().height) : 68;
+  let pending = null;
+  let pendingUntil = 0;
+  let raf = 0;
+  const setActive = item => {
+    links.forEach(a => {
+      const active = !!item && a === item.a;
+      a.classList.toggle('active',active);
+      if(active) a.setAttribute('aria-current','location');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  const visiblePairs = () => pairs.filter(item => {
+    const style = getComputedStyle(item.section);
+    return style.display !== 'none' && item.section.getClientRects().length > 0;
+  });
+  const updateActive = () => {
+    raf=0;
+    if(pending && performance.now() < pendingUntil){setActive(pending);return;}
+    pending=null;
+    const visible=visiblePairs();
+    if(!visible.length)return;
+    const top=headerHeight()+16;
+    const maxScroll=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+    // The last section can never reach the top when the page is shorter than its height.
+    if(window.scrollY >= maxScroll-5){setActive(visible[visible.length-1]);return;}
+    let current=visible[0];
+    for(const item of visible){
+      if(item.section.getBoundingClientRect().top <= top)current=item;
+      else break;
+    }
+    setActive(current);
+  };
+  const scheduleActive = () => {if(!raf)raf=requestAnimationFrame(updateActive);};
+  const revealMainSections = () => {
+    document.querySelectorAll('.ii-hidden-during-explore').forEach(el=>el.classList.remove('ii-hidden-during-explore'));
+    document.body.classList.remove('ii-exploring');
+    const frame=document.getElementById('iiFrame');
+    if(frame && frame.contentWindow)frame.contentWindow.postMessage({type:'ii-reset-home'},'*');
+  };
+  const goTo = (item,updateHash=true) => {
+    // Restore hidden sections BEFORE measuring their positions.
+    if(item.section.id!=='integrated-intelligence')revealMainSections();
+    pending=item;
+    pendingUntil=performance.now()+700;
+    setActive(item);
+    const top=Math.max(0,window.scrollY+item.section.getBoundingClientRect().top-headerHeight());
+    window.scrollTo({top,behavior:'instant'});
+    if(updateHash)history.replaceState(null,'','#'+item.section.id);
+    // Wait for iframe/layout changes to settle, then align to the actual target.
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      const corrected=Math.max(0,window.scrollY+item.section.getBoundingClientRect().top-headerHeight());
+      if(Math.abs(corrected-window.scrollY)>2)window.scrollTo({top:corrected,behavior:'instant'});
+      setActive(item);
+    }));
+    setTimeout(()=>{pending=null;scheduleActive();},750);
+  };
+  pairs.forEach(item=>item.a.addEventListener('click',event=>{
+    event.preventDefault();
+    goTo(item);
+  }));
+  // The brand logo and hero action also use in-page anchors.
+  $$('.brand[href^="#"], .hero-actions a[href^="#"]').forEach(a=>{
+    const id=a.getAttribute('href').slice(1);
+    const match=pairs.find(item=>item.section.id===id);
+    if(match)a.addEventListener('click',e=>{e.preventDefault();goTo(match);});
+  });
+  window.addEventListener('scroll',scheduleActive,{passive:true});
+  window.addEventListener('resize',()=>{syncHeaderHeight();scheduleActive();});
+  window.addEventListener('load',()=>{
+    syncHeaderHeight();
+    const id=decodeURIComponent(location.hash.slice(1));
+    const match=pairs.find(item=>item.section.id===id);
+    if(match)goTo(match,false);
+    else scheduleActive();
+  });
+  window.addEventListener('hashchange',()=>{
+    const id=decodeURIComponent(location.hash.slice(1));
+    const match=pairs.find(item=>item.section.id===id);
+    if(match)goTo(match,false);
+  });
+  scheduleActive();
 }
 function setupCounters(){
   const io=new IntersectionObserver(entries=>entries.forEach(e=>{ if(e.isIntersecting){ const el=e.target,target=+el.dataset.count; let cur=0; const step=Math.max(1,Math.ceil(target/38)); const tick=()=>{cur=Math.min(target,cur+step);el.textContent=cur;if(cur<target)requestAnimationFrame(tick)}; tick(); io.unobserve(el);} }),{threshold:.5}); $$('[data-count]').forEach(el=>io.observe(el));
