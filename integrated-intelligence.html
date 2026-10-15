@@ -580,6 +580,21 @@ html.embedded #home .discipline-grid .discipline .discipline-body .explore {
 @media(max-width:1150px){#solutions .solution-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){#solutions .solution-grid{grid-template-columns:1fr}}
 </style>
+
+<style id="ecosystem-alignment-fix">
+/* Three columns align at the top, with balanced card spacing. */
+.ecosystem{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.65fr) minmax(0,1.15fr)!important;align-items:start!important;gap:24px!important}
+.ecosystem-left{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:14px!important;min-width:0!important}
+.ecosystem-left .brand-node,.ecosystem-left .primary-node{width:100%!important;max-width:none!important;box-sizing:border-box!important;margin:0!important}
+.ecosystem-left .brand-node{min-height:0!important}
+.ecosystem .ecosystem-sources{min-width:0!important;align-self:start!important}
+.ecosystem .ecosystem-outcomes{min-width:0!important;align-self:start!important;margin-top:0!important}
+.ecosystem .flow-arrow{display:none!important}
+.primary-research-points{margin:12px 0 0!important;padding-left:22px!important;list-style:disc!important}
+.primary-research-points li{margin:9px 0!important;line-height:1.55!important;font-size:inherit!important}
+.primary-research-points li::marker{color:#7a17dd}
+@media(max-width:900px){.ecosystem{grid-template-columns:1fr!important;gap:18px!important}.ecosystem-left{gap:12px!important}}
+</style>
 </head>
 <body>
 <header>
@@ -793,7 +808,7 @@ html.embedded #home .discipline-grid .discipline .discipline-body .explore {
 
   <div class="section ecosystem-section"><div class="section-intro"><div><div class="eyebrow">INTEGRATED DATA ECOSYSTEM</div><h2>Brand insights built from every relevant source.</h2></div><p>Primary research is connected to behavioural, internal, social and published signals to reveal convergence, divergence and the broader market context.</p></div>
     <div class="ecosystem">
-      <div class="ecosystem-left"><div class="brand-node">Brand Health trackers &amp;<br>customer experience<br>trackers</div><div class="flow-arrow">↔</div><div class="primary-node"><h3>Primary Research</h3><p>Primary Quantitative Survey</p><p>Qualitative Research covering customers, channel partners</p></div></div>
+      <div class="ecosystem-left"><div class="brand-node">Brand Health trackers &amp;<br>customer experience<br>trackers</div><div class="primary-node"><h3>Primary Research</h3><ul class="primary-research-points"><li>Primary Quantitative Survey</li><li>Qualitative Research covering customers, channel partners</li></ul></div></div>
       <div class="ecosystem-sources">
         <div class="eco-card"><span class="eco-num">01</span><div><h3>Immersions &amp; Observation</h3><p>Behavioral Data · Shopper / User Experience</p></div></div>
         <div class="eco-card"><span class="eco-num">02</span><div><h3>Internal Data</h3><p>Media, Marketing Spend · Pricing, Sales, etc.</p></div></div>

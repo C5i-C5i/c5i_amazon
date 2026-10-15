@@ -231,7 +231,7 @@ function fill(id, values, label){$(id).innerHTML = `<option value="All">${label}
 function renderEngagements(){
   const q=$('#engagementSearch').value.toLowerCase().trim(), cap=$('#capabilityFilter').value, team=$('#teamFilter').value, method=$('#methodologyFilter').value, geo=$('#geographyFilter').value, status=$('#statusFilter').value;
   const list=engagements.filter(e=>(!q||Object.values(e).join(' ').toLowerCase().includes(q))&&(cap==='All'||e.capability===cap)&&(team==='All'||e.team===team)&&(method==='All'||e.methodology===method)&&(geo==='All'||e.geography===geo)&&(status==='All'||e.status===status));
-  $('#engagementGrid').innerHTML=list.map((e,i)=>`<article class="engagement-card reveal" style="transition-delay:${Math.min(i*.035,.25)}s"><div class="card-image" style="background:${e.image}"></div><div class="card-body"><div class="tags">${e.tags.map((t,j)=>`<span class="tag ${j%3===1?'green':j%3===2?'pink':''}">${t}</span>`).join('')}</div><h3>${e.title}</h3><p>${e.desc}</p><div class="card-stats">${e.stats.map(s=>`<div><strong>${s[0]}</strong><span>${s[1]}</span></div>`).join('')}</div><a class="view-link" href="#programs">View Engagement →</a></div></article>`).join('') || `<div class="program-card"><h3>No engagements found</h3><p>Adjust filters or search another term.</p></div>`;
+  $('#engagementGrid').innerHTML=list.map((e,i)=>`<article class="engagement-card reveal" style="transition-delay:${Math.min(i*.035,.25)}s"><div class="card-image" style="background:${e.image}"></div><div class="card-body"><div class="tags">${e.tags.map((t,j)=>`<span class="tag ${j%3===1?'green':j%3===2?'pink':''}">${t}</span>`).join('')}</div><h3>${e.title}</h3><p>${e.desc}</p><div class="card-stats">${e.stats.map(s=>`<div><strong>${s[0]}</strong><span>${s[1]}</span></div>`).join('')}</div><a class="view-link" href="#capabilities">View Engagement →</a></div></article>`).join('') || `<div class="program-card"><h3>No engagements found</h3><p>Adjust filters or search another term.</p></div>`;
   setupReveal();
 }
 function renderTeams(){ $('#teamGrid').innerHTML=teams.map((t,i)=>`<div class="team-tile" data-team="${t}"><span>${teamIcons[i]}</span>${t}</div>`).join(''); }
@@ -259,7 +259,7 @@ function setupIntegratedFrame(){
     if(e.data.type==='ii-height'&&e.data.h>0) f.style.height=Math.ceil(e.data.h)+'px';
     if(e.data.type==='ii-user-navigation') document.body.dataset.iiUserNavigated='true';
     if(e.data.type==='ii-view'){
-      const exploring=e.data.view!=='home';
+      const exploring=e.data.view!=='home' && document.body.dataset.iiUserNavigated==='true';
       const section=f.closest('#integrated-intelligence');
       if(section){
         let following=section.nextElementSibling;
@@ -364,6 +364,9 @@ function setupNav(){
     startupGuard=false;
     // Restore hidden sections BEFORE measuring their positions.
     if(item.section.id!=='integrated-intelligence')revealMainSections();
+    // When What We Do for Amazon is selected, do not show the unrelated
+    // Integrated Intelligence subnavigation directly beneath its cards.
+    // Restore the full page for every other main navigation selection.
     pending=item;
     pendingUntil=performance.now()+700;
     setActive(item);
@@ -428,3 +431,92 @@ function setupReveal(){
   $$('.reveal:not(.show)').forEach(el=>io.observe(el));
 }
 init();
+
+
+// The Integrated Intelligence iframe is expanded to its full content height.
+// CSS sticky *inside* that iframe cannot stick to the parent window viewport.
+// Mirror the active navigation in the parent document while it is scrolled out.
+function setupIntegratedStickyBars(){
+  const frame=document.getElementById('iiFrame');
+  const host=document.getElementById('integrated-intelligence');
+  if(!frame||!host)return;
+  const overlay=document.createElement('div');
+  overlay.id='ii-parent-sticky-navigation';
+  overlay.setAttribute('aria-label','Integrated Intelligence navigation');
+  overlay.hidden=true;
+  document.body.appendChild(overlay);
+  let activeView='home';
+  const subViews=new Set(['primary','primary-quant','primary-qual','brand','campaign','ux']);
+  const primaryViews=new Set(['primary-quant','primary-qual','brand','campaign','ux']);
+  const routes=[
+    ['back','← BACK'],['solutions','SOLUTIONS'],['primary','PRIMARY RESEARCH'],
+    ['conjoint','CONJOINT & CHOICE ANALYTICS'],['dashboard','DASHBOARDING & BI'],
+    ['external','COMPETITIVE INTELLIGENCE']
+  ];
+  const subs=[['primary','OVERVIEW'],['primary-quant','QUANTITATIVE'],
+    ['primary-qual','QUALITATIVE'],['brand','BRAND HEALTH TRACKERS & CUSTOMER EXPERIENCE TRACKERS'],
+    ['ux','UX RESEARCH']];
+  const makeButton=(route,label,secondary=false)=>{
+    const button=document.createElement('button');
+    button.type='button';button.textContent=label;
+    button.dataset.route=route;
+    button.className=secondary?'ii-sticky-sub-button':'ii-sticky-main-button';
+    button.addEventListener('click',()=>{
+      if(route==='external'){
+        window.open('https://resources.c5i.ai/c5i-compete-ai-powered-insights-for-a-winning-digital-shelf','_blank','noopener,noreferrer');
+        return;
+      }
+      const inner=frame.contentWindow;
+      if(!inner)return;
+      document.body.dataset.iiUserNavigated='true';
+      if(route==='back' && typeof inner.goBack==='function')inner.goBack();
+      else if(typeof inner.go==='function'){
+        inner.iiUserNavigated=true;
+        inner.go(route);
+      }
+      activeView=route==='back'?'home':route;
+      render();
+      requestAnimationFrame(update);
+    });
+    return button;
+  };
+  const main=document.createElement('div');main.className='ii-sticky-main-row';
+  routes.forEach(([route,label])=>main.appendChild(makeButton(route,label)));
+  const secondary=document.createElement('div');secondary.className='ii-sticky-sub-row';
+  subs.forEach(([route,label])=>secondary.appendChild(makeButton(route,label,true)));
+  overlay.append(main,secondary);
+  function render(){
+    for(const b of main.children){
+      const r=b.dataset.route;
+      b.classList.toggle('active',r===activeView || (r==='primary'&&primaryViews.has(activeView)));
+      if(r==='back')b.hidden=activeView==='home';
+    }
+    secondary.hidden=!subViews.has(activeView);
+    for(const b of secondary.children)b.classList.toggle('active',b.dataset.route===activeView);
+  }
+  function update(){
+    const head=document.getElementById('topbar');
+    const top=head?head.getBoundingClientRect().bottom:0;
+    overlay.style.top=Math.max(0,top)+'px';
+    const rect=frame.getBoundingClientRect();
+    const visible=rect.top<top-40 && rect.bottom>top+80 &&
+      !host.classList.contains('ii-hidden-during-explore') &&
+      getComputedStyle(host).display!=='none';
+    overlay.hidden=!visible;
+    if(visible)render();
+  }
+  window.addEventListener('message',event=>{
+    if(event.source!==frame.contentWindow||!event.data)return;
+    if(event.data.type==='ii-view'){
+      activeView=event.data.view||'home';
+      render();requestAnimationFrame(update);
+    }
+    if(event.data.type==='ii-height')requestAnimationFrame(update);
+  });
+  frame.addEventListener('load',()=>{activeView='home';render();update()});
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  render();update();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupIntegratedStickyBars);
+else setupIntegratedStickyBars();

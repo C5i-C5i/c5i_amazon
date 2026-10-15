@@ -412,3 +412,28 @@ html body #integrated-intelligence{margin-top:0!important;padding-top:36px!impor
 /* Reliable anchor alignment for the fixed navigation. */
 html{scroll-padding-top:var(--header-h, 94px)}
 main > section[id]{scroll-margin-top:var(--header-h, 94px)}
+
+/* Only internal Integrated Intelligence navigation may hide other sections. */
+
+
+/* Sticky Integrated Intelligence tabs belong to the parent scroll viewport. */
+#ii-parent-sticky-navigation{position:fixed;left:0;right:0;z-index:990;
+  padding:8px max(18px,2.5vw) 9px;background:rgba(255,255,255,.98);
+  box-shadow:0 10px 24px rgba(37,0,70,.09);box-sizing:border-box;}
+#ii-parent-sticky-navigation[hidden],#ii-parent-sticky-navigation [hidden]{display:none!important}
+.ii-sticky-main-row,.ii-sticky-sub-row{display:flex;align-items:stretch;gap:3px;
+  width:100%;max-width:1780px;margin:0 auto;box-sizing:border-box}
+.ii-sticky-main-row{padding:5px;border:1px solid #dec5fa;border-radius:17px}
+.ii-sticky-main-button,.ii-sticky-sub-button{flex:1 1 0;min-width:0;cursor:pointer;
+  font-family:inherit;font-size:clamp(10px,1vw,15px);font-weight:800;
+  color:#775b91;background:transparent;border:0;padding:13px 6px;
+  border-radius:13px;white-space:normal;text-align:center}
+.ii-sticky-main-button.active{background:#29004f;color:white;
+  box-shadow:0 5px 14px rgba(36,0,75,.20)}
+.ii-sticky-sub-row{border-bottom:1px solid #dec5fa;margin-top:7px}
+.ii-sticky-sub-button{border-radius:0;padding:12px 4px;
+  border-bottom:3px solid transparent}
+.ii-sticky-sub-button.active{color:#310057;border-bottom-color:#8633ed}
+.ii-sticky-main-button:hover:not(.active),.ii-sticky-sub-button:hover:not(.active){background:#f6efff}
+@media(max-width:750px){.ii-sticky-main-row,.ii-sticky-sub-row{overflow-x:auto}
+ .ii-sticky-main-button,.ii-sticky-sub-button{flex:0 0 auto;min-width:110px;font-size:11px}}

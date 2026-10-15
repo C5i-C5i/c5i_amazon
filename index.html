@@ -16,9 +16,8 @@
     <nav class="nav">
       <a href="#home">Home</a>
       <a href="#relationship">Relationship summary</a>
+      <a href="#capabilities">What We Do for Amazon</a>
       <a href="#integrated-intelligence">Integrated Intelligence</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#programs">Engagements</a>
       <a href="#differentiators">Why C5i</a>
       <a href="#cta">Contact Us</a>
     </nav>
@@ -67,25 +66,17 @@
       <div class="team-grid" id="teamGrid"></div>
     </section>
 
-    <section class="integrated-intelligence" id="integrated-intelligence" aria-label="Integrated Intelligence">
-      <iframe id="iiFrame" src="integrated-intelligence.html" title="C5i x Amazon Integrated Intelligence" scrolling="no"></iframe>
-    </section>
-<section class="section capabilities" id="capabilities">
+    <section class="section capabilities" id="capabilities">
       <div class="section-title reveal">
         <span class="small-line"></span>
-        <p>WHAT WE DO FOR AMAZON</p>
-        <h2>Our Capabilities</h2>
+        <h2>What We Do for Amazon</h2>
         <h4>End-to-end capabilities to support Amazon’s research, analytics, insights and decision-making.</h4>
       </div>
       <div class="capability-grid" id="capabilityGrid"></div>
     </section>
-    <section class="section details" id="programs">
-      <div class="section-title reveal">
-        <span class="small-line"></span>
-        <p>DEEP DIVE INTO EACH STREAM OF WORK</p>
-        <h2>Engagements</h2>
-      </div>
-      <div class="programs-grid" id="programsGrid"></div>
+
+<section class="integrated-intelligence" id="integrated-intelligence" aria-label="Integrated Intelligence">
+      <iframe id="iiFrame" src="integrated-intelligence.html" title="C5i x Amazon Integrated Intelligence" scrolling="no"></iframe>
     </section>
     <section class="section differentiators" id="differentiators">
       <div class="section-title reveal">
@@ -137,5 +128,80 @@ if(location.hash) history.replaceState(null,'',location.pathname+location.search
 window.scrollTo(0,0);
 </script>
 <script src="app.js"></script>
+<style id="ii-pinned-navigation-style">
+#iiPinnedNavigation{position:fixed;left:0;right:0;top:var(--ii-main-header-height,96px);z-index:950;display:none;background:rgba(255,255,255,.98);box-shadow:0 10px 26px rgba(40,0,75,.10);padding:8px clamp(16px,2.5vw,48px) 6px;box-sizing:border-box}
+#iiPinnedNavigation.visible{display:block}
+#iiPinnedNavigation .ii-pinned-primary{display:flex;align-items:center;gap:4px;border:1px solid #d9bdf5;border-radius:17px;padding:5px;overflow-x:auto;scrollbar-width:thin}
+#iiPinnedNavigation button,#iiPinnedNavigation a{font:800 12px/1.25 Arial,sans-serif;letter-spacing:.45px;color:#5c417a;background:transparent;border:0;border-radius:11px;min-height:39px;padding:10px 12px;text-decoration:none;white-space:nowrap;cursor:pointer;text-align:center}
+#iiPinnedNavigation .ii-pinned-primary>*{flex:1 0 auto}
+#iiPinnedNavigation button.active{background:#29004e;color:white;box-shadow:0 3px 10px rgba(40,0,75,.20)}
+#iiPinnedNavigation .ii-pinned-secondary{display:flex;justify-content:space-between;align-items:center;gap:4px;overflow-x:auto;border-bottom:1px solid #dec6f6;padding-top:4px;scrollbar-width:thin}
+#iiPinnedNavigation .ii-pinned-secondary>*{flex:1 0 auto;border-radius:0;border-bottom:3px solid transparent}
+#iiPinnedNavigation .ii-pinned-secondary>*.active{color:#2b0050;background:transparent;box-shadow:none;border-bottom-color:#7c3aed}
+#iiPinnedNavigation [hidden]{display:none!important}
+@media(max-width:760px){#iiPinnedNavigation{padding:5px 10px}#iiPinnedNavigation button,#iiPinnedNavigation a{font-size:10px;padding:8px}}
+</style>
+<div id="iiPinnedNavigation" aria-label="Pinned Integrated Intelligence navigation"><div class="ii-pinned-primary"></div><div class="ii-pinned-secondary"></div></div>
+<script id="ii-pinned-navigation-script">
+(function(){
+ const frame=document.getElementById('iiFrame');
+ const bar=document.getElementById('iiPinnedNavigation');
+ const primary=bar.querySelector('.ii-pinned-primary');
+ const secondary=bar.querySelector('.ii-pinned-secondary');
+ if(!frame)return;
+ let lastSignature='';
+ function sync(){
+   try{
+     const doc=frame.contentDocument;
+     if(!doc || !doc.body)return;
+     const mainHeader=document.querySelector('#topbar') || document.querySelector('.topbar');
+     const headerHeight=mainHeader?mainHeader.getBoundingClientRect().height:96;
+     bar.style.setProperty('--ii-main-header-height',headerHeight+'px');
+     const nav=doc.querySelector('header .topbar nav');
+     const activeView=doc.querySelector('main .view.active');
+     const sub=activeView?activeView.querySelector('.subnav'):null;
+     const frameRect=frame.getBoundingClientRect();
+     const navRect=nav?nav.getBoundingClientRect():null;
+     const originalNavBottom=navRect?frameRect.top+navRect.bottom:frameRect.top;
+     const show=!!(nav && activeView && activeView.id!=='home' && originalNavBottom<headerHeight+6 && frameRect.bottom>headerHeight+95);
+     bar.classList.toggle('visible',show);
+     if(!show)return;
+     const pItems=[...nav.querySelectorAll('button,a')].filter(el=>!el.hidden && getComputedStyle(el).display!=='none');
+     const sItems=sub?[...sub.querySelectorAll('button,a')].filter(el=>!el.hidden):[];
+     const sig=activeView.id+'|'+pItems.map(el=>el.textContent.trim()+':'+el.className).join('|')+'|'+sItems.map(el=>el.textContent.trim()+':'+el.className).join('|');
+     if(sig===lastSignature)return;
+     lastSignature=sig;
+     function build(target,items){
+       target.replaceChildren();
+       items.forEach(source=>{
+         const node=document.createElement(source.tagName.toLowerCase()==='a'?'a':'button');
+         node.textContent=source.textContent;
+         node.className=source.className;
+         if(source.classList.contains('active'))node.classList.add('active');
+         if(node.tagName==='A'){
+           node.href=source.href;node.target=source.target||'_blank';node.rel='noopener noreferrer';
+         }else{
+           node.type='button';
+           node.addEventListener('click',()=>{
+             source.click();lastSignature='';
+             requestAnimationFrame(sync);
+           });
+         }
+         target.appendChild(node);
+       });
+     }
+     build(primary,pItems);build(secondary,sItems);
+     secondary.style.display=sItems.length?'flex':'none';
+   }catch(e){bar.classList.remove('visible')}
+ }
+ let pending=false;
+ function scheduleSync(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;sync()})}
+ window.addEventListener('scroll',scheduleSync,{passive:true});
+ window.addEventListener('resize',scheduleSync);
+ frame.addEventListener('load',()=>{lastSignature='';scheduleSync()});
+ setInterval(scheduleSync,250);
+ scheduleSync();
+})();
+</script>
 </body>
 </html>
