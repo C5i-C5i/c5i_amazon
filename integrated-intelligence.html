@@ -571,6 +571,15 @@ html.embedded #home .discipline-grid .discipline .discipline-body .explore {
 .hero-art .stat small{color:#fff;opacity:.90;font-size:11px;line-height:1.35;display:block;overflow-wrap:break-word}
 @media(max-width:600px){.hero-art .statrow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
+
+<style id="solutions-four-card-layout">
+#solutions .solution-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+#solutions .competitive-solution{display:flex;flex-direction:column;text-decoration:none;color:inherit;cursor:pointer}
+#solutions .competitive-solution p{flex:1}
+#solutions .competitive-solution .link{position:static;margin-top:18px}
+@media(max-width:1150px){#solutions .solution-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){#solutions .solution-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <header>
@@ -596,7 +605,7 @@ html.embedded #home .discipline-grid .discipline .discipline-body .explore {
   <div class="hero">
     <div>
       <div class="eyebrow">C5i × AMAZON</div>
-      <h1>Four disciplines.<br><span>One decision system.</span></h1>
+      <h1>Three disciplines.<br><span>One decision system.</span></h1>
       <p class="lead">C5i services spanning the end-to-end insights and decision journey - from primary research and choice analytics to always-on dashboarding and BI.</p>
       <div class="hero-actions" style="margin-top:28px">
         <button class="contact" onclick="go('solutions')">Explore the capabilities →</button>
@@ -640,13 +649,8 @@ html.embedded #home .discipline-grid .discipline .discipline-body .explore {
     <article class="solution" onclick="go('primary')"><div class="num">01</div><h3>Primary Research</h3><p>Design and execute high-impact primary research with a governed, continuously optimized managed-service model, powered by technology and AI to accelerate insights, elevate quality, and maximize ROI.</p><div class="link">LEARN MORE →</div></article>
     <article class="solution" onclick="go('conjoint')"><div class="num">02</div><h3>Conjoint & Choice Analytics</h3><p>Design robust choice experiments and model demand with advanced conjoint analytics, quantifying feature value, price sensitivity and market response to optimize propositions, bundles and portfolio decisions.</p><div class="link">LEARN MORE →</div></article>
     <article class="solution" onclick="go('dashboard')"><div class="num">03</div><h3>Dashboarding & BI</h3><p>Turn fragmented data into always-on decisions with automated dashboards and BI, unifying KPIs, surfacing drivers and anomalies, and delivering AI-assisted insights through QuickSight, QuickSuite and QuickInsights.</p><div class="link">LEARN MORE →</div></article>
+    <a class="solution competitive-solution" href="https://resources.c5i.ai/c5i-compete-ai-powered-insights-for-a-winning-digital-shelf" target="_blank" rel="noopener noreferrer"><div class="num">04</div><h3>Market & Competitive Intelligence</h3><p>Market landscape, trends, sizing &amp; forecasting<br>Competitor benchmarking, pricing &amp; GTM intelligence<br>Continuous monitoring, alerts &amp; strategic insights</p><div class="link">LEARN MORE →</div></a>
   </div>
-  <div class="section"><div class="section-intro"><div><div class="eyebrow">END-TO-END JOURNEY</div><h2>Explore the decision system.</h2></div></div>
-  <div class="tiles">
-    <button class="tile" onclick="go('primary')">Primary Research <b>→</b></button>
-    <button class="tile" onclick="go('conjoint')">Conjoint & Choice Analytics <b>→</b></button>
-    <button class="tile" onclick="go('dashboard')">Dashboarding & BI <b>→</b></button>
-  </div></div>
 </section>
 
 <section id="primary" class="view">

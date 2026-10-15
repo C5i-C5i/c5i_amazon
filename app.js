@@ -268,6 +268,12 @@ function setupIntegratedFrame(){
           following=following.nextElementSibling;
         }
       }
+      // Hide surrounding main-site sections while exploring an internal view.
+      // The Home hero stays visible and is never hidden.
+      for(const id of ['relationship','teams']){
+        const el=document.getElementById(id);
+        if(el)el.classList.toggle('ii-hidden-during-explore',exploring);
+      }
       document.body.classList.toggle('ii-exploring',exploring);
     }
 
