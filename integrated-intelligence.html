@@ -1069,6 +1069,13 @@ function updateBackButton(){
   if(back) back.hidden=iiRouteHistory.length===0;
 }
 
+let iiUserNavigated=false;
+document.addEventListener('click',event=>{
+  if(event.target.closest('button, a, .discipline, .solution, .tile')){
+    iiUserNavigated=true;
+    if(EMBED)parent.postMessage({type:'ii-user-navigation'},'*');
+  }
+},true);
 function go(id,fromBack=false,silentReset=false){
   const target=document.getElementById(id)?id:'home';
   const current=document.querySelector('.view.active')?.id;
@@ -1078,8 +1085,8 @@ function go(id,fromBack=false,silentReset=false){
   if(EMBED) parent.postMessage({type:'ii-view',view:target},'*');
   document.querySelectorAll('nav button[data-route]').forEach(x=>x.classList.toggle('active',x.dataset.route===target || (['primary-quant','primary-qual','brand','campaign','ux'].includes(target)&&x.dataset.route==='primary')));
   document.querySelectorAll('.subnav button[data-sub]').forEach(x=>x.classList.toggle('active',x.dataset.sub===target));
-  history.replaceState(null,'','#'+target);
-  if(EMBED){ if(!firstGo && !silentReset) parent.postMessage({type:'ii-top'},'*'); }
+  if(!EMBED) history.replaceState(null,'','#'+target);
+  if(EMBED){ if(!firstGo && !silentReset && iiUserNavigated) parent.postMessage({type:'ii-top'},'*'); }
   else window.scrollTo({top:0,behavior:'smooth'});
   firstGo=false;
 }

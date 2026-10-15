@@ -257,6 +257,7 @@ function setupIntegratedFrame(){
   window.addEventListener('message',e=>{
     if(e.source!==f.contentWindow||!e.data) return;
     if(e.data.type==='ii-height'&&e.data.h>0) f.style.height=Math.ceil(e.data.h)+'px';
+    if(e.data.type==='ii-user-navigation') document.body.dataset.iiUserNavigated='true';
     if(e.data.type==='ii-view'){
       const exploring=e.data.view!=='home';
       const section=f.closest('#integrated-intelligence');
@@ -270,13 +271,41 @@ function setupIntegratedFrame(){
       document.body.classList.toggle('ii-exploring',exploring);
     }
 
-    if(e.data.type==='ii-top' && document.body.classList.contains('ii-exploring')){
+    if(e.data.type==='ii-top' && document.body.classList.contains('ii-exploring') && document.body.dataset.iiUserNavigated==='true'){
       const hh=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h'))||68;
       window.scrollTo({top:f.getBoundingClientRect().top+window.scrollY-hh,behavior:'smooth'});
     }
   });
 }
 function setupNav(){
+  // Startup is never an Integrated Intelligence navigation action.
+  // Block iframe-originated scrolling and browser scroll restoration until
+  // the user actually navigates or scrolls.
+  let startupGuard=true;
+  let userHasNavigated=false;
+  const unlockStartup=()=>{startupGuard=false;};
+  const homeTop=()=>{
+    if(!startupGuard || userHasNavigated)return;
+    window.scrollTo(0,0);
+    const homeLink=document.querySelector('.nav a[href="#home"]');
+    document.querySelectorAll('.nav a[href^="#"]').forEach(a=>a.classList.toggle('active',a===homeLink));
+  };
+  document.addEventListener('pointerdown',unlockStartup,{once:true,capture:true});
+  document.addEventListener('keydown',unlockStartup,{once:true,capture:true});
+  document.addEventListener('wheel',unlockStartup,{once:true,passive:true,capture:true});
+  window.addEventListener('load',()=>{
+    homeTop();
+    requestAnimationFrame(homeTop);
+    setTimeout(homeTop,250);
+    setTimeout(homeTop,1000);
+    setTimeout(homeTop,2000);
+  });
+  const embeddedFrame=document.getElementById('iiFrame');
+  if(embeddedFrame)embeddedFrame.addEventListener('load',()=>{
+    homeTop();
+    requestAnimationFrame(homeTop);
+    setTimeout(homeTop,150);
+  });
   setupIntegratedFrame();
   syncHeaderHeight();
   const links = $$('.nav a[href^="#"]');
@@ -301,6 +330,7 @@ function setupNav(){
   });
   const updateActive = () => {
     raf=0;
+    if(startupGuard && !userHasNavigated){homeTop();return;}
     if(pending && performance.now() < pendingUntil){setActive(pending);return;}
     pending=null;
     const visible=visiblePairs();
@@ -324,6 +354,8 @@ function setupNav(){
     if(frame && frame.contentWindow)frame.contentWindow.postMessage({type:'ii-reset-home'},'*');
   };
   const goTo = (item,updateHash=true) => {
+    userHasNavigated=true;
+    startupGuard=false;
     // Restore hidden sections BEFORE measuring their positions.
     if(item.section.id!=='integrated-intelligence')revealMainSections();
     pending=item;

@@ -131,6 +131,11 @@
     <a href="https://www.c5i.ai">www.c5i.ai</a>
   </footer>
 
-  <script src="app.js"></script>
+  <script>
+if('scrollRestoration' in history) history.scrollRestoration='manual';
+if(location.hash) history.replaceState(null,'',location.pathname+location.search);
+window.scrollTo(0,0);
+</script>
+<script src="app.js"></script>
 </body>
 </html>
