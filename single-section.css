@@ -1,0 +1,43 @@
+/* Independent main navigation views. Does not change existing card or header design. */
+body[data-c5i-view] main > section {display:none!important}
+body[data-c5i-view="home"] #home,
+body[data-c5i-view="relationship"] #relationship,
+body[data-c5i-view="relationship"] #teams,
+body[data-c5i-view="capabilities"] #capabilities,
+body[data-c5i-view="integrated-intelligence"] #integrated-intelligence,
+body[data-c5i-view="differentiators"] #differentiators,
+body[data-c5i-view="cta"] #cta {display:block!important}
+body[data-c5i-view="home"] #home{display:flex!important}
+body[data-c5i-view="relationship"] #relationship{display:flex!important}
+body[data-c5i-view="capabilities"] #capabilities{display:flex!important}
+body[data-c5i-view]:not([data-c5i-view="cta"]) footer{display:none!important}
+body[data-c5i-view] main{min-height:calc(100vh - var(--header-h, 100px));background:#fff}
+body[data-c5i-view="home"] main{background:#2c0056}
+body[data-c5i-view="integrated-intelligence"] #integrated-intelligence{margin-top:0!important}
+body[data-c5i-view="relationship"] #teams{padding-top:28px!important;padding-bottom:36px!important}
+body[data-c5i-view="capabilities"] #capabilities{padding-top:24px!important}
+/* No clipping: long selected views use the browser's normal scroll area. */
+body[data-c5i-view] main,body[data-c5i-view] main>section{overflow:visible}
+
+/* Relationship Summary contains partnership statistics AND Amazon Teams. */
+body[data-c5i-view="relationship"] #relationship{display:flex!important}
+body[data-c5i-view="relationship"] #teams{display:block!important}
+body[data-c5i-view="relationship"] main{min-height:calc(100dvh - var(--header-h, 100px))}
+/* Home hero fits the available viewport: no overhanging diamond or pale band. */
+body[data-c5i-view="home"]{background:#310063!important}
+body[data-c5i-view="home"] main{min-height:0!important;background:#310063!important}
+body[data-c5i-view="home"] #home{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)!important;
+  align-items:center!important;
+  height:calc(100dvh - var(--header-h, 100px))!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  padding-top:24px!important;padding-bottom:24px!important;
+}
+body[data-c5i-view="home"] #home::after{content:none!important;display:none!important}
+body[data-c5i-view="home"] #home .hero-card{justify-self:center!important;max-width:100%}
+@media(max-width:760px){
+ body[data-c5i-view="home"] #home{grid-template-columns:1fr!important;min-height:calc(100dvh - var(--header-h, 100px))!important;height:auto!important;gap:18px;padding:24px 18px!important}
+ body[data-c5i-view="home"] #home .hero-card{justify-self:stretch!important}
+}

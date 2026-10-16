@@ -199,7 +199,7 @@ function init(){
   setTimeout(()=>$$('.reveal:not(.show)').forEach(el=>el.classList.add('show')), 1500);
 }
 function renderCapabilities(){
-  $('#capabilityGrid').innerHTML = capabilities.map(c=>`<article class="cap-card" style="--glow:${c.glow}" data-capability="${c.title}"><div class="cap-icon">${c.icon}</div><h3>${c.title}</h3><p>${c.text}</p><a href="#" class="cap-explore" data-capability="${c.title}">Explore →</a></article>`).join('');
+  $('#capabilityGrid').innerHTML = capabilities.map(c=>`<article class="cap-card" style="--glow:${c.glow}" data-capability="${c.title}"><div class="cap-card-body"><div class="cap-icon">${c.icon}</div><h3>${c.title}</h3><p>${c.text}</p></div><a href="#" class="cap-explore" data-capability="${c.title}">Explore →</a></article>`).join('');
 }
 function renderCapModal(capTitle){
   const cap = capabilities.find(c=>c.title===capTitle);
