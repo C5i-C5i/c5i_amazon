@@ -1,0 +1,55 @@
+/* Relationship-only desktop composition. Loaded after all previous overrides. */
+@media (min-width: 1200px) and (min-height: 680px) {
+  html body[data-c5i-view="relationship"] { overflow:hidden!important; }
+  html body[data-c5i-view="relationship"] main {
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows: 168px minmax(0,1fr)!important;
+    height:calc(100dvh - var(--relationship-header-px, 90px))!important;
+    max-height:calc(100dvh - var(--relationship-header-px, 90px))!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship.metric-strip {
+    grid-row:1!important;
+    box-sizing:border-box!important;
+    height:168px!important;max-height:168px!important;min-height:0!important;
+    padding:4px 2.6vw!important;gap:12px!important;align-items:center!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship .metric-grid article {
+    grid-template-rows:32px 42px 40px!important;
+    min-height:0!important;gap:0!important;
+  }
+  html body[data-c5i-view="relationship"] #teams.teams.section {
+    grid-row:2!important;position:relative!important;box-sizing:border-box!important;
+    display:flex!important;flex-direction:column!important;justify-content:flex-start!important;
+    height:100%!important;max-height:100%!important;min-height:0!important;
+    overflow:hidden!important;
+    padding:10px 2.6vw 48px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .section-title {
+    flex:none!important;margin:0 0 8px!important;padding:0!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .section-title .small-line {margin:0 0 4px!important;}
+  html body[data-c5i-view="relationship"] #teams .section-title p {margin:0 0 3px!important;}
+  html body[data-c5i-view="relationship"] #teams .section-title h2 {margin:0 0 4px!important;line-height:1.08!important;}
+  html body[data-c5i-view="relationship"] #teams .section-title h4 {margin:0!important;line-height:1.14!important;}
+  html body[data-c5i-view="relationship"] #teams .team-grid {
+    flex:none!important;display:grid!important;margin:0!important;gap:10px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .team-tile {
+    box-sizing:border-box!important;min-height:105px!important;padding:5px 4px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams #c5i-next-row {
+    display:flex!important;position:absolute!important;right:2.6vw!important;
+    bottom:12px!important;top:auto!important;left:auto!important;
+    width:auto!important;height:28px!important;min-height:0!important;
+    padding:0!important;margin:0!important;z-index:10!important;
+    align-items:center!important;justify-content:flex-end!important;
+  }
+  html body[data-c5i-view="relationship"] #teams #c5i-next-view {
+    display:inline-flex!important;align-items:center!important;gap:12px!important;
+    margin:0!important;padding:0!important;font-size:16px!important;
+    line-height:1.3!important;
+  }
+}

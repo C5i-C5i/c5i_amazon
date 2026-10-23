@@ -1,0 +1,40 @@
+/* Relationship summary: everything (partnership stats, Amazon teams, next-page link) fits ONE window
+   at any screen size / Windows display scaling. Sizes follow the window height (dvh). Loaded last. */
+@media (min-width:900px) {
+  html body[data-c5i-view="relationship"]{height:100dvh!important;overflow:hidden!important}
+  html:has(body[data-c5i-view="relationship"]){overflow:hidden!important;scrollbar-width:none!important}
+  html body[data-c5i-view="relationship"] main{
+    display:flex!important;flex-direction:column!important;grid-template-rows:none!important;
+    height:calc(100dvh - var(--relationship-header-px,68px))!important;
+    max-height:calc(100dvh - var(--relationship-header-px,68px))!important;
+    min-height:0!important;overflow:hidden!important}
+  html body[data-c5i-view="relationship"] #relationship.metric-strip{
+    flex:0 0 auto!important;height:clamp(118px,29dvh,300px)!important;max-height:none!important;min-height:0!important;
+    padding:0 2.7vw!important;gap:1.2vw!important;align-items:center!important}
+  html body[data-c5i-view="relationship"] #relationship .metric-grid article{
+    grid-template-rows:auto auto auto!important;align-content:center!important;min-height:0!important;padding:0 4px!important;gap:clamp(0px,.5dvh,4px)!important}
+  html body[data-c5i-view="relationship"] #relationship .metric-grid .icon svg{width:clamp(18px,3.8dvh,30px)!important;height:clamp(18px,3.8dvh,30px)!important}
+  html body[data-c5i-view="relationship"] #relationship .metric-grid strong{font-size:clamp(24px,6.6dvh,56px)!important;height:auto!important;line-height:1.05!important}
+  html body[data-c5i-view="relationship"] #relationship .metric-grid span{font-size:clamp(10px,2dvh,14px)!important;line-height:1.15!important}
+  html body[data-c5i-view="relationship"] #relationship .metric-label p{font-size:clamp(20px,4.6dvh,34px)!important;line-height:1.08!important}
+
+  html body[data-c5i-view="relationship"] #teams.teams.section{
+    position:static!important;flex:1 1 auto!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;
+    height:auto!important;max-height:none!important;min-height:0!important;overflow:hidden!important;
+    padding:clamp(12px,3.4dvh,36px) 2.7vw clamp(8px,1.6dvh,16px)!important}
+  html body[data-c5i-view="relationship"] #teams .section-title{flex:none!important;margin:0 0 clamp(10px,3dvh,32px)!important;padding:0!important;max-width:none!important}
+  html body[data-c5i-view="relationship"] #teams .section-title .small-line{margin:0 0 clamp(2px,.6dvh,6px)!important}
+  html body[data-c5i-view="relationship"] #teams .section-title p{margin:0 0 2px!important;font-size:clamp(10px,1.9dvh,13px)!important}
+  html body[data-c5i-view="relationship"] #teams .section-title h2{margin:0 0 clamp(2px,.7dvh,6px)!important;font-size:clamp(22px,6dvh,52px)!important;line-height:1.08!important}
+  html body[data-c5i-view="relationship"] #teams .section-title h4{margin:0!important;font-size:clamp(11px,2.5dvh,20px)!important;line-height:1.2!important}
+  html body[data-c5i-view="relationship"] #teams .team-grid{flex:none!important;display:grid!important;margin:0!important;gap:clamp(6px,.9vw,14px)!important}
+  html body[data-c5i-view="relationship"] #teams .team-tile{box-sizing:border-box!important;min-height:clamp(80px,25dvh,230px)!important;padding:clamp(4px,1dvh,10px) 4px!important;font-size:clamp(11px,2.5dvh,20px)!important}
+  html body[data-c5i-view="relationship"] #teams .team-tile svg,html body[data-c5i-view="relationship"] #teams .team-tile img{width:clamp(24px,6dvh,52px)!important;height:clamp(24px,6dvh,52px)!important}
+  /* Next-page link sits right under the cards (no longer pinned to the bottom edge) */
+  html body[data-c5i-view="relationship"] #teams #c5i-next-row{
+    position:static!important;display:flex!important;align-self:flex-end!important;justify-content:flex-end!important;
+    width:auto!important;height:auto!important;min-height:0!important;margin:clamp(10px,3dvh,32px) 0 0!important;padding:0!important}
+  html body[data-c5i-view="relationship"] #teams #c5i-next-view{
+    display:inline-flex!important;align-items:center!important;gap:12px!important;margin:0!important;padding:0!important;
+    font-size:clamp(13px,2.4dvh,18px)!important;line-height:1.3!important}
+}

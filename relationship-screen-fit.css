@@ -1,0 +1,79 @@
+/* Final relationship-only desktop fit. Overrides older conflicting layout patches. */
+@media (min-width:1250px) and (min-height:650px) {
+ html body[data-c5i-view="relationship"] main {
+   display:grid!important;
+   grid-template-columns:minmax(0,1fr)!important;
+   grid-template-rows: minmax(0,180px) minmax(0,1fr)!important;
+   height:calc(100dvh - var(--relationship-header-px,100px))!important;
+   min-height:0!important;
+   max-height:calc(100dvh - var(--relationship-header-px,100px))!important;
+   overflow:hidden!important;
+ }
+ html body[data-c5i-view="relationship"] #relationship.metric-strip {
+   box-sizing:border-box!important;
+   grid-row:1!important;
+   height:180px!important;
+   min-height:0!important;
+   max-height:180px!important;
+   flex:none!important;
+   padding:4px 2.7vw!important;
+   gap:12px!important;
+   align-items:center!important;
+ }
+ html body[data-c5i-view="relationship"] #relationship .metric-grid article {
+   grid-template-rows:34px 42px 44px!important;
+   padding:0 4px!important;
+   min-height:0!important;
+   gap:1px!important;
+ }
+ html body[data-c5i-view="relationship"] #teams.teams.section {
+   box-sizing:border-box!important;
+   grid-row:2!important;
+   display:flex!important;
+   flex-direction:column!important;
+   justify-content:flex-start!important;
+   position:relative!important;
+   height:100%!important;
+   max-height:100%!important;
+   min-height:0!important;
+   overflow:hidden!important;
+   padding:12px 2.7vw 42px!important;
+ }
+ html body[data-c5i-view="relationship"] #teams .section-title {
+   flex:none!important;
+   margin:0 0 10px!important;
+   padding:0!important;
+ }
+ html body[data-c5i-view="relationship"] #teams .section-title .small-line {margin:0 0 5px!important;}
+ html body[data-c5i-view="relationship"] #teams .section-title p {margin:0 0 3px!important;}
+ html body[data-c5i-view="relationship"] #teams .section-title h2 {margin:0 0 5px!important;line-height:1.07!important;}
+ html body[data-c5i-view="relationship"] #teams .section-title h4 {margin:0!important;line-height:1.15!important;}
+ html body[data-c5i-view="relationship"] #teams .team-grid {
+   flex:none!important;
+   margin:0!important;
+   gap:12px!important;
+ }
+ html body[data-c5i-view="relationship"] #teams .team-tile {
+   min-height:110px!important;
+   padding:6px 4px!important;
+ }
+ html body[data-c5i-view="relationship"] #teams #c5i-next-row {
+   position:absolute!important;
+   right:2.7vw!important;
+   bottom:9px!important;
+   height:28px!important;
+   min-height:0!important;
+   width:auto!important;
+   padding:0!important;
+   margin:0!important;
+   display:flex!important;
+   align-items:center!important;
+   z-index:4!important;
+ }
+ html body[data-c5i-view="relationship"] #teams #c5i-next-view {
+   font-size:15px!important;
+   padding:0!important;
+   margin:0!important;
+   line-height:1.2!important;
+ }
+}
