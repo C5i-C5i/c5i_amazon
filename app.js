@@ -525,14 +525,9 @@ function setupIntegratedStickyBars(){
       const inner=frame.contentWindow;
       if(!inner)return;
       document.body.dataset.iiUserNavigated='true';
-      if(route==='back' && typeof inner.goBack==='function')inner.goBack();
-      else if(typeof inner.go==='function'){
-        inner.iiUserNavigated=true;
-        inner.go(route);
-      }
-      activeView=route==='back'?'home':route;
-      render();
-      requestAnimationFrame(update);
+      // Use the iframe's own router as the single source of truth.
+      // It announces the resulting view via ii-view, including back navigation.
+      inner.postMessage({type:'ii-sticky-route',route},'*');
     });
     return button;
   };
@@ -559,7 +554,7 @@ function setupIntegratedStickyBars(){
       !host.classList.contains('ii-hidden-during-explore') &&
       getComputedStyle(host).display!=='none';
     overlay.hidden=!visible;
-    if(visible)render();
+    if(visible){render();frame.contentWindow?.postMessage({type:'ii-request-view'},'*');}
   }
   window.addEventListener('message',event=>{
     if(event.source!==frame.contentWindow||!event.data)return;

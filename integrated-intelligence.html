@@ -761,7 +761,7 @@ html.embedded,html.embedded body,html.embedded main,html.embedded .view,html.emb
   <div class="solution-grid">
     <article class="solution" onclick="go('primary')"><h3>Primary Research</h3><p>Design and execute high-impact primary research with a governed, continuously optimized managed-service model, powered by technology and AI to accelerate insights, elevate quality, and maximize ROI.</p><div class="link">LEARN MORE →</div></article>
     <article class="solution" onclick="go('conjoint')"><h3>Conjoint & Choice Analytics</h3><p>Design robust choice experiments and model demand with advanced conjoint analytics, quantifying feature value, price sensitivity and market response to optimize propositions, bundles and portfolio decisions.</p><div class="link">LEARN MORE →</div></article>
-    <article class="solution" onclick="go('dashboard')"><h3>Dashboarding & BI</h3><p>Turn fragmented data into always-on decisions with automated dashboards and BI, unifying KPIs, surfacing drivers and anomalies, and delivering AI-assisted insights through QuickSight, QuickSuite and QuickInsights.</p><div class="link">LEARN MORE →</div></article>
+    <article class="solution" onclick="go('dashboard')"><h3>Dashboarding & BI</h3><p>Turn fragmented data into always-on decisions with automated dashboards and BI, unifying KPIs, surfacing drivers and anomalies, and delivering AI-assisted insights through QuickSight and QuickSuite.</p><div class="link">LEARN MORE →</div></article>
     <a class="solution competitive-solution" href="https://resources.c5i.ai/c5i-compete-ai-powered-insights-for-a-winning-digital-shelf" target="_blank" rel="noopener noreferrer"><h3>Market & Competitive Intelligence</h3><p>Market landscape, trends, sizing &amp; forecasting<br>Competitor benchmarking, pricing &amp; GTM intelligence<br>Continuous monitoring, alerts &amp; strategic insights</p><div class="link">LEARN MORE →</div></a>
   </div>
 </section>
@@ -1040,7 +1040,7 @@ html.embedded,html.embedded body,html.embedded main,html.embedded .view,html.emb
     <div class="block"><div class="block-label">ANALYTICS & MODELLING</div><ul><li>Hierarchical Bayes modeling</li><li>Preference-based segmentation</li><li>Advanced model diagnostics</li><li>Cross-validation techniques</li></ul></div>
     <div class="block"><div class="block-label">INSIGHT GENERATION</div><ul><li>Interactive market simulators</li><li>Actionable business insights</li><li>Competitive scenario planning</li><li>Strategic recommendations</li></ul></div>
   </div></div>
-  <div class="cta"><div><div class="eyebrow" style="color:#d8b9ff">UNIQUE VALUE PROPOSITION</div><h3>Deep industry experience. Dedicated DCM team.</h3><p>100+ years of accumulated experience in DCM Team · Platform Agnostic Excellence · Dedicated Team exclusively for DCM · Proven Accelerators for faster TAT</p></div><button class="btn light" onclick="go('solutions')">Explore the full system →</button></div>
+  <div class="cta"><div><div class="eyebrow" style="color:#d8b9ff">UNIQUE VALUE PROPOSITION</div><h3>Deep industry experience. Dedicated DCM team.</h3><p>100+ years of accumulated experience in DCM Team · Platform Agnostic Excellence · Dedicated Team exclusively for DCM · Proven Accelerators for faster TAT</p></div><button class="btn light" onclick="go('home')">Back to the decision system →</button></div>
 </section>
 
 
@@ -1129,31 +1129,6 @@ html.embedded,html.embedded body,html.embedded main,html.embedded .view,html.emb
       <article class="analytics-card"><span>04</span><label>CONNECT</label><h3>Unified Knowledge</h3><p>Cross-study insights with natural-language querying across trusted information.</p></article>
       <article class="analytics-card"><span>05</span><label>VISUALIZE</label><h3>QuickSight BI</h3><p>Enterprise dashboards, integration and modernization built for scalable decision-making.</p></article>
     </div>
-
-    <div class="quicksight-strip">
-      <strong>QUICKSIGHT</strong>
-      <span>Data Integration</span><i>│</i>
-      <span>SPICE Optimization</span><i>│</i>
-      <span>BI Migration</span><i>│</i>
-      <span>Data Modelling</span><i>│</i>
-      <span>Front-end Visualization</span>
-    </div>
-  </div>
-
-  <div class="section decision-layer">
-    <div class="section-intro">
-      <div>
-        <div class="eyebrow">FROM DASHBOARD TO DECISION</div>
-        <h2>Make every view answer the next business question.</h2>
-      </div>
-      <p>Our BI layer does more than report the numbers. It connects KPIs, drivers, anomalies and context so teams can understand <b>what changed, why it matters and where to act next.</b></p>
-    </div>
-    <div class="decision-flow">
-      <div><span>01</span><b>UNIFY</b><p>Bring research, operational and market signals together.</p></div>
-      <div><span>02</span><b>INTERPRET</b><p>Surface drivers, patterns, anomalies and emerging signals.</p></div>
-      <div><span>03</span><b>PREDICT</b><p>Forecast performance and flag opportunities or risks.</p></div>
-      <div><span>04</span><b>ACTIVATE</b><p>Give teams the next-best view, action or recommendation.</p></div>
-    </div>
   </div>
 
   <div class="cta" id="connect">
@@ -1174,6 +1149,19 @@ const EMBED=document.documentElement.classList.contains('embedded');
 let firstGo=true;
 const all=[...document.querySelectorAll('.view')];
 window.addEventListener('message',event=>{if(event.source===parent && event.data && event.data.type==='ii-reset-home'){iiRouteHistory.length=0;go('home',true,true);}});
+// Keep parent-level frozen tabs synchronized with the actual embedded view.
+window.addEventListener('message',event=>{
+  if(event.source!==parent || !event.data)return;
+  if(event.data.type==='ii-request-view'){
+    parent.postMessage({type:'ii-view',view:document.querySelector('.view.active')?.id||'home'},'*');
+  }else if(event.data.type==='ii-sticky-route'){
+    const route=event.data.route;
+    if(!['back','home','solutions','primary','primary-quant','primary-qual','brand','ux','conjoint','dashboard'].includes(route))return;
+    iiUserNavigated=true;
+    if(route==='back')goBack();
+    else go(route);
+  }
+});
 // Track navigation inside Integrated Intelligence; do not change the parent site's menu.
 const iiRouteHistory=[];
 function goBack(){
@@ -1196,7 +1184,9 @@ document.addEventListener('click',event=>{
 function go(id,fromBack=false,silentReset=false){
   const target=document.getElementById(id)?id:'home';
   const current=document.querySelector('.view.active')?.id;
-  if(!fromBack && current && current!==target) iiRouteHistory.push(current);
+  // Landing view must never retain subpage history or show a Back button.
+  if(target==='home') iiRouteHistory.length=0;
+  else if(!fromBack && current && current!==target) iiRouteHistory.push(current);
   updateBackButton();
   all.forEach(x=>x.classList.toggle('active',x.id===target));
   if(EMBED) parent.postMessage({type:'ii-view',view:target},'*');

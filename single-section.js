@@ -11,8 +11,8 @@
   let internalView = 'home';
   const sequence = [
     ['home','Home'],['relationship','Relationship summary'],
-    ['capabilities','what we do for Amazon'],
-    ['integrated-intelligence','Capabilities'],
+    ['capabilities','What we do for Amazon'],
+    ['integrated-intelligence','Our Capabilities'],
     ['differentiators','Why C5i'],['cta','Contact Us']
   ];
   const nextControl=document.createElement('button');
@@ -44,7 +44,7 @@
     if(!show)return;
     nextControl.replaceChildren();
     const text=document.createElement('span');
-    text.textContent='Move to '+next[1];
+    text.textContent=next[1];
     const arrow=document.createElement('span');
     arrow.className='next-arrow';arrow.textContent='→';arrow.setAttribute('aria-hidden','true');
     nextControl.append(text,arrow);
