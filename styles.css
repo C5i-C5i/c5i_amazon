@@ -544,3 +544,699 @@ body[data-c5i-view]:not([data-c5i-view="cta"]) main > #cta .partner-card{
   bottom: 18px;
   z-index: 3;
 }
+
+
+/* White page canvas except the original Home and Contact Us hero backgrounds. */
+html, html body, html body main, html body[data-c5i-view],
+html body[data-c5i-view] main {background-color:#fff!important;}
+html body main > #relationship.metric-strip,
+html body main > #teams.teams,
+html body main > #capabilities.capabilities,
+html body main > #integrated-intelligence.integrated-intelligence,
+html body main > #differentiators.differentiators {
+  background:#fff!important;
+  background-image:none!important;
+}
+/* Restore the original Home and Contact Us appearance from the approved version.
+   Keep the next-page button independent of the background styles. */
+/* Bottom-right next-section control: only navigation, no card restyling. */
+#c5i-next-view{
+ position:fixed;right:clamp(16px,3vw,48px);bottom:clamp(16px,3vh,28px);
+ z-index:1200;display:inline-flex;align-items:center;gap:12px;
+ max-width:min(370px,calc(100vw - 32px));padding:12px 17px;
+ background:#fff;color:#26004d;border:1px solid #dcc8f3;
+ border-radius:999px;box-shadow:0 12px 34px rgba(39,0,80,.16);
+ font:700 13px/1.25 'Segoe UI',Arial,sans-serif;cursor:pointer;
+}
+#c5i-next-view:hover,#c5i-next-view:focus-visible{border-color:#6800e0;box-shadow:0 14px 34px rgba(104,0,224,.2);outline-offset:3px;}
+#c5i-next-view .next-arrow{display:grid;place-items:center;flex:0 0 28px;height:28px;background:#6800e0;color:#fff;border-radius:50%;font-size:18px;}
+#c5i-next-view[hidden]{display:none!important;}
+@media(max-width:720px){#c5i-next-view{font-size:11px;padding:10px 12px;bottom:12px;right:12px}}
+
+/* Corrected Next control: at the end of page content, never covering cards. */
+html body #c5i-next-row{
+  position:relative!important;
+  width:100%;box-sizing:border-box;
+  display:flex;justify-content:flex-end;align-items:center;
+  padding:22px clamp(20px,3vw,54px) 34px;
+  margin:0;
+  background:#fff;
+  z-index:1;
+}
+html body #c5i-next-row[hidden]{display:none!important}
+html body #c5i-next-view{
+  position:static!important;inset:auto!important;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#6800E0!important;color:#fff!important;
+  border:1px solid #6800E0!important;
+  box-shadow:0 8px 20px rgba(65,0,140,.16)!important;
+  margin:0!important;padding:12px 17px!important;
+  white-space:normal;
+}
+html body #c5i-next-view .next-arrow{
+  background:#fff!important;color:#6800E0!important;
+}
+html body #c5i-next-view:hover,
+html body #c5i-next-view:focus-visible{
+  background:#5000B0!important;
+  box-shadow:0 10px 24px rgba(65,0,140,.23)!important;
+}
+/* Home retains its violet design, with the next link in a matching footer strip. */
+html body[data-c5i-view="home"] #c5i-next-row{background:#310063!important}
+@media(max-width:720px){
+  html body #c5i-next-row{padding:18px 16px 26px}
+  html body #c5i-next-view{max-width:100%;font-size:12px!important}
+}
+
+/* Manager feedback: next button lives INSIDE the selected view, no extra band. */
+html body #c5i-next-row {
+  background:transparent!important;
+  width:100%!important;
+  padding:12px 0 0!important;
+  margin:0!important;
+  min-height:0!important;
+  align-self:stretch!important;
+  box-shadow:none!important;
+}
+/* The Home page fills the screen; anchor its next button inside the hero. */
+html body[data-c5i-view="home"] #home.hero {position:relative!important;}
+html body[data-c5i-view="home"] #home #c5i-next-row {
+  position:absolute!important;
+  bottom:clamp(12px,2.2vh,24px)!important;
+  right:clamp(18px,3vw,50px)!important;
+  width:auto!important;
+  padding:0!important;
+  z-index:5!important;
+}
+/* Relationship Summary: place next link after all nine team cards. */
+html body[data-c5i-view="relationship"] #teams #c5i-next-row {
+  position:relative!important;
+  padding:14px 0 0!important;
+  clear:both!important;
+}
+/* Contact is last in the sequence, so no next control or extra space. */
+html body[data-c5i-view="cta"] #c5i-next-row {display:none!important;}
+/* On smaller screens the Home link stays in the hero without clipping text. */
+@media(max-width:760px){
+  html body[data-c5i-view="home"] #home.hero{padding-bottom:96px!important;height:auto!important;min-height:calc(100dvh - var(--header-h,68px))!important}
+  html body[data-c5i-view="home"] #home #c5i-next-row{right:16px!important;bottom:16px!important;max-width:calc(100% - 32px)!important}
+}
+
+/* Keep the six capability cards at their original width.
+   The next button is a separate bottom row, not a seventh flex item. */
+html body[data-c5i-view="capabilities"] main > #c5i-next-row {
+  display:flex!important;
+  width:100%;
+  padding:8px clamp(20px,3vw,54px) 20px!important;
+  background:#fff!important;
+  margin:0!important;
+}
+html body[data-c5i-view="capabilities"] #capabilities {
+  flex-wrap:nowrap;
+}
+
+/* Manager review: Why C5i uses the same soft, varied card palette as
+   What We Do for Amazon. Do not change the content or any other cards. */
+#differentiators .diff-grid { align-items:stretch; }
+#differentiators .diff-card {
+  background:#f4f6ff!important;
+  background-image:linear-gradient(145deg,#f7faff 0%,#ebf1ff 100%)!important;
+  border:1px solid #dcc2fb!important;
+  box-shadow:0 12px 30px rgba(49,0,92,.07)!important;
+  border-radius:22px!important;
+}
+#differentiators .diff-card:nth-child(2) { background-image:linear-gradient(145deg,#f9fffd,#eaf7f1)!important; }
+#differentiators .diff-card:nth-child(3) { background-image:linear-gradient(145deg,#faf7ff,#f0e8ff)!important; }
+#differentiators .diff-card:nth-child(4) { background-image:linear-gradient(145deg,#fffaf6,#fff0e6)!important; }
+#differentiators .diff-card:nth-child(5) { background-image:linear-gradient(145deg,#fff8fb,#f9eafa)!important; }
+
+/* Keep the full Why C5i view (including the next-page button) within
+   the available desktop window, without an extra white strip/scrollbar. */
+@media (min-width:1101px) and (min-height:650px) {
+  html body[data-c5i-view="differentiators"] #differentiators {
+    box-sizing:border-box!important;
+    height:calc(100dvh - var(--header-h, 100px))!important;
+    min-height:0!important;
+    padding:clamp(18px,3vh,30px) clamp(30px,2.6vw,50px) 14px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:flex-start!important;
+    overflow:hidden!important;
+  }
+  html body[data-c5i-view="differentiators"] #differentiators .section-title {
+    margin-bottom:clamp(12px,2vh,20px)!important;
+    flex:0 0 auto;
+  }
+  html body[data-c5i-view="differentiators"] #differentiators .diff-grid {
+    flex:0 1 auto;
+    min-height:0;
+    gap:clamp(12px,1.2vw,20px)!important;
+  }
+  html body[data-c5i-view="differentiators"] #differentiators .diff-card {
+    min-height:0!important;
+    height:clamp(235px,42vh,345px)!important;
+    padding:clamp(16px,1.6vw,26px)!important;
+    overflow:hidden;
+  }
+  html body[data-c5i-view="differentiators"] #differentiators #c5i-next-row {
+    margin-top:auto!important;
+    flex:0 0 auto!important;
+    padding:8px 0 0!important;
+  }
+}
+
+/* Oct 23: Eliminate the blank band between Contact Us and its footer.
+   The header is fixed; the content and footer together fill the viewport. */
+@media (min-width:761px) {
+ html body[data-c5i-view="cta"] {
+   --c5i-footer-space: 84px;
+   min-height:100dvh!important;
+   box-sizing:border-box!important;
+   display:flex!important;
+   flex-direction:column!important;
+ }
+ html body[data-c5i-view="cta"] main {
+   flex:1 0 auto!important;
+   min-height:0!important;
+   display:flex!important;
+   flex-direction:column!important;
+ }
+ html body[data-c5i-view="cta"] main > #cta.cta.section {
+   flex:1 0 auto!important;
+   height:auto!important;
+   min-height:max(350px,calc(100dvh - var(--header-h, 100px) - var(--c5i-footer-space)))!important;
+   margin:0!important;
+ }
+ html body[data-c5i-view="cta"] footer {
+   flex:0 0 auto!important;
+   min-height:var(--c5i-footer-space)!important;
+   box-sizing:border-box!important;
+   padding:14px 30px!important;
+   margin:0!important;
+ }
+}
+/* Why C5i: the next button shares the same section, never an extra row. */
+@media (min-width:1101px) and (min-height:650px) {
+ html body[data-c5i-view="differentiators"] main {
+   min-height:0!important;
+ }
+ html body[data-c5i-view="differentiators"] #differentiators {
+   max-height:calc(100dvh - var(--header-h, 100px))!important;
+ }
+}
+
+/* Consistent violet pictograms in the three requested sections. */
+#relationship .icon, #teams .team-tile span, #capabilities .cap-icon, #differentiators .dicon {color:#6800E0!important;}
+.c5i-purple-icon {display:block;width:1em;height:1em;color:#6800E0;stroke:#6800E0;fill:none;flex-shrink:0;}
+#relationship .c5i-purple-icon {width:31px;height:31px;}
+#teams .c5i-purple-icon {width:29px;height:29px;margin:auto;}
+#capabilities .c5i-purple-icon {width:28px;height:28px;}
+#differentiators .c5i-purple-icon {width:34px;height:34px;}
+
+
+/* Oct 23: verified, unified purple pictograms and consistent capability card alignment.
+   Keep original card dimensions, copy, backgrounds, and Explore functionality. */
+.c5i-purple-icon {
+  display:block!important;
+  width:100%; height:100%;
+  color:#6800E0!important;
+  stroke:#6800E0!important;
+  fill:none;
+  flex:none;
+  overflow:visible;
+  shape-rendering:geometricPrecision;
+}
+#relationship .icon .c5i-purple-icon {width:38px!important;height:38px!important;}
+#teams .team-tile span {display:flex!important;align-items:center;justify-content:center;width:100%;}
+#teams .team-tile .c5i-purple-icon {width:35px!important;height:35px!important;margin:0 auto!important;}
+#capabilities .cap-card .cap-icon {
+  width:64px!important;height:64px!important;
+  padding:12px!important;
+  margin:0 auto!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+}
+#capabilities .cap-card .cap-icon .c5i-purple-icon {width:39px!important;height:39px!important;}
+#differentiators .dicon .c5i-purple-icon {width:43px!important;height:43px!important;}
+/* All six card parts occupy the same rows: icon, headline, description, action. */
+#capabilities .capability-grid {align-items:stretch!important;}
+#capabilities .cap-card {
+  display:flex!important;flex-direction:column!important;
+  align-items:stretch!important;justify-content:flex-start!important;
+  padding:28px 16px 68px!important;
+  min-width:0!important;
+}
+#capabilities .cap-card .cap-card-body {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:82px 130px auto!important;
+  align-content:start!important;
+  align-items:start!important;
+  justify-items:center!important;
+  flex:1 1 auto!important;
+  gap:0!important;
+  min-height:0!important;
+  width:100%!important;
+  margin:0!important;
+}
+#capabilities .cap-card h3 {
+  align-self:start!important;
+  padding-top:2px!important;
+  margin:0!important;
+  width:100%!important;
+  text-align:center!important;
+  overflow-wrap:break-word!important;
+}
+#capabilities .cap-card p {
+  align-self:start!important;
+  margin:0!important;
+  width:100%!important;
+  text-align:center!important;
+  overflow-wrap:normal!important;
+  line-height:1.45!important;
+}
+#capabilities .cap-card a.cap-explore {
+  position:absolute!important;
+  bottom:19px!important;
+  left:6px!important;right:6px!important;
+  margin:0!important;
+  z-index:3!important;
+  text-align:center!important;
+}
+/* Keep an icon-sized top row and consistent text alignment at narrow widths too. */
+@media(max-width:1450px){
+ #capabilities .cap-card {padding-left:13px!important;padding-right:13px!important;}
+ #capabilities .cap-card .cap-card-body {grid-template-rows:80px 125px auto!important;}
+}
+@media(max-width:1200px){
+ #capabilities .cap-card .cap-card-body {grid-template-rows:82px 92px auto!important;}
+ #capabilities .cap-card {padding-bottom:66px!important;min-height:345px!important;}
+}
+@media(max-width:650px){
+ #capabilities .cap-card .cap-card-body {grid-template-rows:80px auto auto!important;row-gap:12px!important;}
+ #capabilities .cap-card {min-height:320px!important;}
+}
+
+/* Primary Research: Quantitative / Qualitative tabs */
+.primary-research-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 22px;border-bottom:1px solid #e5d9f5;padding-bottom:10px}
+.primary-research-tabs button{border:1px solid #d9c7f7;border-radius:10px;background:#faf7ff;color:#32124f;font:inherit;font-size:15px;font-weight:800;padding:12px 8px;cursor:pointer}
+.primary-research-tabs button.active{background:#6800e0;border-color:#6800e0;color:#fff}
+.primary-research-tabs button:focus-visible{outline:3px solid #8c51e1;outline-offset:3px}
+#primaryResearchTabPanel .cap-engagement{margin-top:0}
+#primaryResearchTabPanel .qualitative-research ul{padding-left:23px;line-height:1.6}
+#primaryResearchTabPanel .qualitative-research li{margin:0 0 13px}
+@media(max-width:520px){.primary-research-tabs{gap:6px}.primary-research-tabs button{font-size:13px;padding:10px 4px}}
+
+/* Consistent site typography */
+html,body,button,input,select,textarea{font-family:"Segoe UI",Arial,sans-serif!important;}
+
+/* Manager feedback: C5i violet navigation header with white text. */
+html body .topbar {
+  background:#420897!important;
+  background-image:none!important;
+  border-bottom:1px solid #8c51e1!important;
+  box-shadow:0 4px 18px rgba(31,0,76,.18)!important;
+}
+html body .topbar .nav a,
+html body .topbar .nav a:visited {
+  color:#ffffff!important;
+  border-bottom-color:transparent;
+}
+html body .topbar .nav a:hover,
+html body .topbar .nav a.active,
+html body .topbar .nav a[aria-current="page"] {
+  color:#ffffff!important;
+  border-bottom-color:#d5b7ff!important;
+}
+html body .topbar .nav a:focus-visible {
+  outline:2px solid #ffffff;outline-offset:3px;
+}
+/* Retain the supplied logo colors and contrast against the violet header. */
+html body .topbar .brand {
+  background:rgba(255,255,255,.98);
+  border-radius:12px;
+  padding:5px 12px;
+}
+html body .topbar .divider {background:#c5b1df!important;}
+
+/* Header polish: no white logo capsule; distinct accessible selected state. */
+html body .topbar .brand,
+html body .topbar .c5i-brand-mark,
+html body .topbar .amazon-brand-mark {
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+html body .topbar .brand {padding:0!important;}
+html body .topbar .nav a,
+html body .topbar .nav a:visited {
+  color:#fff!important;
+  font-weight:650!important;
+  border-bottom:3px solid transparent!important;
+  transition:color .16s ease,border-color .16s ease;
+}
+html body .topbar .nav a:hover,
+html body .topbar .nav a.active,
+html body .topbar .nav a[aria-current="page"] {
+  color:#ffce00!important;
+  font-weight:900!important;
+  border-bottom:3px solid #ffce00!important;
+}
+html body .topbar .nav a:focus-visible {outline:2px solid #ffce00!important;outline-offset:3px;}
+
+/* Logo-only contrast surfaces: two tight white backgrounds, never a full-width capsule. */
+html body .topbar .brand {
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  padding:0!important;
+  box-shadow:none!important;
+  gap:13px!important;
+}
+html body .topbar .c5i-brand-mark {
+  width:96px!important;
+  height:53px!important;
+  flex:0 0 96px!important;
+  border-radius:7px!important;
+  background:#fff!important;
+  overflow:hidden!important;
+  box-shadow:none!important;
+}
+html body .topbar .c5i-brand-mark img {
+  display:block!important;
+  width:160px!important;
+  height:85px!important;
+  max-width:none!important;
+  flex:none!important;
+  object-fit:contain!important;
+  filter:none!important;
+}
+html body .topbar .amazon-brand-mark {
+  width:164px!important;
+  height:53px!important;
+  flex:0 0 164px!important;
+  border-radius:7px!important;
+  background:#fff!important;
+  overflow:hidden!important;
+  box-shadow:none!important;
+}
+html body .topbar .amazon-brand-mark img {
+  display:block!important;
+  width:164px!important;
+  height:90px!important;
+  max-width:none!important;
+  flex:none!important;
+  object-fit:contain!important;
+  filter:none!important;
+}
+@media(max-width:850px){
+ html body .topbar .c5i-brand-mark{width:80px!important;flex-basis:80px!important;height:46px!important}
+ html body .topbar .c5i-brand-mark img{width:134px!important;height:71px!important}
+ html body .topbar .amazon-brand-mark{width:137px!important;flex-basis:137px!important;height:46px!important}
+ html body .topbar .amazon-brand-mark img{width:137px!important;height:76px!important}
+}
+
+/* Contact Us only: compact approved C5i sign-off inside the existing footer. */
+html body[data-c5i-view="cta"] footer {display:flex!important;flex-wrap:wrap;align-content:center;row-gap:7px!important;}
+html body[data-c5i-view="cta"] footer .contact-brand-legal {
+  flex:1 1 100%; display:flex; justify-content:space-between; align-items:center;
+  gap:12px; color:#d8c8e7; font-family:"Segoe UI",Arial,sans-serif;
+  font-size:12px; line-height:1.3; border-top:1px solid rgba(255,255,255,.14);
+  padding-top:7px; margin-top:1px;
+}
+html body[data-c5i-view="cta"] footer .contact-brand-signoff {display:flex;gap:12px;align-items:baseline;}
+html body[data-c5i-view="cta"] footer .contact-brand-signoff strong {color:#fff;font-size:14px;}
+html body[data-c5i-view="cta"] footer .contact-copyright {white-space:nowrap;}
+@media(max-width:760px){
+ html body[data-c5i-view="cta"] footer .contact-brand-legal {flex-direction:column;align-items:flex-start;}
+ html body[data-c5i-view="cta"] footer .contact-copyright {white-space:normal;}
+}
+
+/* Header logo clipping correction: original artwork, only transparent outer padding trimmed. */
+html body .topbar .c5i-brand-mark {width:112px!important;flex:0 0 112px!important;height:60px!important;background:#fff!important;border-radius:8px!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:6px!important;}
+html body .topbar .amazon-brand-mark {width:168px!important;flex:0 0 168px!important;height:60px!important;background:#fff!important;border-radius:8px!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:6px!important;}
+html body .topbar .c5i-brand-mark img,html body .topbar .amazon-brand-mark img {display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;flex:0 1 auto!important;filter:none!important;}
+@media(max-width:850px){html body .topbar .c5i-brand-mark{width:92px!important;flex-basis:92px!important;height:50px!important;padding:5px!important}html body .topbar .amazon-brand-mark{width:140px!important;flex-basis:140px!important;height:50px!important;padding:5px!important}}
+
+/* Compact partner logos: reduce both white badges and artwork proportionally. */
+html body .topbar .c5i-brand-mark {
+  width:84px!important; flex:0 0 84px!important; height:45px!important;
+  padding:5px!important; box-sizing:border-box!important;
+}
+html body .topbar .amazon-brand-mark {
+  width:126px!important; flex:0 0 126px!important; height:45px!important;
+  padding:5px!important; box-sizing:border-box!important;
+}
+html body .topbar .c5i-brand-mark img,
+html body .topbar .amazon-brand-mark img {
+  width:100%!important; height:100%!important;
+  object-fit:contain!important; object-position:center!important;
+}
+@media(max-width:850px){
+ html body .topbar .c5i-brand-mark{width:69px!important;flex-basis:69px!important;height:38px!important;padding:4px!important}
+ html body .topbar .amazon-brand-mark{width:105px!important;flex-basis:105px!important;height:38px!important;padding:4px!important}
+}
+
+/* Manager feedback: lavender selected menu instead of yellow. */
+html body .topbar .nav a:hover,
+html body .topbar .nav a.active,
+html body .topbar .nav a[aria-current="page"] {
+  color:#BC9BEC!important;
+  border-bottom-color:#BC9BEC!important;
+  font-weight:900!important;
+}
+html body .topbar .nav a:focus-visible {outline-color:#BC9BEC!important;}
+/* Hide the two unwanted CTAs without reserving layout space. */
+html body[data-c5i-view="home"] #c5i-next-row,
+html body[data-c5i-view="differentiators"] #c5i-next-row {display:none!important;}
+
+/* Manager feedback: navigation to the next section is a text link, not a pill. */
+html body #c5i-next-view,
+html body #c5i-next-view:hover,
+html body #c5i-next-view:focus-visible {
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  color:#6800E0!important;
+  font-family:'Segoe UI',Arial,sans-serif!important;
+  font-weight:800!important;
+  padding:5px 0!important;
+  gap:10px!important;
+  text-decoration:none!important;
+}
+html body #c5i-next-view .next-arrow {
+  display:inline!important;
+  flex:none!important;
+  width:auto!important;
+  height:auto!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#6800E0!important;
+  font-size:23px!important;
+  line-height:1!important;
+}
+html body #c5i-next-view:hover {text-decoration:underline!important;}
+/* Keep the next-link aligned to the content edge, not in a separate background strip. */
+html body #c5i-next-row {background:transparent!important;box-shadow:none!important;}
+
+/* Desktop relationship summary: statistics + teams + next link fit within the viewport. */
+@media (min-width:1350px) and (min-height:650px) {
+  html body[data-c5i-view="relationship"] main {
+    min-height:calc(100dvh - var(--header-h,100px))!important;
+    height:calc(100dvh - var(--header-h,100px))!important;
+    display:flex!important;
+    flex-direction:column!important;
+    overflow:hidden!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship.metric-strip {
+    flex:0 0 auto!important;
+    padding:12px 42px!important;
+    gap:22px!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship .metric-grid article {
+    padding:3px 10px!important;
+    gap:4px!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship .metric-grid .icon svg {width:27px!important;height:27px!important;}
+  html body[data-c5i-view="relationship"] #relationship .metric-grid strong {font-size:35px!important;}
+  html body[data-c5i-view="relationship"] #relationship .metric-grid span {font-size:13px!important;}
+  html body[data-c5i-view="relationship"] #teams {
+    flex:1 1 auto!important;
+    min-height:0!important;
+    padding:14px 42px 12px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .section-title {
+    margin-bottom:14px!important;
+    max-width:none!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .section-title h2 {margin:5px 0 9px!important;}
+  html body[data-c5i-view="relationship"] #teams .section-title h4 {max-width:760px!important;}
+  html body[data-c5i-view="relationship"] #teams .team-grid {gap:12px!important;}
+  html body[data-c5i-view="relationship"] #teams .team-tile {
+    min-height:125px!important;
+    padding:10px 6px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams #c5i-next-row {
+    padding-top:8px!important;
+    flex:0 0 auto!important;
+  }
+}
+
+/* Relationship Summary: compact desktop layout and equal heading hierarchy. */
+html body[data-c5i-view="relationship"] #relationship .metric-label p {
+  font-family:"Segoe UI",Arial,sans-serif!important;
+  font-size:clamp(26px,2.15vw,38px)!important;
+  line-height:1.06!important;
+  letter-spacing:-.7px!important;
+  font-weight:800!important;
+  text-transform:none!important;
+  max-width:270px;
+}
+@media(min-width:1350px) and (min-height:650px){
+ html body[data-c5i-view="relationship"] main {
+   height:calc(100dvh - var(--header-h,100px))!important;
+   min-height:0!important;
+   overflow:visible!important;
+   display:flex!important;
+   flex-direction:column!important;
+ }
+ html body[data-c5i-view="relationship"] #relationship.metric-strip {
+   padding:8px clamp(26px,2.7vw,46px)!important;
+   gap:14px!important;
+   min-height:0!important;
+ }
+ html body[data-c5i-view="relationship"] #relationship .metric-label {
+   flex:0 0 clamp(210px,21vw,315px)!important;
+   min-width:0!important;
+ }
+ html body[data-c5i-view="relationship"] #relationship .metric-grid article {
+   padding:3px 6px!important;
+   gap:2px!important;
+ }
+ html body[data-c5i-view="relationship"] #relationship .metric-grid .icon svg {width:26px!important;height:26px!important;}
+ html body[data-c5i-view="relationship"] #relationship .metric-grid strong {font-size:35px!important;line-height:1!important;}
+ html body[data-c5i-view="relationship"] #relationship .metric-grid span {font-size:12.5px!important;line-height:1.15!important;}
+ html body[data-c5i-view="relationship"] #teams {
+   flex:1 1 auto!important;
+   padding:8px clamp(26px,2.7vw,46px) 8px!important;
+   justify-content:flex-start!important;
+   min-height:0!important;
+ }
+ html body[data-c5i-view="relationship"] #teams .section-title {margin-bottom:9px!important;}
+ html body[data-c5i-view="relationship"] #teams .section-title .small-line {margin-bottom:0!important;}
+ html body[data-c5i-view="relationship"] #teams .section-title p {margin:3px 0 4px!important;}
+ html body[data-c5i-view="relationship"] #teams .section-title h2 {font-size:clamp(26px,2.15vw,38px)!important;margin:0 0 6px!important;}
+ html body[data-c5i-view="relationship"] #teams .section-title h4 {font-size:16px!important;line-height:1.25!important;}
+ html body[data-c5i-view="relationship"] #teams .team-grid {gap:10px!important;}
+ html body[data-c5i-view="relationship"] #teams .team-tile {min-height:105px!important;padding:8px 5px!important;}
+ html body[data-c5i-view="relationship"] #teams .team-tile .c5i-purple-icon {width:29px!important;height:29px!important;}
+ html body[data-c5i-view="relationship"] #teams #c5i-next-row {
+   margin-top:0!important;
+   padding:4px 0 0!important;
+   min-height:28px!important;
+ }
+ html body[data-c5i-view="relationship"] #teams #c5i-next-view {padding:2px 0!important;font-size:14px!important;}
+ html body[data-c5i-view="relationship"] #teams #c5i-next-view .next-arrow {font-size:19px!important;}
+}
+/* Smaller viewports must scroll rather than clip the section or navigation. */
+@media(max-width:1349px), (max-height:649px){
+ html body[data-c5i-view="relationship"] main {height:auto!important;min-height:calc(100dvh - var(--header-h,100px))!important;overflow:visible!important;}
+}
+
+/* Relationship Summary final desktop fit: all 9 cards and the next link stay in view.
+   Scope strictly to this view so other page layouts are unaffected. */
+@media (min-width:1350px) and (min-height:650px) {
+  html body[data-c5i-view="relationship"] { overflow-y:hidden!important; }
+  html body[data-c5i-view="relationship"] main {
+    height:calc(100dvh - var(--header-h, 100px))!important;
+    min-height:0!important;
+    overflow:hidden!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship.metric-strip {
+    flex:0 0 29%!important;
+    min-height:0!important;
+    padding:6px clamp(25px,2.7vw,44px)!important;
+    gap:12px!important;
+    align-items:center!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship .metric-grid article {
+    min-height:0!important;
+    padding:0 4px!important;
+    gap:1px!important;
+    grid-template-rows:32px 43px 44px!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship .metric-grid .icon,
+  html body[data-c5i-view="relationship"] #relationship .metric-grid .icon svg {
+    width:28px!important;height:28px!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship .metric-grid strong {
+    height:43px!important;font-size:35px!important;
+  }
+  html body[data-c5i-view="relationship"] #relationship .metric-grid span {
+    min-height:0!important;font-size:12.5px!important;line-height:1.16!important;
+  }
+  html body[data-c5i-view="relationship"] #teams {
+    flex:1 1 71%!important;
+    min-height:0!important;
+    padding:10px clamp(25px,2.7vw,44px) 8px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:flex-start!important;
+    overflow:hidden!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .section-title {
+    flex:0 0 auto!important;
+    margin:0 0 12px!important;
+    max-width:none!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .section-title .small-line {
+    margin:0 0 5px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .section-title p {
+    margin:2px 0 4px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .section-title h2 {
+    font-size:clamp(28px,2.25vw,38px)!important;
+    line-height:1.05!important;
+    margin:0 0 6px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .section-title h4 {
+    font-size:15px!important;
+    line-height:1.24!important;
+    max-width:780px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .team-grid {
+    flex:0 0 auto!important;
+    gap:10px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams .team-tile {
+    min-height:110px!important;
+    padding:7px 4px!important;
+  }
+  html body[data-c5i-view="relationship"] #teams #c5i-next-row {
+    flex:0 0 auto!important;
+    margin:0!important;
+    padding:7px 0 0!important;
+    min-height:30px!important;
+    justify-content:flex-end!important;
+  }
+  html body[data-c5i-view="relationship"] #teams #c5i-next-view {
+    font-size:14px!important;
+    padding:3px 0!important;
+    line-height:1.25!important;
+  }
+}
+/* Preserve readable content rather than clipping on genuinely short screens. */
+@media (max-height:649px) {
+  html body[data-c5i-view="relationship"] {overflow-y:auto!important;}
+  html body[data-c5i-view="relationship"] main,
+  html body[data-c5i-view="relationship"] #teams {height:auto!important;overflow:visible!important;}
+}

@@ -283,7 +283,7 @@ html.embedded #home .hero-art:before{
   background:radial-gradient(circle,rgba(188,111,255,.23),transparent 65%);
 }
 html.embedded #home .hero-art h2{
-  color:#fff;font-family:'DM Sans',Arial,sans-serif;
+  color:#fff;font-family:'Segoe UI',Arial,sans-serif;
   font-size:clamp(24px,2.15vw,35px);line-height:1.18;
   letter-spacing:-.6px;margin:10px 0 16px;
 }
@@ -615,6 +615,81 @@ html.embedded #home .discipline-grid .discipline .discipline-body .explore {
 .ecosystem-left > .primary-node h3 { margin-top:0!important; }
 @media(max-width:900px){.ecosystem-left > .primary-node{width:100%!important}}
 </style>
+<style id="c5i-manager-white-canvas">
+html,html body,html.embedded,html.embedded body{background:#fff!important;background-image:none!important;}
+html body::before,html body::after{content:none!important;display:none!important;}
+</style>
+<style id="c5i-manager-segoe-and-spacing-20261023">
+/* Keep every heading, control and paragraph on the approved Segoe UI family. */
+html,body,button,input,select,textarea,main,main *,header,header * {font-family:"Segoe UI",Arial,sans-serif!important;}
+/* The gap between the brand-tracking pillars and data ecosystem was oversized. */
+html.embedded #brand .ecosystem-section {margin-top:-58px!important;padding-top:12px!important;}
+html.embedded #brand .ecosystem-section .section-intro {margin-bottom:14px!important;}
+@media(max-width:900px){html.embedded #brand .ecosystem-section{margin-top:0!important;padding-top:16px!important;}}
+</style>
+
+<style id="c5i-unified-capabilities-pastel-cards-20261023">
+/* All Capabilities content cards share the same pastel surface treatment as
+   the main site's What We Do for Amazon cards. No card sizing changes. */
+:root{
+ --c5i-card-blue:#eaf1ff;
+ --c5i-card-mint:#e9f5ef;
+ --c5i-card-lavender:#f0e7ff;
+ --c5i-card-peach:#fff0e5;
+ --c5i-card-pink:#fbeafa;
+ --c5i-card-ice:#e9f6fa;
+}
+/* Limit changes to cards in content views, not the violet hero, nav, buttons,
+   numerical indicators, or the surrounding white page. */
+main .view .discipline,
+main .view .solution,
+main .view .tile,
+main .view .block,
+main .view .metric,
+main .view .pillar-card,
+main .view .primary-node,
+main .view .eco-card,
+main .view .quick-card,
+main .view .analytics-card,
+main .view .dash-stat,
+main .view .decision-flow > div,
+main .view .q-panel-copy,
+main .view .q-vendors,
+main .view .ux-card,
+main .view .ux-mini,
+main .view .ux-engagement,
+main .view .ux-list,
+main .view .ux-method,
+main .view .q-ip-row > div,
+main .view .q-stat-grid > div,
+main .view .q-quality,
+main .view .ecosystem-outcomes,
+main .view .source-visual,
+main .view .q-option,
+main .view .source,
+main .view .ux-option {
+ background:linear-gradient(145deg,#fff 3%,var(--c5i-card-tint,#eaf1ff) 100%)!important;
+ background-image:linear-gradient(145deg,#fff 3%,var(--c5i-card-tint,#eaf1ff) 100%)!important;
+ border:1px solid #dfc8fa!important;
+ box-shadow:0 12px 32px rgba(74,34,122,.09)!important;
+ color:#26113f;
+}
+/* The color cycle works for each independent card collection. */
+main .view :is(.discipline,.solution,.tile,.block,.metric,.pillar-card,.primary-node,.eco-card,.quick-card,.analytics-card,.dash-stat,.ux-card,.ux-mini,.ux-engagement,.ux-list,.ux-method,.q-panel-copy,.q-vendors,.q-quality,.ecosystem-outcomes,.source-visual,.q-option,.source,.ux-option):nth-child(6n+1){--c5i-card-tint:var(--c5i-card-blue)}
+main .view :is(.discipline,.solution,.tile,.block,.metric,.pillar-card,.primary-node,.eco-card,.quick-card,.analytics-card,.dash-stat,.ux-card,.ux-mini,.ux-engagement,.ux-list,.ux-method,.q-panel-copy,.q-vendors,.q-quality,.ecosystem-outcomes,.source-visual,.q-option,.source,.ux-option):nth-child(6n+2){--c5i-card-tint:var(--c5i-card-mint)}
+main .view :is(.discipline,.solution,.tile,.block,.metric,.pillar-card,.primary-node,.eco-card,.quick-card,.analytics-card,.dash-stat,.ux-card,.ux-mini,.ux-engagement,.ux-list,.ux-method,.q-panel-copy,.q-vendors,.q-quality,.ecosystem-outcomes,.source-visual,.q-option,.source,.ux-option):nth-child(6n+3){--c5i-card-tint:var(--c5i-card-lavender)}
+main .view :is(.discipline,.solution,.tile,.block,.metric,.pillar-card,.primary-node,.eco-card,.quick-card,.analytics-card,.dash-stat,.ux-card,.ux-mini,.ux-engagement,.ux-list,.ux-method,.q-panel-copy,.q-vendors,.q-quality,.ecosystem-outcomes,.source-visual,.q-option,.source,.ux-option):nth-child(6n+4){--c5i-card-tint:var(--c5i-card-peach)}
+main .view :is(.discipline,.solution,.tile,.block,.metric,.pillar-card,.primary-node,.eco-card,.quick-card,.analytics-card,.dash-stat,.ux-card,.ux-mini,.ux-engagement,.ux-list,.ux-method,.q-panel-copy,.q-vendors,.q-quality,.ecosystem-outcomes,.source-visual,.q-option,.source,.ux-option):nth-child(6n+5){--c5i-card-tint:var(--c5i-card-pink)}
+main .view :is(.discipline,.solution,.tile,.block,.metric,.pillar-card,.primary-node,.eco-card,.quick-card,.analytics-card,.dash-stat,.ux-card,.ux-mini,.ux-engagement,.ux-list,.ux-method,.q-panel-copy,.q-vendors,.q-quality,.ecosystem-outcomes,.source-visual,.q-option,.source,.ux-option):nth-child(6n){--c5i-card-tint:var(--c5i-card-ice)}
+/* Preserve the primary research panel's matching treatment and contrast. */
+main .view .ecosystem-left > .primary-node{--c5i-card-tint:var(--c5i-card-lavender)}
+main .view .discipline-top{background:transparent!important;border-bottom:0!important;color:#26113f!important}
+main .view .discipline-top h3,main .view .discipline-top .num{color:#26113f!important}
+/* Don't cover text with the old corner-decoration pseudo-elements. */
+main .view .solution::before,main .view .solution::after,
+main .view .block::before,main .view .block::after,
+main .view .tile::before,main .view .tile::after{content:none!important;display:none!important}
+</style>
 </head>
 <body>
 <header>
@@ -679,12 +754,12 @@ html.embedded #home .discipline-grid .discipline .discipline-body .explore {
 </section>
 
 <section id="solutions" class="view">
-  <div class="page-hero"><h1>Solutions inspired by business needs - aided by advanced AI.</h1><p>Design the right research, model the choices that matter, and make the result continuously usable through decision-ready BI.</p></div>
+  <div class="page-hero"><h1>Solutions inspired by business needs - aided by advanced AI.</h1><p>Combining research, advanced analytics, market intelligence, and AI-powered BI to help Amazon make faster, smarter, data-driven decisions.</p></div>
   <div class="solution-grid">
-    <article class="solution" onclick="go('primary')"><div class="num">01</div><h3>Primary Research</h3><p>Design and execute high-impact primary research with a governed, continuously optimized managed-service model, powered by technology and AI to accelerate insights, elevate quality, and maximize ROI.</p><div class="link">LEARN MORE →</div></article>
-    <article class="solution" onclick="go('conjoint')"><div class="num">02</div><h3>Conjoint & Choice Analytics</h3><p>Design robust choice experiments and model demand with advanced conjoint analytics, quantifying feature value, price sensitivity and market response to optimize propositions, bundles and portfolio decisions.</p><div class="link">LEARN MORE →</div></article>
-    <article class="solution" onclick="go('dashboard')"><div class="num">03</div><h3>Dashboarding & BI</h3><p>Turn fragmented data into always-on decisions with automated dashboards and BI, unifying KPIs, surfacing drivers and anomalies, and delivering AI-assisted insights through QuickSight, QuickSuite and QuickInsights.</p><div class="link">LEARN MORE →</div></article>
-    <a class="solution competitive-solution" href="https://resources.c5i.ai/c5i-compete-ai-powered-insights-for-a-winning-digital-shelf" target="_blank" rel="noopener noreferrer"><div class="num">04</div><h3>Market & Competitive Intelligence</h3><p>Market landscape, trends, sizing &amp; forecasting<br>Competitor benchmarking, pricing &amp; GTM intelligence<br>Continuous monitoring, alerts &amp; strategic insights</p><div class="link">LEARN MORE →</div></a>
+    <article class="solution" onclick="go('primary')"><h3>Primary Research</h3><p>Design and execute high-impact primary research with a governed, continuously optimized managed-service model, powered by technology and AI to accelerate insights, elevate quality, and maximize ROI.</p><div class="link">LEARN MORE →</div></article>
+    <article class="solution" onclick="go('conjoint')"><h3>Conjoint & Choice Analytics</h3><p>Design robust choice experiments and model demand with advanced conjoint analytics, quantifying feature value, price sensitivity and market response to optimize propositions, bundles and portfolio decisions.</p><div class="link">LEARN MORE →</div></article>
+    <article class="solution" onclick="go('dashboard')"><h3>Dashboarding & BI</h3><p>Turn fragmented data into always-on decisions with automated dashboards and BI, unifying KPIs, surfacing drivers and anomalies, and delivering AI-assisted insights through QuickSight, QuickSuite and QuickInsights.</p><div class="link">LEARN MORE →</div></article>
+    <a class="solution competitive-solution" href="https://resources.c5i.ai/c5i-compete-ai-powered-insights-for-a-winning-digital-shelf" target="_blank" rel="noopener noreferrer"><h3>Market & Competitive Intelligence</h3><p>Market landscape, trends, sizing &amp; forecasting<br>Competitor benchmarking, pricing &amp; GTM intelligence<br>Continuous monitoring, alerts &amp; strategic insights</p><div class="link">LEARN MORE →</div></a>
   </div>
 </section>
 
@@ -718,12 +793,12 @@ html.embedded #home .discipline-grid .discipline .discipline-body .explore {
     <div class="block"><div class="block-label">REACH THE AUDIENCES THAT MATTER</div><ul><li>Consumers and customers</li><li>Business decision-makers</li><li>Priority and niche segments</li><li>Hard-to-reach groups</li></ul></div>
     <div class="block wide"><div class="block-label">HOW C5i HELPS ACROSS THE RESEARCH LIFECYCLE</div>
       <ul>
-        <li><b>01 Study design & sampling</b> - Shape questionnaires, samples and quotas around the decisions that matter.</li>
-        <li><b>02 AI survey programming</b> - Automate survey builds, logic and multilingual quality checks.</li>
-        <li><b>03 Fieldwork control</b> - Manage panels, incidence, quotas and respondent quality in real time.</li>
-        <li><b>04 Data quality</b> - Detect fraud and deliver clean, coded, analysis-ready datasets.</li>
-        <li><b>05 Advanced analytics</b> - Apply weighting, drivers, segmentation, conjoint and MaxDiff.</li>
-        <li><b>06 Insight activation</b> - Turn results into clear reports, dashboards and actions.</li>
+        <li><b>Study design & sampling</b> - Shape questionnaires, samples and quotas around the decisions that matter.</li>
+        <li><b>AI survey programming</b> - Automate survey builds, logic and multilingual quality checks.</li>
+        <li><b>Fieldwork control</b> - Manage panels, incidence, quotas and respondent quality in real time.</li>
+        <li><b>Data quality</b> - Detect fraud and deliver clean, coded, analysis-ready datasets.</li>
+        <li><b>Advanced analytics</b> - Apply weighting, drivers, segmentation, conjoint and MaxDiff.</li>
+        <li><b>Insight activation</b> - Turn results into clear reports, dashboards and actions.</li>
       </ul>
     </div>
   </div>

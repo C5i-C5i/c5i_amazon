@@ -1,3 +1,28 @@
+// Crisp, locally embedded C5i-violet pictograms. 100% vector at every screen scale.
+const c5iPurpleIconPaths = {
+  "📊": "<path d=\"M3 20.5h18\"/><rect x=\"4.5\" y=\"11\" width=\"3.7\" height=\"9.5\" rx=\".7\"/><rect x=\"10.2\" y=\"5\" width=\"3.7\" height=\"15.5\" rx=\".7\"/><rect x=\"15.9\" y=\"13.5\" width=\"3.7\" height=\"7\" rx=\".7\"/>",
+  "🔎": "<circle cx=\"10.7\" cy=\"10.7\" r=\"6.3\"/><path d=\"m15.4 15.4 5.2 5.2\"/><path d=\"M8.4 11.1c.3-1.8 1.5-3 3.2-3.2\"/>",
+  "🛢️": "<ellipse cx=\"12\" cy=\"5\" rx=\"7.4\" ry=\"2.7\"/><path d=\"M4.6 5v14c0 1.5 3.3 2.8 7.4 2.8s7.4-1.3 7.4-2.8V5\"/><path d=\"M4.6 10c0 1.5 3.3 2.8 7.4 2.8s7.4-1.3 7.4-2.8M4.6 15c0 1.5 3.3 2.8 7.4 2.8s7.4-1.3 7.4-2.8\"/>",
+  "⚙️": "<path d=\"M3 19V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z\"/><path d=\"M6.7 16.8l4.1-5 3.5 2.5 3.2-6.5\"/><circle cx=\"6.7\" cy=\"16.8\" r=\".7\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"10.8\" cy=\"11.8\" r=\".7\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"14.3\" cy=\"14.3\" r=\".7\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"17.5\" cy=\"7.8\" r=\".7\" fill=\"currentColor\" stroke=\"none\"/>",
+  "👥": "<circle cx=\"9.3\" cy=\"8.3\" r=\"3.1\"/><path d=\"M2.4 20.1v-1.6c0-3.3 2.7-5.7 6.7-5.7s6.8 2.4 6.8 5.7v1.6H2.4Z\"/><circle cx=\"17.4\" cy=\"9.1\" r=\"2.4\"/><path d=\"M17.2 14.2c2.8 0 4.4 2 4.4 4.5v1.4h-3.6\"/>",
+  "🎯": "<circle cx=\"11\" cy=\"13\" r=\"8.3\"/><circle cx=\"11\" cy=\"13\" r=\"4.7\"/><circle cx=\"11\" cy=\"13\" r=\"1.25\"/><path d=\"M11 13 21 3M16.4 3H21v4.6\"/>",
+  "🤝": "<path d=\"M2 8.2 7.2 4l4.1 1.2 2.9-1.2L22 8.2l-5.4 7.5-2.6 1.6-2.3 2.9-2.9-2.1-2.1-.4z\"/><path d=\"m7.2 11.6 4.2 4.4 2.6 1.3m-2.7-12.1-3.2 5 2.1 2 3.5-3.1 5.1 5\"/>",
+  "📄": "<path d=\"M6 2.3h7.5l4.5 4.6v14.8H6zM13.5 2.3v4.6H18M9 11.5h6M9 15h6M9 18.5h4.2\"/>",
+  "▦": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 9h18M3 15h18M9 3v18M15 3v18\"/>",
+  "🌐": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3.3 12h17.4M12 3c-5.5 5.5-5.5 12.5 0 18M12 3c5.5 5.5 5.5 12.5 0 18M5 7.5h14M5 16.5h14\"/>",
+  "🏷️": "<path d=\"M3 3.5h9.5l8.5 8.5-9 9-9-9V3.5Z\"/><circle cx=\"8.2\" cy=\"8.2\" r=\"1.45\"/>",
+  "📦": "<path d=\"m12 2.5 8.5 4.7v9.6L12 21.5l-8.5-4.7V7.2L12 2.5Z\"/><path d=\"m3.5 7.2 8.5 4.7 8.5-4.7M12 11.9v9.6m-4-16.8 8.5 4.7\"/>",
+  "📣": "<path d=\"M3 9.3h5.2L20 4v16L8.2 14.7H3V9.3Z\"/><path d=\"M8.2 14.7 10 21h4l-2.6-5\"/><path d=\"M22 9v6\"/>",
+  "🛰️": "<rect x=\"9\" y=\"9\" width=\"6\" height=\"6\" rx=\"1\" transform=\"rotate(45 12 12)\"/><path d=\"m8 8-3-3M16 16l3 3M3 9l6-6m6 18 6-6M15.7 4.6a6 6 0 0 1 3.7 3.7M17 2.4a9 9 0 0 1 4.6 4.6\"/><path d=\"m5 4-2 1 2 2m14 10 2 2-2 2\"/>",
+  "🏆": "<path d=\"M7 3.3h10V10a5 5 0 0 1-10 0V3.3Z\"/><path d=\"M7 5H3v2.5c0 3 1.4 4.5 4 4.5M17 5h4v2.5c0 3-1.4 4.5-4 4.5M12 15v5M8 21h8\"/>",
+  "🕒": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 6.7V12l4.1 2.8\"/>",
+};
+function c5iPurpleIcon(symbol){
+  const path = c5iPurpleIconPaths[symbol];
+  if (!path) return "";
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="c5i-purple-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">${path}</svg>`;
+}
+
 const capabilities = [
   {title:'Research, Analytics & Reporting', icon:'📊', text:'Tracking, analytics, scorecards, reporting and strategic insights.', glow:'rgba(0,102,192,.18)'},
   {title:'End-to-End Primary Research', icon:'🔎', text:'Multi-market and ad-hoc research across customer experience needs.', glow:'rgba(22,163,74,.16)'},
@@ -199,7 +224,32 @@ function init(){
   setTimeout(()=>$$('.reveal:not(.show)').forEach(el=>el.classList.add('show')), 1500);
 }
 function renderCapabilities(){
-  $('#capabilityGrid').innerHTML = capabilities.map(c=>`<article class="cap-card" style="--glow:${c.glow}" data-capability="${c.title}"><div class="cap-card-body"><div class="cap-icon">${c.icon}</div><h3>${c.title}</h3><p>${c.text}</p></div><a href="#" class="cap-explore" data-capability="${c.title}">Explore →</a></article>`).join('');
+  $('#capabilityGrid').innerHTML = capabilities.map(c=>`<article class="cap-card" style="--glow:${c.glow}" data-capability="${c.title}"><div class="cap-card-body"><div class="cap-icon">${c5iPurpleIcon(c.icon)}</div><h3>${c.title}</h3><p>${c.text}</p></div><a href="#" class="cap-explore" data-capability="${c.title}">Explore →</a></article>`).join('');
+}
+const primaryQualitativeStudies = [
+  'Research in UAE for Amazon Fuse to understand the bundling options with their Telecom partners and plans (21 in-depth interviews among Prime vs Non-Prime members)',
+  'Research in US and India for Amazon pricing team to understand shopping journey and steps which consumers take before they purchase their product (21 interviews split between Prime members, Amazon customers and Non-Amazon Customers )',
+  'Research & Prototype testing in Colombia to understand the shopping experience on Amazon via a prototype testing (20 interviews split between Prime & Non-Prime members )',
+  'Research in UK, IT and DE to understand delivery experience of customers and expectations of delivery of heavy bulky items to their homes (12 interviews in each market among Amazon shoppers)'
+];
+function renderPrimaryResearchTab(tab){
+  const body = $('#capModalBody');
+  if(!body) return;
+  const quantitative = tab !== 'qualitative';
+  body.querySelectorAll('[data-primary-tab]').forEach(btn=>{
+    const active = btn.dataset.primaryTab === (quantitative?'quantitative':'qualitative');
+    btn.classList.toggle('active',active);
+    btn.setAttribute('aria-selected',String(active));
+    btn.tabIndex = active?0:-1;
+  });
+  const panel = body.querySelector('#primaryResearchTabPanel');
+  if(!panel) return;
+  if(quantitative){
+    const items = capabilityDetails['End-to-End Primary Research'] || [];
+    panel.innerHTML = items.map(e=>`<div class="cap-engagement"><h4>${e.title}</h4>${e.subtitle?`<p class="eng-sub">${e.subtitle}</p>`:''}<ul>${e.points.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+  }else{
+    panel.innerHTML = `<div class="cap-engagement qualitative-research"><h4>Qualitative Research</h4><ul>${primaryQualitativeStudies.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  }
 }
 function renderCapModal(capTitle){
   const cap = capabilities.find(c=>c.title===capTitle);
@@ -207,6 +257,11 @@ function renderCapModal(capTitle){
   $('#capModalEyebrow').textContent = 'EXPLORE';
   $('#capModalTitle').textContent = capTitle;
   $('#capModalText').textContent = cap ? cap.text : '';
+  if(capTitle === 'End-to-End Primary Research'){
+    $('#capModalBody').innerHTML = `<div class="primary-research-tabs" role="tablist" aria-label="Primary research type"><button type="button" role="tab" data-primary-tab="quantitative" aria-controls="primaryResearchTabPanel">Quantitative</button><button type="button" role="tab" data-primary-tab="qualitative" aria-controls="primaryResearchTabPanel">Qualitative</button></div><div id="primaryResearchTabPanel" role="tabpanel"></div>`;
+    renderPrimaryResearchTab('quantitative');
+    return;
+  }
   $('#capModalBody').innerHTML = items.length
     ? items.map(e=>`<div class="cap-engagement"><h4>${e.title}</h4>${e.subtitle?`<p class="eng-sub">${e.subtitle}</p>`:''}${e.stats?`<ul>${e.stats.map(x=>`<li>${x.value} ${x.label}${x.note?`<br>${x.note}`:''}</li>`).join('')}</ul>`:''}${e.pointsHeading?`<h5 class="eng-h">${e.pointsHeading}</h5>`:''}<ul>${e.points.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')
     : `<p class="cap-empty">Detailed engagement breakdowns for this capability are being added soon.</p>`;
@@ -219,6 +274,7 @@ function setupCapModal(){
     renderCapModal(a.dataset.capability);
     modal.classList.add('open');
   }));
+  $('#capModalBody').addEventListener('click', e=>{ const tab=e.target.closest('[data-primary-tab]'); if(tab) renderPrimaryResearchTab(tab.dataset.primaryTab); });
   $('#closeCapModal').addEventListener('click', ()=>modal.classList.remove('open'));
   modal.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('open'); });
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.classList.remove('open'); });
@@ -234,11 +290,11 @@ function renderEngagements(){
   $('#engagementGrid').innerHTML=list.map((e,i)=>`<article class="engagement-card reveal" style="transition-delay:${Math.min(i*.035,.25)}s"><div class="card-image" style="background:${e.image}"></div><div class="card-body"><div class="tags">${e.tags.map((t,j)=>`<span class="tag ${j%3===1?'green':j%3===2?'pink':''}">${t}</span>`).join('')}</div><h3>${e.title}</h3><p>${e.desc}</p><div class="card-stats">${e.stats.map(s=>`<div><strong>${s[0]}</strong><span>${s[1]}</span></div>`).join('')}</div><a class="view-link" href="#capabilities">View Engagement →</a></div></article>`).join('') || `<div class="program-card"><h3>No engagements found</h3><p>Adjust filters or search another term.</p></div>`;
   setupReveal();
 }
-function renderTeams(){ $('#teamGrid').innerHTML=teams.map((t,i)=>`<div class="team-tile" data-team="${t}"><span>${teamIcons[i]}</span>${t}</div>`).join(''); }
+function renderTeams(){ $('#teamGrid').innerHTML=teams.map((t,i)=>`<div class="team-tile" data-team="${t}"><span>${c5iPurpleIcon(teamIcons[i])}</span>${t}</div>`).join(''); }
 function renderImpact(){ $('#impactMetrics').innerHTML=impactMetrics.map(m=>`<article class="impact-card reveal"><div class="metric-icon">${m[0]}</div><div><strong>${m[1]}</strong><span>${m[2]}</span></div></article>`).join(''); }
 function renderPrograms(){ $('#programsGrid').innerHTML=programs.map(p=>`<article class="program-card reveal"><h3>${p.title}</h3><ul>${p.points.map(x=>`<li>${x}</li>`).join('')}</ul></article>`).join(''); }
 function renderEarlier(){ $('#earlierGrid').innerHTML=earlier.map(e=>`<article class="earlier-card reveal"><h3>${e.title}</h3><span class="cost">${e.cost}</span><ul>${e.points.map(x=>`<li>${x}</li>`).join('')}</ul></article>`).join(''); }
-function renderDiffs(){ $('#diffGrid').innerHTML=differentiators.map(d=>`<article class="diff-card"><div class="dicon">${d[0]}</div><h3>${d[1]}</h3><p>${d[2]}</p></article>`).join(''); }
+function renderDiffs(){ $('#diffGrid').innerHTML=differentiators.map(d=>`<article class="diff-card"><div class="dicon">${c5iPurpleIcon(d[0])}</div><h3>${d[1]}</h3><p>${d[2]}</p></article>`).join(''); }
 function setupSearch(){
   const modal=$('#searchModal'), open=()=>{modal.classList.add('open');$('#globalSearch').focus();renderGlobalResults('');};
   $('#openSearch').onclick=open; $('#findExperience').onclick=open; $('#findSimilar').onclick=open; $('#closeSearch').onclick=()=>modal.classList.remove('open'); modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')}); $('#globalSearch').addEventListener('input',e=>renderGlobalResults(e.target.value));

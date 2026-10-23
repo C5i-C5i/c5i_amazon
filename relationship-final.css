@@ -1,0 +1,46 @@
+/* Relationship Summary: compact, one-viewport desktop composition. */
+@media (min-width: 1300px) and (min-height: 690px) {
+ body[data-c5i-view="relationship"] {overflow-y:hidden!important;}
+ body[data-c5i-view="relationship"] main {
+   position:relative!important; display:flex!important; flex-direction:column!important;
+   height:calc(100dvh - var(--relationship-header-px, 90px))!important;
+   max-height:calc(100dvh - var(--relationship-header-px, 90px))!important;
+   min-height:0!important; overflow:hidden!important;
+ }
+ body[data-c5i-view="relationship"] #relationship.metric-strip {
+   flex:0 0 27%!important;height:27%!important;min-height:0!important;
+   padding:4px 3%!important;gap:10px!important;
+ }
+ body[data-c5i-view="relationship"] #relationship .metric-grid article {
+   grid-template-rows:30px 42px 43px!important;gap:0!important;
+ }
+ body[data-c5i-view="relationship"] #teams.teams.section {
+   position:relative!important;flex:1 1 auto!important;height:auto!important;
+   min-height:0!important;overflow:hidden!important;
+   padding:12px 3% 38px!important;
+   justify-content:flex-start!important;
+ }
+ body[data-c5i-view="relationship"] #teams .section-title {
+   margin:0 0 9px!important;max-width:850px!important;
+ }
+ body[data-c5i-view="relationship"] #teams .section-title .small-line {margin-bottom:3px!important;}
+ body[data-c5i-view="relationship"] #teams .section-title p {margin:3px 0 4px!important;}
+ body[data-c5i-view="relationship"] #teams .section-title h2 {margin:0 0 4px!important;}
+ body[data-c5i-view="relationship"] #teams .section-title h4 {margin:0!important;line-height:1.18!important;}
+ body[data-c5i-view="relationship"] #teams .team-grid {
+   flex:0 0 auto!important;gap:10px!important;margin:0!important;
+ }
+ body[data-c5i-view="relationship"] #teams .team-tile {
+   min-height:102px!important;padding:5px 3px!important;
+ }
+ body[data-c5i-view="relationship"] #teams #c5i-next-row {
+   position:absolute!important;right:3%!important;bottom:8px!important;
+   margin:0!important;padding:0!important;height:26px!important;
+   min-height:0!important;width:auto!important;z-index:4!important;
+   display:flex!important;align-items:center!important;
+ }
+ body[data-c5i-view="relationship"] #teams #c5i-next-view {
+   display:inline-flex!important;font-size:15px!important;line-height:1.15!important;
+   padding:0!important;margin:0!important;
+ }
+}

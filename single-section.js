@@ -9,10 +9,74 @@
   const allSections = Array.from(document.querySelectorAll('main > section'));
   let selected = 'home';
   let internalView = 'home';
+  const sequence = [
+    ['home','Home'],['relationship','Relationship summary'],
+    ['capabilities','what we do for Amazon'],
+    ['integrated-intelligence','Capabilities'],
+    ['differentiators','Why C5i'],['cta','Contact Us']
+  ];
+  const nextControl=document.createElement('button');
+  nextControl.type='button';
+  nextControl.id='c5i-next-view';
+  nextControl.setAttribute('aria-label','Move to the next page');
+  // The next-page control belongs AFTER the selected page's content,
+  // not in a fixed overlay on top of its cards.
+  const nextRow=document.createElement('div');
+  nextRow.id='c5i-next-row';
+  nextRow.appendChild(nextControl);
+  // Keep navigation within its own visible section, never in an extra strip.
+  const nextHosts = {
+    home: document.getElementById('home'),
+    relationship: document.getElementById('teams'),
+    capabilities: document.getElementById('capabilities'),
+    'integrated-intelligence': document.getElementById('integrated-intelligence'),
+    differentiators: document.getElementById('differentiators'),
+    cta: document.getElementById('cta')
+  };
+
+  function updateNext(id){
+    const i=sequence.findIndex(([key])=>key===id);
+    const next=sequence[i+1];
+    // Manager feedback: no next-page CTA on Home or Why C5i.
+    const show=Boolean(next) && id!=='home' && id!=='differentiators';
+    nextControl.hidden=!show;
+    nextRow.hidden=!show;
+    if(!show)return;
+    nextControl.replaceChildren();
+    const text=document.createElement('span');
+    text.textContent='Move to '+next[1];
+    const arrow=document.createElement('span');
+    arrow.className='next-arrow';arrow.textContent='→';arrow.setAttribute('aria-hidden','true');
+    nextControl.append(text,arrow);
+    nextControl.dataset.next=next[0];
+    nextControl.setAttribute('aria-label','Move to '+next[1]);
+  }
+  nextControl.addEventListener('click',()=>apply(nextControl.dataset.next));
+
+  function syncRelationshipHeaderHeight(){
+    const header=document.getElementById('topbar');
+    if(header) document.documentElement.style.setProperty('--relationship-header-px',header.getBoundingClientRect().height+'px');
+  }
+  window.addEventListener('resize',syncRelationshipHeaderHeight);
+  syncRelationshipHeaderHeight();
+
   const apply = (id, updateUrl = true) => {
+    syncRelationshipHeaderHeight();
     if (!valid.has(id)) return;
     selected = id;
     document.body.dataset.c5iView = id;
+    updateNext(id);
+    const nextHost = nextHosts[id];
+    if (nextHost) {
+      // Capabilities is a flex row containing the heading and six cards.
+      // Appending the next button inside it shrinks those cards.
+      // Place the next button AFTER the row instead, preserving its layout.
+      if (id === 'capabilities') {
+        nextHost.insertAdjacentElement('afterend', nextRow);
+      } else if (nextRow.parentElement !== nextHost) {
+        nextHost.appendChild(nextRow);
+      }
+    }
     // Clear legacy Focus Mode classes; the single-section router controls visibility.
     document.querySelectorAll('.ii-hidden-during-explore,.capabilities-focus-hidden').forEach(el => {
       el.classList.remove('ii-hidden-during-explore','capabilities-focus-hidden');
@@ -39,6 +103,16 @@
     event.preventDefault();
     event.stopImmediatePropagation();
     apply(id);
+  }, true);
+  // Home hero CTA uses the same single-section router as the main navigation.
+  // Capture before the legacy scroll handler, otherwise Relationship Summary
+  // can remain hidden while the URL changes.
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('#home .hero-actions a[href="#relationship"]');
+    if (!link) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    apply('relationship');
   }, true);
   // Ignore legacy iframe view/scroll messages at parent level; keep height messages.
   window.addEventListener('message', (event) => {
